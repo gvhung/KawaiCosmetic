@@ -10,10 +10,11 @@ namespace RussianKawaiShop.Services.Implements
 {
     public class ProductServiceImpl : ProductService
     {
-        public Product CreateProduct(String name)
+        public Product CreateProduct(String Name, String JPName, int price, string desc, string img, int categoryID)
         {
             Product product = new Product();
-            product.Name = name;
+            product.Name = Name;
+            product.CategoryId = categoryID;
             DBConnector.manager.InsertQuery(product);
 
             return product;

@@ -12,12 +12,7 @@ namespace RussianKawaiShop.Services.Implements
         public List<ProductCategory> GetAll()
         {
             List<ProductCategory> productCategories = DBConnector.manager.FastSelect<ProductCategory>(data => true);
-            if(productCategories.Count > 0)
-            {
-                return productCategories;
-            }
-
-            return null;
+            return productCategories;
         }
 
         public ProductCategory CreateCategory(string Name)
@@ -69,6 +64,20 @@ namespace RussianKawaiShop.Services.Implements
                 return productCategory[0];
             }
             return null;
+        }
+
+        public List<Product> GetProductsInCategory(int CategoryID)
+        {
+            List<Product> products = DBConnector.manager.FastSelect<Product>(data =>
+            {
+                if((data as Product).CategoryId == CategoryID)
+                {
+                    return true;
+                }
+                return false;
+            });
+
+            return products;
         }
     }
 }

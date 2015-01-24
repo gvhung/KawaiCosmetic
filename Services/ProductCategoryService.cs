@@ -13,5 +13,6 @@ namespace RussianKawaiShop.Services.Implements
         ProductCategory CreateCategory(string Name);
         ProductCategory GetByName(string Name);
         ProductCategory GetByID(int id);
+        List<Product> GetProductsInCategory(int CategoryID);
     }
 }

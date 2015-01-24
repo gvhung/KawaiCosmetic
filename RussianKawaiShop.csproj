@@ -53,6 +53,7 @@
     <Compile Include="Database\Models\ProductCategory.cs" />
     <Compile Include="Database\RussianKawaiDB.cs" />
     <Compile Include="Pages\CatalogPage.cs" />
+    <Compile Include="Pages\Errors\Error404.cs" />
     <Compile Include="Pages\IndexPage.cs" />
     <Compile Include="Pages\ProductPage.cs" />
     <Compile Include="Pages\Resources\Footer.cs" />
@@ -176,6 +177,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Templates\Catalog.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Errors\404.html" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
