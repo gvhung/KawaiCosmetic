@@ -3,36 +3,32 @@
 {{include RussianKawaiShop Head}}
 <body>
     {{include RussianKawaiShop Header}}
+    {{set ProductService productService = new ProductServiceImpl()}}
+    {{set Product product = PageData["Product"] as Product}}
     <section>
         <div class="w1000">
-            <div class="fl textcent h1_center h1_more"><h1><span class="h1">KAWAI «Красота» Крем 40 грамм</span></h1></div>
+            <div class="fl textcent h1_center h1_more"><h1><span class="h1">{{=product.Name}}</span></h1></div>
             <div class="fl100">
                 <div class="speedbar">
-                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan"><a href="/" class="speeda">KAWAI Красота</a></span>»<span class="speedspan">KAWAI «Красота» Крем 40 грамм</span>
+                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan"><a href="/" class="speeda">{{=productService.GetCategory(product).Name}}</a></span>»<span class="speedspan">{{=product.Name}}</span>
                 </div>
             </div>
             <div class="fl100 buy">
                 {{include RussianKawaiShop CatalogMenu}}
                 <div class="photos">
-                    <div class="photos_image"><img src="/cached_files/i/temp/shop_1.png" id="main" alt="KAWAI Красота" /></div>
-                    <a class="photos_image" onclick="changeImage(1)"><img src="/cached_files/i/temp/shop_1.png" id="shop1" alt="KAWAI Красота 1" /></a>
-                    <a class="photos_image" onclick="changeImage(2)"><img src="/cached_files/i/temp/shop_2.png" id="shop2" alt="KAWAI Красота 2" /></a>
-                    <a class="photos_image" onclick="changeImage(3)"><img src="/cached_files/i/temp/shop_3.png" id="shop3" alt="KAWAI Красота 3" /></a>
-                    <a class="photos_image" onclick="changeImage(4)"><img src="/cached_files/i/temp/shop_4.jpg" id="shop4" alt="KAWAI Красота 4" /></a>
-                    <div class="fl100 textcenter"><span class="nabor">Из набора:</span></div>
-                    <div class="fl100">
-                        <a href="/"><div class="photos_unique"><img src="/cached_files/i/temp/shop_4.jpg" alt="KAWAI Красота Набор" /></div></a>
-                        <a href="/"><div class="green_text text_a nabor_width">KAWAI «Красота» полный набор</div></a>
-                        <div class="price_nabor">Цена: <span class="green_text">3060 р.</span></div>
-                    </div>
+                    <div class="photos_image"><img src="{{=productService.GetImages(product)[0]}}" id="main" alt="KAWAI Красота" /></div>
+                    {{set int i = 1}}
+                    {{foreach(string image in productService.GetImages(product))}}
+                        <a class="photos_image" onclick="changeImage({{=i}})"><img src="{{=image}}" id="shop{{=i}}" alt="{{product.Name}}" /></a>
+                        {{edit i = i+1}}
+                    {{end}}
                 </div>
                 <div class="information">
                     <div class="information_top">
                         <div class="have">Наличие: <span class="green">Есть в наличии</span></div>
-                        <a href="/"><div class="green_big">KAWAI Красота</div></a>
+                        <a href="/"><div class="green_big">{{=product.Name}}</div></a>
                         <div class="price">
-                            Цена: <span class="orange_big">1430</span><span class="orange_little">руб.</span>
-                            <div class="old_price">1880 руб.</div>
+                            Цена: <span class="orange_big">{{=productService.GetPrice(product)}}</span><span class="orange_little">руб.</span>
                         </div>
                     </div>
                     <div class="cart_to">
@@ -45,9 +41,8 @@
                         <button class="home_button cart_button" type="submit">Добавить в корзину</button>
                     </div>
                     <div class="information_text">
-                        <p><b>Крем не содержит добавок.</b> Обладает уровнем кислотности PH 5.9. Содержит киэнзим Q-10. Бережно ухаживает за сухой кожей, обволакивает и создает увлажняющую оболочку. Придает гладкость и упругость. Подходит для сухой кожи, кожи, склонной к образованию прыщей, для чувствительной кожи.</p>
-                        <p>Содержит коэнзим 0-10, известный как вещество, павы шающее способность удерживать влагу внутри кожи. Концентрация кознзима Q-10 соответствует действующим в стране ограничениям, установленным для косметических средств . Смягчает сухую кожу. Позволяет поддерживать здоровье и красоту. Рекомендуется лицам до 30 лет.</p>
-                        <p class="consistent"><b>Состав:</b> убихинон (коэнзим), гиалyрoновая кислота, растительный коллаген, растительные кepамиды, витамины BCEPQ.</p>
+                        {{=product.Description}}
+                        <!--<p class="consistent"><b>Состав:</b> убихинон (коэнзим), гиалyрoновая кислота, растительный коллаген, растительные кepамиды, витамины BCEPQ.</p>-->
                     </div>
                 </div>
             </div>

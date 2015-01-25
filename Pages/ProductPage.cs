@@ -39,7 +39,6 @@ namespace RussianKawaiShop.Pages
             if (productService.GetByID(productId) != null)
             {
                 data.Add("Product", this.productService.GetByID(productId));
-                data.Add("ProductCategories", this.productCategoryService.GetAll());
                 string tosend = TemplateActivator.Activate(this, client, data);
                 client.HttpSend(tosend);
             }

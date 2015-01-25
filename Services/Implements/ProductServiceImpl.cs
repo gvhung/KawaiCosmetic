@@ -10,10 +10,16 @@ namespace RussianKawaiShop.Services.Implements
 {
     public class ProductServiceImpl : ProductService
     {
+        private ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
+
         public Product CreateProduct(String Name, String JPName, int price, string desc, string img, int categoryID)
         {
             Product product = new Product();
             product.Name = Name;
+            product.JPName = JPName;
+            product.Price = price;
+            product.Description = desc;
+            product.Images = img;
             product.CategoryId = categoryID;
             DBConnector.manager.InsertQuery(product);
 
@@ -47,6 +53,27 @@ namespace RussianKawaiShop.Services.Implements
             }
 
             return null;
+        }
+
+        public ProductCategory GetCategory(Product product)
+        {
+            return productCategoryService.GetByID(product.ID);
+        }
+
+        public double GetPrice(Product product)
+        {
+            return product.Price;
+        }
+
+        public List<string> GetImages(Product product)
+        {
+            List<string> images = new List<string>();
+            foreach (string url in product.Images.Split(';'))
+            {
+                images.Add(url);
+            }
+
+            return images;
         }
     }
 }

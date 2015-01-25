@@ -12,5 +12,8 @@ namespace RussianKawaiShop.Services
         Product CreateProduct(String Name, String JPName, int price, string desc, string img, int categoryID);
         Product GetByID(int id);
         List<Product> GetAll();
+        ProductCategory GetCategory(Product product);
+        double GetPrice(Product product);
+        List<string> GetImages(Product product);
     }
 }
