@@ -10,7 +10,7 @@
             <div class="fl textcent h1_center h1_more"><h1><span class="h1">{{=product.Name}}</span></h1></div>
             <div class="fl100">
                 <div class="speedbar">
-                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan"><a href="/" class="speeda">{{=productService.GetCategory(product).Name}}</a></span>»<span class="speedspan">{{=product.Name}}</span>
+                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan"><a href="/category/" class="speeda">{{=productService.GetCategory(product).Name}}</a></span>»<span class="speedspan">{{=product.Name}}</span>
                 </div>
             </div>
             <div class="fl100 buy">
@@ -38,7 +38,7 @@
                             <input type="text" value="1" name="count" readonly="readonly" class="cart_input input_shadow" />
                             <div class="cart_plus input_shadow"><div class="cart_plus_icon"></div></div>
                         </div>
-                        <button class="home_button cart_button" type="submit">Добавить в корзину</button>
+                        <button class="home_button cart_button" type="button" onclick="AddToCart({{=product.ID}});">Добавить в корзину</button>
                     </div>
                     <div class="information_text">
                         {{=product.Description}}
@@ -51,6 +51,7 @@
     {{include RussianKawaiShop Footer}}
 
     <script>
+
         function changeImage(item) {
             $('#main').attr('src', $('#shop' + item).attr('src'));
         }

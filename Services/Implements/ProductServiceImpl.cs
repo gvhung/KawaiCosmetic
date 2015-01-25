@@ -57,7 +57,7 @@ namespace RussianKawaiShop.Services.Implements
 
         public ProductCategory GetCategory(Product product)
         {
-            return productCategoryService.GetByID(product.ID);
+            return productCategoryService.GetByID(product.CategoryId);
         }
 
         public double GetPrice(Product product)
