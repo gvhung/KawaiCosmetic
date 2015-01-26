@@ -40,7 +40,7 @@ namespace RussianKawaiShop
 
                     if(int.TryParse(WSData[1], out productId) && int.TryParse(WSData[2], out num))
                     {
-                        cartService.AddProduct(productId, num, client.GetCookie("Cart"));
+                        cartService.AddProduct(productId, num, cartService.GetCookie(client));
                     }
                 }
             }

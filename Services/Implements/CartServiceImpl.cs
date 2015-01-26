@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UpServer;
 
 namespace RussianKawaiShop.Services.Implements
 {
@@ -12,7 +13,12 @@ namespace RussianKawaiShop.Services.Implements
     {
         private ProductService productService = new ProductServiceImpl();
 
-        public Cart GetByCookies(string cookie)
+        public string GetCookie(Client client)
+        {
+            return client.GetCookie("Cart");
+        }
+
+        public List<Cart> GetByCookies(string cookie)
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data => { 
                 if((data as Cart).Cookie == cookie)
@@ -23,12 +29,7 @@ namespace RussianKawaiShop.Services.Implements
                 return false;
             });
 
-            if(cart.Count > 0)
-            {
-                return cart[0];
-            }
-            
-            return null;
+            return cart;
         }
 
         public bool AddProduct(int productID, int productNum, string cookie)

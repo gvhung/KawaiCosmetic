@@ -1,4 +1,6 @@
 ﻿using RussianKawaiShop.Database;
+using RussianKawaiShop.Services;
+using RussianKawaiShop.Services.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +54,8 @@ namespace RussianKawaiShop
             get { return 0; }
         }
 
+        private CartService cartService = new CartServiceImpl();
+
         public static void OnLoad()
         {
             DBConnector.manager = new UManager(new UBaseConnect(typeof(RussianKawaiDB), UBaseConnectType.Update));
@@ -62,11 +66,11 @@ namespace RussianKawaiShop
 
         public override bool PreInit(Client client)
         {
-            if (client.GetCookie("Cart") == null)
+            if (cartService.GetCookie(client) == null)
             {
                 client.SetCookie.Add("Cart", BaseFuncs.MD5(new Random().Next() + "CRT" + Environment.TickCount));
             }
-
+            
             return true;
 
         }
