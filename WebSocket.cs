@@ -32,7 +32,7 @@ namespace RussianKawaiShop
             {
                 string[] WSData = Regex.Split(client.WSData, BaseFuncs.WSplit);
                 string Action = WSData[0];
-                Console.WriteLine("ceklndxkl: " + Action);
+
                 if (Action == "AddProductToCartAction")
                 {
                     int productId;
