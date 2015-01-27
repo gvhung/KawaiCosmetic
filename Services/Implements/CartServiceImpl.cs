@@ -28,7 +28,7 @@ namespace RussianKawaiShop.Services.Implements
         public List<Cart> GetByCookie(string cookie)
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data => { 
-                if((data as Cart).Cookie == cookie)
+                if((data as Cart).UniqueCode == cookie)
                 {
                     return true;
                 }
@@ -48,7 +48,7 @@ namespace RussianKawaiShop.Services.Implements
                 if(cart == null)
                 {
                     cart = new Cart();
-                    cart.Cookie = cookie;
+                    cart.UniqueCode = cookie;
                     cart.ProductID = productID;
                     cart.ProductNum = this.NumberForAddProduct(cart.ProductNum, productNum);
                     DBConnector.manager.InsertQuery(cart);
@@ -58,7 +58,7 @@ namespace RussianKawaiShop.Services.Implements
                     DBConnector.manager.FastUpdate<Cart>(data => {
                         Cart c = data as Cart;
 
-                        if(c.ProductID == productID && c.Cookie == cookie)
+                        if(c.ProductID == productID && c.UniqueCode == cookie)
                         {
                             c.ProductNum = this.NumberForAddProduct(c.ProductNum, productNum);
                         }
@@ -86,7 +86,7 @@ namespace RussianKawaiShop.Services.Implements
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data =>
             {
-                if ((data as Cart).Cookie == cookie && (data as Cart).ProductID == productId)
+                if ((data as Cart).UniqueCode == cookie && (data as Cart).ProductID == productId)
                 {
                     return true;
                 }

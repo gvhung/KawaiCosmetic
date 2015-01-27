@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Database\DBConnector.cs" />
     <Compile Include="Database\Models\Cart.cs" />
+    <Compile Include="Database\Models\Order.cs" />
     <Compile Include="Database\Models\Product.cs" />
     <Compile Include="Database\Models\ProductCategory.cs" />
     <Compile Include="Database\RussianKawaiDB.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Pages\CatalogPage.cs" />
     <Compile Include="Pages\Errors\Error404.cs" />
     <Compile Include="Pages\IndexPage.cs" />
+    <Compile Include="Pages\OrderPage.cs" />
     <Compile Include="Pages\ProductPage.cs" />
     <Compile Include="Pages\RedirectPage.cs" />
     <Compile Include="Pages\Resources\CatalogMenu.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="Pages\Resources\Header.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
+    <Compile Include="Services\Implements\OrderServiceImpl.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="WebSocket.cs" />
     <Compile Include="RussianKawaiShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

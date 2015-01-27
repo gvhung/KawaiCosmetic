@@ -10,7 +10,7 @@ namespace RussianKawaiShop.Database.Models
     public class Cart : RussianKawaiDB
     {
         [UMaxLength(300)]
-        public string Cookie;
+        public string UniqueCode;
         public int ProductID;
         public int ProductNum;
     }
