@@ -24,6 +24,7 @@ namespace RussianKawaiShop
         {
             get { return "ws.WebSocket.html"; }
         }
+
         private CartService cartService = new CartServiceImpl();
 
         public override bool Init(Client client)

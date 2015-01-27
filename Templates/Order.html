@@ -6,6 +6,7 @@
     {{set Order order = PageData["Order"] as Order}}
     {{set OrderService orderService = new OrderServiceImpl()}}
     {{set ProductService productService = new ProductServiceImpl()}}
+    {{set Robokassa robokassa = new Robokassa()}}
     <section>
         <div class="w1000">
             <div class="fl textcent h1_center h1_more"><h1><span class="h1">Оформление заказа</span></h1></div>
@@ -59,7 +60,7 @@
                         <span class="zakaz_red">Не оплачено</span>
                     {{end}}
                     {{else if(order.Status == 1)}}
-                        <span class="zakaz_green">Оплачено, но еще не отправлено</span>
+                        <span class="zakaz_green">Оплачено</span>
                     {{end}}
                     {{else if(order.Status == 2)}}
                         <span class="zakaz_green">Выслано: {{=order.EMS}}</span>
@@ -70,7 +71,9 @@
             <div class="fl100">
                 <div class="order_buttons">
                     <!--<div class="order_bok"><button class="order_pay">Оплатить</button></div>-->
-                    <div class="order_bok"><a href="/"><div class="order_pay order_pay_nb">Оплатить</div></a></div>
+                    {{if(order.Status == 0)}}
+                    <div class="order_bok"><a href="{{=robokassa.GetPaymentURL(order)}}"><div class="order_pay order_pay_nb">Оплатить</div></a></div>
+                    {{end}}
                     <a href="/support/"><div class="order_support">Обратиться за помощью</div></a>
                 </div>
             </div>

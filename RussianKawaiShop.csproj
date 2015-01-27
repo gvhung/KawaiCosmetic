@@ -65,6 +65,7 @@
     <Compile Include="Pages\Resources\Footer.cs" />
     <Compile Include="Pages\Resources\Head.cs" />
     <Compile Include="Pages\Resources\Header.cs" />
+    <Compile Include="Robokassa.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
     <Compile Include="Services\Implements\OrderServiceImpl.cs" />

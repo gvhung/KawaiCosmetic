@@ -80,6 +80,7 @@ namespace RussianKawaiShop.Services.Implements
                 order.Products = this.CreateProducts(cartService.GetByCookie(cartService.GetCookie(client)));
                 order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client));
                 order.UniqueCode = cartService.GetCookie(client) + "_ORDERED";
+
                 cartService.SetNewCookie(client);
 
                 return this.GetByID(DBConnector.manager.InsertQueryReturn(order));
@@ -100,6 +101,18 @@ namespace RussianKawaiShop.Services.Implements
                 }
             }
             return result;
+        }
+
+        public void ChangeStatus(int status, Order order)
+        {
+            DBConnector.manager.FastUpdate<Order>(data => {
+                if((data as Order).ID == order.ID)
+                {
+                    (data as Order).Status = status;
+                    return data;
+                }
+                return null;
+            }, true);
         }
     }
 }

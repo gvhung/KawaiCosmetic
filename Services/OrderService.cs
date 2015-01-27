@@ -12,5 +12,6 @@ namespace RussianKawaiShop.Services
         int CountProductsNum(Product product, Order order);
         Order CreateOrder(Order order, Client client);
         string CreateProducts(List<Cart> carts);
+        void ChangeStatus(int status, Order order);
     }
 }
