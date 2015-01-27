@@ -1,12 +1,15 @@
 ﻿using RussianKawaiShop.Database;
 using RussianKawaiShop.Database.Models;
+using System;
 using System.Collections.Generic;
+using UpServer;
 
 namespace RussianKawaiShop.Services.Implements
 {
     public class OrderServiceImpl : OrderService
     {
         private ProductService productService = new ProductServiceImpl();
+        private CartService cartService = new CartServiceImpl();
 
         public Order GetByID(int id)
         {
@@ -56,11 +59,29 @@ namespace RussianKawaiShop.Services.Implements
             return products;
         }
 
-        public Order CreateOrder(Order order)
+        public int CountProductsNum(Product product, Order order)
+        {
+            foreach (string cart in order.Products.Split(';'))
+            {
+                int productID = int.Parse(cart.Split(':')[0]);
+                if(productID == product.ID)
+                {
+                    return int.Parse(cart.Split(':')[1]);
+                }
+            }
+            return 0;
+        }
+
+        public Order CreateOrder(Order order, Client client)
         {
             if(order.Name != null && order.Email != null && order.Country != null && order.City != null && order.Region != null && order.Street != null
                 && order.Home != null && order.Room != null)
             {
+                order.Products = this.CreateProducts(cartService.GetByCookie(cartService.GetCookie(client)));
+                order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client));
+                order.UniqueCode = cartService.GetCookie(client) + "_ORDERED";
+                cartService.SetNewCookie(client);
+
                 return this.GetByID(DBConnector.manager.InsertQueryReturn(order));
             }
 
@@ -72,14 +93,12 @@ namespace RussianKawaiShop.Services.Implements
             string result = "";
             foreach(Cart cart in carts)
             {
-                result += cart.ProductID + ':' + cart.ProductNum;
-
-                if(cart.Equals(carts[carts.Count - 1]))
+                result += cart.ProductID + ":" + cart.ProductNum;
+                if(!cart.Equals(carts[carts.Count - 1]))
                 {
                     result += ";";
                 }
             }
-
             return result;
         }
     }

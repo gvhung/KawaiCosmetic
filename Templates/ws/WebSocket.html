@@ -4,18 +4,13 @@
     function AddToCart(id) {
         var num = $(".cart_input").val();
         ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num);
-        UpdateItemsNumInCart();
         alert("Успешно добавлено в корзину!");
     }
 
-    function UpdateItemsNumInCart() {
-        ws.send("CountItemsInCartAction");
-        ws.onmessage = function (evt) {
-            var data = evt.data.split("{{=BaseFuncs.WSplit}}");
-            if (data[0] == "CountItemsInCartAction") {
-                $("div.cart_count").text(data[1]);
-            }
-        };
-        return false;
-    }
+    ws.onmessage = function (evt) {
+        var data = evt.data.split("{{=BaseFuncs.WSplit}}");
+        if (data[0] == "CountItemsInCartAction") {
+            $("div.cart_count").text(data[1]);
+        }
+    };
 </script>

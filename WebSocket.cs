@@ -41,15 +41,9 @@ namespace RussianKawaiShop
                     if(int.TryParse(WSData[1], out productId) && int.TryParse(WSData[2], out num))
                     {
                         cartService.AddProduct(productId, num, cartService.GetCookie(client));
+                        client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
                     }
                 }
-                else if(Action == "CountItemsInCartAction")
-                {
-                    client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
-                    Console.WriteLine("Check");
-                }
-                Console.WriteLine(Action);
-
             }
 
             client.HttpSend(TemplateActivator.Activate(this, client));

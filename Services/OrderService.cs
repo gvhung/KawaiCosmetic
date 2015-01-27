@@ -1,5 +1,6 @@
 ﻿using RussianKawaiShop.Database.Models;
 using System.Collections.Generic;
+using UpServer;
 
 namespace RussianKawaiShop.Services
 {
@@ -8,7 +9,8 @@ namespace RussianKawaiShop.Services
         Order GetByID(int id);
         Order GetByUniqueCode(string unicode);
         List<Product> GetProducts(Order order);
-        Order CreateOrder(Order order);
+        int CountProductsNum(Product product, Order order);
+        Order CreateOrder(Order order, Client client);
         string CreateProducts(List<Cart> carts);
     }
 }

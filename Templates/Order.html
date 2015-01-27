@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiShop Head}}
+<body>
+    {{include RussianKawaiShop Header}}
+    {{set Order order = PageData["Order"] as Order}}
+    {{set OrderService orderService = new OrderServiceImpl()}}
+    {{set ProductService productService = new ProductServiceImpl()}}
+    <section>
+        <div class="w1000">
+            <div class="fl textcent h1_center h1_more"><h1><span class="h1">Оформление заказа</span></h1></div>
+            <div class="fl100">
+                <div class="speedbar">
+                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan">Оформление заказа</span>
+                </div>
+            </div>
+            <table class="order_table">
+                <tr>
+                    <td>Фото</td>
+                    <td>Название товара</td>
+                    <td>Цена</td>
+                    <td>Количество</td>
+                    <td>Конечная цена</td>
+                </tr>
+                {{foreach(Product product in orderService.GetProducts(order))}}
+                <tr>
+                    <td><a href="/product/{{=product.ID}}"><div class="cart_photo"><img src="{{=productService.GetImages(product)[0]}}" class="cart_photo_img" alt="{{=product.Name}}" /></div></a></td>
+                    <td><a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}}</a></td>
+                    <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
+                    <td><div class="cart_input input_shadow without_input">{{=orderService.CountProductsNum(product, order)}}</div></td>
+                    <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product) * orderService.CountProductsNum(product, order)}}</span>руб.</div></td>
+                </tr>
+                {{end}}
+            </table>
+            <div class="fl100">
+                <div class="all_price_r"><span class="all_price_left">Итого:</span><span class="cart_price_orange">{{=order.TotalCost}}</span>руб.</div>
+            </div>
+            <div class="fl100">
+                <div class="number_zakaz">Номер Вашего заказа: <span class="number_zakaz_main">{{=order.ID}}</span></div>
+            </div>
+            <div class="fl100">
+                <div class="zakaz_data_left">
+                    <div class="zakaz_data_li"><b>E-mail:</b>{{=order.Email}}</div>
+                    <div class="zakaz_data_li"><b>Ф.И.О:</b>{{=order.Name}}</div>
+                    <div class="zakaz_data_li"><b>Страна:</b>{{=order.Country}}</div>
+                    <div class="zakaz_data_li"><b>Город:</b>{{=order.City}}</div>
+                    <div class="zakaz_data_li"><b>Район:</b>{{=order.Region}}</div>
+                    <div class="zakaz_data_delivery free_delivery">Бесплатная доставка</div>
+                </div>
+                <div class="zakaz_data_right">
+                    <div class="zakaz_data_li"><b>Улица:</b>{{=order.Street}}</div>
+                    <div class="zakaz_data_li"><b>Дом:</b>{{=order.Home}}</div>
+                    <div class="zakaz_data_li"><b>Квартира:</b>{{=order.Room}}</div>
+                    <div class="zakaz_data_li"><b>Индекс:</b>{{=order.Index}}</div>
+                    <div class="zakaz_data_li"><b>Номер телефона:</b>{{=order.Phone}}</div>
+                    <div class="zakaz_data_status">
+                    Статус заказа: 
+                    {{if(order.Status == 0)}}
+                        <span class="zakaz_red">Не оплачено</span>
+                    {{end}}
+                    {{else if(order.Status == 1)}}
+                        <span class="zakaz_green">Оплачено, но еще не отправлено</span>
+                    {{end}}
+                    {{else if(order.Status == 2)}}
+                        <span class="zakaz_green">Выслано: {{=order.EMS}}</span>
+                    {{end}}
+                    </div>
+                </div>
+            </div>
+            <div class="fl100">
+                <div class="order_buttons">
+                    <!--<div class="order_bok"><button class="order_pay">Оплатить</button></div>-->
+                    <div class="order_bok"><a href="/"><div class="order_pay order_pay_nb">Оплатить</div></a></div>
+                    <a href="/support/"><div class="order_support">Обратиться за помощью</div></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{include RussianKawaiShop Footer}}
+</body>
+</html>

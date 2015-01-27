@@ -2,6 +2,7 @@
 using RussianKawaiShop.Services;
 using RussianKawaiShop.Services.Implements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace RussianKawaiShop.Pages
         }
         public override string TemplateAddr
         {
-            get { return "Index.html"; }
+            get { return "Order.html"; }
         }
 
         private OrderService orderService = new OrderServiceImpl();
@@ -32,7 +33,9 @@ namespace RussianKawaiShop.Pages
             Order order = orderService.GetByUniqueCode(BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0]);
             if (order != null)
             {
-                client.HttpSend(TemplateActivator.Activate(this, client));
+                Hashtable data = new Hashtable();
+                data.Add("Order", order);
+                client.HttpSend(TemplateActivator.Activate(this, client, data));
             }
             else
             {

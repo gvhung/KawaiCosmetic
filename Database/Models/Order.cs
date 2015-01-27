@@ -27,7 +27,16 @@ namespace RussianKawaiShop.Database.Models
         [UMaxLength(50)]
         public string Room;
 
+        [UMaxLength(20)]
+        public string Index;
+
         [UMaxLength(50)]
         public string Phone;
+
+        public double TotalCost;
+
+        public int Status = 0;
+        [UMaxLength(20)]
+        public string EMS;
     }
 }

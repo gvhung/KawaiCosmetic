@@ -16,7 +16,7 @@
             <div class="fl100 buy">
                 {{include RussianKawaiShop CatalogMenu}}
                 <div class="photos">
-                    <div class="photos_image"><img src="{{=productService.GetImages(product)[0]}}" id="main" alt="KAWAI Красота" /></div>
+                    <div class="photos_image"><img src="{{=productService.GetImages(product)[0]}}" id="main" alt="{{=product.Name}}" /></div>
                     {{set int i = 1}}
                     {{foreach(string image in productService.GetImages(product))}}
                         <a class="photos_image" onclick="changeImage({{=i}})"><img src="{{=image}}" id="shop{{=i}}" alt="{{product.Name}}" /></a>
