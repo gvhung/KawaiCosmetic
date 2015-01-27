@@ -2,10 +2,6 @@
 using RussianKawaiShop.Services;
 using RussianKawaiShop.Services.Implements;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UpServer;
 
 namespace RussianKawaiShop
@@ -36,7 +32,7 @@ namespace RussianKawaiShop
             }
             else if(Action == "result")
             {
-                if (order != null && this.ResultCRC(order).Equals(client.GetParam("SignatureValue")))
+                if (order != null && this.ResultCRC(client).Equals(client.GetParam("SignatureValue")))
                 {
                     orderService.ChangeStatus(1, order);
                     client.HttpSend("OK" + order.ID);
@@ -66,7 +62,7 @@ namespace RussianKawaiShop
         public string GetPaymentURL(Order order)
         {
             string crc = this.SignatureValue(order);
-            string attr = "?MrchLogin=" + this.mrh_login + "&OutSum=" + order.TotalCost + "&InvId=" + order.ID + "&SignatureValue=" + crc + "&Shp_item=" + order.ID;
+            string attr = "?MrchLogin=" + this.mrh_login + "&OutSum=" + order.TotalCost.ToString() + ".00&InvId=" + order.ID + "&SignatureValue=" + crc;
             return "https://auth.robokassa.ru/Merchant/Index.aspx" + attr;
             //return "http://test.robokassa.ru/Index.aspx" + attr;
         }
@@ -74,13 +70,13 @@ namespace RussianKawaiShop
         public string SignatureValue(Order order)
         {
             string mrh_pass1 = "12311974a";
-            return BaseFuncs.MD5(this.mrh_login + ":" + order.TotalCost + ":" + order.ID + ":" + mrh_pass1 + ":Shp_item=" + order.ID);
+            return BaseFuncs.MD5(this.mrh_login + ":" + order.TotalCost.ToString() + ".00:" + order.ID + ":" + mrh_pass1);
         }
 
-        private string ResultCRC(Order order)
+        private string ResultCRC(Client client)
         {
-            //strtoupper(md5("$out_summ:$inv_id:$mrh_pass2:Shp_item=$shp_item"));
-            string crc = order.TotalCost + ":" + order.ID + ":" + "12311974b:Shp_item=" + order.ID;
+            string crc = client.GetParam("OutSum") + ":" + client.GetParam("InvId") + ":" + "12311974b";
+            Console.WriteLine(crc);
             return BaseFuncs.MD5(crc).ToUpper();
         }
     }
