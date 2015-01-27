@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiShop Head}}
+<body>
+    {{include RussianKawaiShop Header}}
+    {{set CartService cartService = new CartServiceImpl()}}
+    {{set ProductService productService = new ProductServiceImpl()}}
+    <section>
+        <div class="w1000">
+            <div class="fl textcent h1_center h1_more"><h1><span class="h1">Корзина</span></h1></div>
+            <div class="fl100">
+                <div class="speedbar">
+                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan">Корзина</span>
+                </div>
+            </div>
+            <table class="cart_table">
+                <tr>
+                    <td>Фото</td>
+                    <td>Название товара</td>
+                    <td>Цена</td>
+                    <td>Количество</td>
+                    <td>Конечная цена</td>
+                    <td>Удалить</td>
+                </tr>
+                {{foreach(Cart cart in cartService.GetByCookie(cartService.GetCookie(client)))}}
+                {{set Product product = productService.GetByID(cart.ProductID)}}
+                <tr>
+                    <td><a href="/"><div class="cart_photo"><img src="/cached_files/i/temp/shop_1.png" class="cart_photo_img" alt="Детос EX полный набор" /></div></a></td>
+                    <td><a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}}</a></td>
+                    <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
+                    <td>
+                        <div class="cart_buttons cart_buttons_margin">
+                            <div class="cart_minus input_shadow"><div class="cart_minus_icon"></div></div></a>
+                            <input type="text" value="{{=cart.ProductNum}}" name="count" readonly="readonly" class="cart_input input_shadow" />
+                            <div class="cart_plus input_shadow"><div class="cart_plus_icon"></div></div>
+                        </div>
+                    </td>
+                    <td><div class="cart_price"><span class="cart_price_orange">{{=cart.ProductNum * productService.GetPrice(product)}}</span>руб.</div></td>
+                    <td><button class="cart_rubbish"></button></td>
+                </tr>
+                {{end}}
+            </table>
+
+            {{if(cartService.GetByCookie(cartService.GetCookie(client)).Count > 0)}}
+            <div class="fl100">
+                <!--<a href="/"><div class="home_button cart_button cart_clear">Очистить корзину</div></a>-->
+                <form method="post" action="/cart/">
+                    <button class="home_button cart_button cart_clear cart_clear_nb" type="submit" name="ClearCart" value="do">Очистить корзину</button>
+                </form>
+                
+                <div class="free_delivery">Бесплатная доставка</div>
+                <div class="all_price"><span class="all_price_left">Итого:</span><span class="cart_price_orange" id="main_price">{{=cartService.GetTotalCost(cartService.GetCookie(client))}}</span>руб.</div>
+            </div>
+            <div class="fl100 zakaz"><span class="zakaz_title">Оформление заказа</span></div>
+            <div class="fl100">
+                <div class="little_one">
+                    <div class="little_input cart_inputt">
+                        <label for="email" class="little_label">E-Mail:</label>
+                        <input type="text" id="email" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: korzina@mail.com</div>
+                        <div id="email_error" class="error_field"><div class="error_left">Ошибка при вводе E-Mail адреса</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="fio" class="little_label">Ф.И.О:</label>
+                        <input type="text" id="fio" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: Иванов Иван Иванович</div>
+                        <a onclick="showError('fio_error')"><div class="input_error">?</div></a>
+                        <div id="fio_error" class="error_field"><div class="error_left">Ошибка при вводе имени</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="country" class="little_label">Страна:</label>
+                        <select id="country" class="little_inp input_shadow little_select">
+                            <option value="1">Украина</option>
+                            <option value="2">Россия</option>
+                        </select>
+                        <div class="little_inform">Выберите из списка страну</div>
+                    </div>
+                </div>
+                <div class="little_two">
+                    <div class="little_input cart_inputt">
+                        <label for="town" class="little_label right_label">Город:</label>
+                        <select id="town" class="little_inp input_shadow little_select">
+                            <option value="1">Киев</option>
+                            <option value="2">Москва</option>
+                        </select>
+                        <div class="little_inform">Выберите из списка город доставки</div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="ray" class="little_label right_label">Район:</label>
+                        <input type="text" id="ray" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: 602-й микрорайон</div>
+                        <a onclick="showError('ray_error')"><div class="input_error">?</div></a>
+                        <div id="ray_error" class="error_field"><div class="error_left">Ошибка при вводе района</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="street" class="little_label right_label">Улица:</label>
+                        <input type="text" id="street" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: ул. Торговый въезд, 12</div>
+                        <a onclick="showError('street_error')"><div class="input_error">?</div></a>
+                        <div id="street_error" class="error_field"><div class="error_left">Ошибка при вводе улицы</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="tele" class="little_label phone">Номер телефона:</label>
+                        <input type="text" id="tele" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: +380933075166</div>
+                        <a onclick="showError('tele_error')"><div class="input_error">?</div></a>
+                        <div id="tele_error" class="error_field"><div class="error_left">Ошибка при вводе номера телефона</div></div>
+                    </div>
+                </div>
+                <div class="little_three">
+                    <div class="little_input cart_inputt">
+                        <label for="home" class="little_label">Дом:</label>
+                        <input type="text" id="home" class="little_inp input_shadow" />
+                        <div class="little_inform">Например: 7-А</div>
+                        <a onclick="showError('home_error')"><div class="input_error">?</div></a>
+                        <div id="home_error" class="error_field"><div class="error_left">Ошибка при номера дома</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="flat" class="little_label">Квартира:</label>
+                        <input type="text" id="flat" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: 53 квартира</div>
+                        <a onclick="showError('flat_error')"><div class="input_error">?</div></a>
+                        <div id="flat_error" class="error_field"><div class="error_left">Ошибка при вводе номера квартиры</div></div>
+                    </div>
+                    <div class="little_input cart_inputt">
+                        <label for="index" class="little_label">Индекс:</label>
+                        <input type="text" id="index" class="little_inp input_shadow" />
+                        <div class="little_inform">Пример: 101100</div>
+                        <a onclick="showError('index_error')"><div class="input_error">?</div></a>
+                        <div id="index_error" class="error_field"><div class="error_left">Ошибка при вводе индекса</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fl100"><div class="cart_bok"><button class="home_button cart_button cart_zakaz" type="submit">Оформить заказ</button></div></div>
+            {{end}}
+        </div>
+    </section>
+
+    {{include RussianKawaiShop Footer}}
+    <script>
+        function showError(id) {
+            var address = '#' + id;
+            if ($(address).hasClass("display")) {
+                $(address).removeClass("display");
+            }
+            else $(address).addClass("display");
+        }
+        $(".cart_plus").click(function () {
+            var value = parseInt($(this).closest(".cart_buttons").find("input").val(), 10);
+
+            if (value != 10) {
+                $(this).closest(".cart_buttons").find("input").val(value + 1);
+
+                var price = parseInt($(this).closest("tr").find("td:nth-child(3)").find(".cart_price_orange").html(), 10);
+                var all_price = parseInt($(this).closest("tr").find("td:nth-child(5)").find(".cart_price_orange").html(), 10);
+
+                $(this).closest("tr").find("td:nth-child(5)").find(".cart_price_orange").html(all_price + price);
+
+                $("#main_price").html(parseInt($("#main_price").html(), 10) + price);
+            }
+        });
+        $(".cart_minus").click(function () {
+            var value = parseInt($(this).closest(".cart_buttons").find("input").val(), 10);
+
+            if (value != 1) {
+                $(this).closest(".cart_buttons").find("input").val(value - 1);
+
+                var price = parseInt($(this).closest("tr").find("td:nth-child(3)").find(".cart_price_orange").html(), 10);
+                var all_price = parseInt($(this).closest("tr").find("td:nth-child(5)").find(".cart_price_orange").html(), 10);
+
+                $(this).closest("tr").find("td:nth-child(5)").find(".cart_price_orange").html(all_price - price);
+
+                $("#main_price").html(parseInt($("#main_price").html(), 10) - price);
+            }
+        });
+    </script>
+</body>
+</html>

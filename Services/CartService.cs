@@ -11,8 +11,12 @@ namespace RussianKawaiShop.Services
     public interface CartService
     {
         string GetCookie(Client client);
-        List<Cart> GetByCookies(string cookie);
+        string SetNewCookie(Client client);
+        List<Cart> GetByCookie(string cookie);
         bool AddProduct(int productID, int productNum, string cookie);
-        Cart GetByCookiesAndProduct(string cookie, int productId);
+        Cart GetByCookieAndProductID(string cookie, int productId);
+        int CountProductsNum(string cookie);
+        double GetTotalCost(List<Cart> carts);
+        double GetTotalCost(string cookie);
     }
 }

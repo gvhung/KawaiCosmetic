@@ -9,10 +9,6 @@ namespace RussianKawaiShop.Pages
 {
     class IndexPage : RussianKawaiShop
     {
-        public override CacheLevel CacheLevel
-        {
-            get { return CacheLevel.ResultCache; }
-        }
         public override PageType PageType
         {
             get { return PageType.Once; }

@@ -18,7 +18,14 @@ namespace RussianKawaiShop.Services.Implements
             return client.GetCookie("Cart");
         }
 
-        public List<Cart> GetByCookies(string cookie)
+        public string SetNewCookie(Client client)
+        {
+            string cookie = BaseFuncs.MD5(new Random().Next() + "CRT" + Environment.TickCount);
+            client.SetCookie.Add("Cart", cookie);
+            return cookie;
+        }
+
+        public List<Cart> GetByCookie(string cookie)
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data => { 
                 if((data as Cart).Cookie == cookie)
@@ -36,21 +43,22 @@ namespace RussianKawaiShop.Services.Implements
         {
             if(productService.GetByID(productID) != null)
             {
-                Cart cart = this.GetByCookiesAndProduct(cookie, productID);
+                Cart cart = this.GetByCookieAndProductID(cookie, productID);
 
                 if(cart == null)
                 {
                     cart = new Cart();
                     cart.Cookie = cookie;
-                    cart.ProductId = productID;
+                    cart.ProductID = productID;
                     cart.ProductNum = this.NumberForAddProduct(cart.ProductNum, productNum);
+                    DBConnector.manager.InsertQuery(cart);
                 }
                 else
                 {
                     DBConnector.manager.FastUpdate<Cart>(data => {
                         Cart c = data as Cart;
 
-                        if(c.ProductId == productID && c.Cookie == cookie)
+                        if(c.ProductID == productID && c.Cookie == cookie)
                         {
                             c.ProductNum = this.NumberForAddProduct(c.ProductNum, productNum);
                         }
@@ -74,11 +82,11 @@ namespace RussianKawaiShop.Services.Implements
             return before + add;
         }
 
-        public Cart GetByCookiesAndProduct(string cookie, int productId)
+        public Cart GetByCookieAndProductID(string cookie, int productId)
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data =>
             {
-                if ((data as Cart).Cookie == cookie && (data as Cart).ProductId == productId)
+                if ((data as Cart).Cookie == cookie && (data as Cart).ProductID == productId)
                 {
                     return true;
                 }
@@ -92,6 +100,36 @@ namespace RussianKawaiShop.Services.Implements
             }
 
             return null;
+        }
+
+        public int CountProductsNum(string cookie)
+        {
+            int result = 0;
+            foreach(Cart cart in this.GetByCookie(cookie))
+            {
+                result += cart.ProductNum;
+            }
+            return result;
+        }
+
+        public double GetTotalCost(List<Cart> carts)
+        {
+            double total = 0;
+            foreach(Cart cart in carts)
+            {
+                total += cart.ProductNum * productService.GetPrice(cart.ProductID);
+            }
+            return total;
+        }
+
+        public double GetTotalCost(string cookie)
+        {
+            if(this.GetByCookie(cookie).Count > 0)
+            {
+                return this.GetTotalCost(this.GetByCookie(cookie));
+            }
+
+            return 0;
         }
     }
 }

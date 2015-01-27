@@ -53,10 +53,12 @@
     <Compile Include="Database\Models\Product.cs" />
     <Compile Include="Database\Models\ProductCategory.cs" />
     <Compile Include="Database\RussianKawaiDB.cs" />
+    <Compile Include="Pages\CartPage.cs" />
     <Compile Include="Pages\CatalogPage.cs" />
     <Compile Include="Pages\Errors\Error404.cs" />
     <Compile Include="Pages\IndexPage.cs" />
     <Compile Include="Pages\ProductPage.cs" />
+    <Compile Include="Pages\RedirectPage.cs" />
     <Compile Include="Pages\Resources\CatalogMenu.cs" />
     <Compile Include="Pages\Resources\Footer.cs" />
     <Compile Include="Pages\Resources\Head.cs" />
@@ -165,7 +167,6 @@
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.svg" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.svg" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.svg" />
-    <EmbeddedResource Include="Content\Cache\styles\index.css" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\Resources\Header.html" />
@@ -190,6 +191,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\ws\WebSocket.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Cart.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\styles\index.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Redirect.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

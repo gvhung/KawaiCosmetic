@@ -1,9 +1,10 @@
-﻿<header>
+﻿{{set CartService cartService = new CartServiceImpl()}}
+<header>
     <div class="w1000">
         <a href="/"><div class="logo"></div></a>
         <div class="cart">
             <div class="cart_left">
-                <div class="cart_count">1</div>
+                <div class="cart_count">{{=cartService.CountProductsNum(cartService.GetCookie(client))}}</div>
             </div>
             <div class="cart_right">
                 <div class="cart_title">Корзина</div>

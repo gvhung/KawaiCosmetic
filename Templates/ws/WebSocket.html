@@ -1,16 +1,16 @@
 ﻿<script>
-    var WSCart = new WebSocket("ws://{{=client.Host}}/ws/");
+    var ws = new WebSocket("ws://{{=client.Host}}/ws/");
 
     function AddToCart(id) {
         var num = $(".cart_input").val();
-        WSCart.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num);
-       /* UpdateItemsNumInCart();*/
+        ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num);
+        UpdateItemsNumInCart();
         alert("Успешно добавлено в корзину!");
     }
 
     function UpdateItemsNumInCart() {
-        WSCart.send("CountItemsInCartAction");
-        WSCart.onmessage = function (evt) {
+        ws.send("CountItemsInCartAction");
+        ws.onmessage = function (evt) {
             var data = evt.data.split("{{=BaseFuncs.WSplit}}");
             if (data[0] == "CountItemsInCartAction") {
                 $("div.cart_count").text(data[1]);

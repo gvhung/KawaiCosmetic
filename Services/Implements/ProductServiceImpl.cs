@@ -65,6 +65,11 @@ namespace RussianKawaiShop.Services.Implements
             return product.Price;
         }
 
+        public double GetPrice(int productID)
+        {
+            return this.GetPrice(this.GetByID(productID));
+        }
+
         public List<string> GetImages(Product product)
         {
             List<string> images = new List<string>();

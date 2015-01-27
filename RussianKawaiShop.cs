@@ -68,7 +68,7 @@ namespace RussianKawaiShop
         {
             if (cartService.GetCookie(client) == null)
             {
-                client.SetCookie.Add("Cart", BaseFuncs.MD5(new Random().Next() + "CRT" + Environment.TickCount));
+                cartService.SetNewCookie(client);
             }
             
             return true;

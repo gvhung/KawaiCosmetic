@@ -1,9 +1,6 @@
 ﻿using RussianKawaiShop.Database.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RussianKawaiShop.Services
 {
@@ -14,6 +11,7 @@ namespace RussianKawaiShop.Services
         List<Product> GetAll();
         ProductCategory GetCategory(Product product);
         double GetPrice(Product product);
+        double GetPrice(int productID);
         List<string> GetImages(Product product);
     }
 }

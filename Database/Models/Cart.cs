@@ -11,7 +11,7 @@ namespace RussianKawaiShop.Database.Models
     {
         [UMaxLength(300)]
         public string Cookie;
-        public int ProductId;
+        public int ProductID;
         public int ProductNum;
     }
 }
