@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RussianKawaiShop.Services.Implements
+namespace RussianKawaiShop
 {
     public class ProductCategoryServiceImpl : ProductCategoryService
     {

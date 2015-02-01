@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UpBase;
 
-namespace RussianKawaiShop.Database.Models
+namespace RussianKawaiShop
 {
     public class ProductCategory : RussianKawaiDB
     {

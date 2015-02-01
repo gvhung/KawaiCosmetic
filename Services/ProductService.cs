@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace RussianKawaiShop.Services
+namespace RussianKawaiShop
 {
     public interface ProductService
     {
-        Product CreateProduct(String Name, String JPName, int price, string desc, string img, int categoryID);
+        Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID);
+        void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, int ID);
         Product GetByID(int id);
         List<Product> GetAll();
         ProductCategory GetCategory(Product product);

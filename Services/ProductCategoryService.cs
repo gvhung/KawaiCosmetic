@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RussianKawaiShop.Services.Implements
+namespace RussianKawaiShop
 {
     public interface ProductCategoryService
     {

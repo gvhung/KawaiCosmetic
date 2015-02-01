@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RussianKawaiShop.Services.Implements
+namespace RussianKawaiShop
 {
     public class ProductServiceImpl : ProductService
     {
         private ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
 
-        public Product CreateProduct(String Name, String JPName, int price, string desc, string img, int categoryID)
+        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID)
         {
             Product product = new Product();
             product.Name = Name;
@@ -24,6 +24,25 @@ namespace RussianKawaiShop.Services.Implements
             DBConnector.manager.InsertQuery(product);
 
             return product;
+        }
+
+        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, int ID)
+        {
+            DBConnector.manager.FastUpdateReturn<Product>(data => {
+                Product product = data as Product;
+                if (product.ID == ID)
+                {
+                    product.Name = Name;
+                    product.JPName = JPName;
+                    product.Price = price;
+                    product.Description = desc;
+                    product.Images = img;
+                    product.CategoryId = categoryID;
+                    return product;
+                }
+
+                return null;
+            });
         }
 
         public Product GetByID(int id)

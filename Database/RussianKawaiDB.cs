@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UpBase;
 
-namespace RussianKawaiShop.Database
+namespace RussianKawaiShop
 {
     public class RussianKawaiDB : UType
     {
