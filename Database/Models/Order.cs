@@ -1,6 +1,6 @@
 ﻿using UpBase;
 
-namespace RussianKawaiShop.Database.Models
+namespace RussianKawaiShop
 {
     public class Order : RussianKawaiDB
     {

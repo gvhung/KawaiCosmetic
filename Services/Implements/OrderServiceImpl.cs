@@ -1,10 +1,12 @@
 ﻿using RussianKawaiShop.Database;
 using RussianKawaiShop.Database.Models;
+using RussianKawaiShop.Services;
+using RussianKawaiShop.Services.Implements;
 using System;
 using System.Collections.Generic;
 using UpServer;
 
-namespace RussianKawaiShop.Services.Implements
+namespace RussianKawaiShop
 {
     public class OrderServiceImpl : OrderService
     {
@@ -28,6 +30,22 @@ namespace RussianKawaiShop.Services.Implements
             }
 
             return null;
+        }
+
+        public List<Order> GetAll()
+        {
+            return DBConnector.manager.FastSelect<Order>(data => true);
+        }
+
+        public List<Order> GetByStatus(int status)
+        {
+            return DBConnector.manager.FastSelect<Order>(data => { 
+                if((data as Order).Status == status)
+                {
+                    return true;
+                }
+                return false;
+            });
         }
 
         public Order GetByUniqueCode(string unicode)
@@ -113,6 +131,19 @@ namespace RussianKawaiShop.Services.Implements
                 }
                 return null;
             }, true);
+        }
+
+        public void ChangeEMS(string ems, Order order)
+        {
+            DBConnector.manager.FastUpdate<Order>(data =>
+            {
+                if ((data as Order).ID == order.ID)
+                {
+                    (data as Order).EMS = ems;
+                    return data;
+                }
+                return null;
+            });
         }
     }
 }
