@@ -12,5 +12,13 @@ namespace RussianKawaiShop.Pages.Resources
         {
             get { return "Resources.Head.html"; }
         }
+        public override bool FilterBefore
+        {
+            get { return false; }
+        }
+        public override bool FilterAfter
+        {
+            get { return false; }
+        }
     }
 }
