@@ -26,7 +26,10 @@ namespace RussianKawaiShop.Database
                     Logger.ConsoleLog("Added category: " + productCategoryService.CreateCategory(category).Name, ConsoleColor.Green);
                 }
                 
-            }           
+            }
+
+            OrderService orderService = new OrderServiceImpl();
+            orderService.ChangeStatus(1, orderService.GetByID(1));
         }
     }
 }
