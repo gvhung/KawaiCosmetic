@@ -27,5 +27,11 @@ namespace RussianKawaiShop
 
         [UMaxLength(200)]
         public string Images;
+
+        [UMaxLength(20)]
+        public string Volume;
+
+        [UMaxLength(50)]
+        public string ProductsInCategory;
     }
 }

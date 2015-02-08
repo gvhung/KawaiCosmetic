@@ -6,13 +6,14 @@ namespace RussianKawaiShop
 {
     public interface ProductService
     {
-        Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID);
-        void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, int ID);
+        Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory);
+        void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, int ID);
         Product GetByID(int id);
         List<Product> GetAll();
         ProductCategory GetCategory(Product product);
         double GetPrice(Product product);
         double GetPrice(int productID);
         List<string> GetImages(Product product);
+        List<Product> GetProductsInCategory(Product product);
     }
 }

@@ -12,7 +12,7 @@ namespace RussianKawaiShop
     {
         private ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
 
-        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID)
+        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory)
         {
             Product product = new Product();
             product.Name = Name;
@@ -21,12 +21,14 @@ namespace RussianKawaiShop
             product.Description = desc;
             product.Images = img;
             product.CategoryId = categoryID;
+            product.Volume = volume;
+            product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
             DBConnector.manager.InsertQuery(product);
 
             return product;
         }
 
-        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, int ID)
+        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, int ID)
         {
             DBConnector.manager.FastUpdateReturn<Product>(data => {
                 Product product = data as Product;
@@ -38,6 +40,8 @@ namespace RussianKawaiShop
                     product.Description = desc;
                     product.Images = img;
                     product.CategoryId = categoryID;
+                    product.Volume = volume;
+                    product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
                     return product;
                 }
 
@@ -71,7 +75,7 @@ namespace RussianKawaiShop
                 return products;
             }
 
-            return null;
+            return products;
         }
 
         public ProductCategory GetCategory(Product product)
@@ -98,6 +102,53 @@ namespace RussianKawaiShop
             }
 
             return images;
+        }
+
+        public List<Product> GetProductsInCategory(Product product)
+        {
+            List<Product> products = new List<Product>();
+
+            return this.GetProductsInCategory(product.ProductsInCategory);
+        }
+
+        private  List<Product> GetProductsInCategory(string productIDs)
+        {
+            List<Product> products = new List<Product>();
+
+            if (productIDs != null)
+            {
+                string[] pIDs = productIDs.Split(',');
+                foreach (string id in pIDs)
+                {
+                    int productID;
+                    if (int.TryParse(id, out productID))
+                    {
+                        Product pr = this.GetByID(productID);
+                        if (pr != null)
+                        {
+                            products.Add(pr);
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        private string CorrectProductIDsForCategory(string ids)
+        {
+            string result = "";
+
+            List<Product> products = this.GetProductsInCategory(ids);
+            foreach (Product product in products)
+            {
+                result += product.ID;
+                if (!product.Equals(products[products.Count - 1]))
+                {
+                    result += ",";
+                }
+            }
+
+            return result;
         }
     }
 }
