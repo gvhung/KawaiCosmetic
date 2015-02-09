@@ -22,10 +22,23 @@
                         <a class="photos_image" onclick="changeImage({{=i}})"><img src="{{=image}}" id="shop{{=i}}" alt="{{product.Name}}" /></a>
                         {{edit i = i+1}}
                     {{end}}
+
+                    {{if(product.ProductsInCategory != null)}}
+                    <div class="fl100 textcenter"><span class="nabor">В наборе:</span></div>
+                        {{foreach(Product pr in productService.GetProductsInCategory(product))}}
+                        <div class="fl100">
+                            <a href="/product/{{=pr.ID}}"><div class="photos_unique"><img src="{{=productService.GetImages(pr)[0]}}" alt="{{=pr.Name}}" /></div></a>
+                            <a href="/product/{{=pr.ID}}"><div class="green_text text_a nabor_width">{{=pr.Name}}</div></a>
+                            <div class="price_nabor">Цена: <span class="green_text">{{=productService.GetPrice(pr)}} р.</span></div>
+                        </div>
+                        {{end}}
+                    {{end}}
                 </div>
                 <div class="information">
                     <div class="information_top">
-                        <div class="have">Наличие: <span class="green">Есть в наличии</span></div>
+                        {{if(product.Volume != null)}}
+                        <div class="have">Объем: <span class="green">{{=product.Volume}}</span></div>
+                        {{end}}
                         <a href="/"><div class="green_big">{{=product.Name}}</div></a>
                         <div class="price">
                             Цена: <span class="orange_big">{{=productService.GetPrice(product)}}</span><span class="orange_little">руб.</span>
