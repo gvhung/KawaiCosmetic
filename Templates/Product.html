@@ -23,7 +23,7 @@
                         {{edit i = i+1}}
                     {{end}}
 
-                    {{if(product.ProductsInCategory != null)}}
+                    {{if(productService.GetProductsInCategory(product).Count > 0)}}
                     <div class="fl100 textcenter"><span class="nabor">В наборе:</span></div>
                         {{foreach(Product pr in productService.GetProductsInCategory(product))}}
                         <div class="fl100">
