@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    {{set RussianKawaiShop.OrderService orderService = new RussianKawaiShop.OrderServiceImpl()}}
+    {{set RussianKawaiShop.ProductService productService = new RussianKawaiShop.ProductServiceImpl()}}
+    {{set RussianKawaiShop.Order order = PageData["Order"] as RussianKawaiShop.Order}}
+    <div class="fl100 zindex">
+        <div class="w1000">
+            <div class="fl100">
+                <div class="admin_speedbar radi4">
+                    <span class="admin_speedspan"><a href="/" class="admin_speeda"><b>Список заказов</b></a></span>»<span class="admin_speedspan">№{{=order.ID}}</span>
+                </div>
+                <table class="fl100 order_information radi4">
+                    <tr class="order_tr">
+                        <td class="order_td">Order ID</td>
+                        <td class="order_td">{{=order.ID}}</td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">Type sending</td>
+                        <td class="order_td">EMS</td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">Order status </td>
+                        <td class="order_td"><span class="order_green">PAID</span></td>
+                    </tr>
+                </table>
+                <div class="order_cart_title radi4">Orders</div>
+                <table class="fl100 order_cart_table">
+                    <tr class="order_cart_tr">
+                        <td class="order_cart_td">Product ID</td>
+                        <td class="order_cart_td">Product Name</td>
+                        <td class="order_cart_td">Price</td>
+                        <td class="order_cart_td">Amount</td>
+                        <td class="order_cart_td">Total Value</td>
+                    </tr>
+                    {{foreach(RussianKawaiShop.Product product in orderService.GetProducts(order))}}
+                    <tr class="order_cart_tr">
+                        <td class="order_cart_td">{{=product.ID}}</td>
+                        <td class="order_cart_td">
+                            <img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.JPName}}" class="order_cart_img"> {{=product.JPName}}
+                        </td>
+                        <td class="order_cart_td">{{=productService.GetPrice(product)}}</td>
+                        <td class="order_cart_td">{{=orderService.CountProductsNum(product, order)}}</td>
+                        <td class="order_cart_td">{{=orderService.CountProductsNum(product, order) * productService.GetPrice(product)}}</td>
+                    </tr>
+                    {{end}}
+                </table>
+                <div class="order_cart_right"><span class="b_cart">Delivery price:</span>0 RUB.</div>
+                <div class="order_cart_right"><span class="b_cart">Total value:</span>{{=order.TotalCost}} RUB</div>
+                <div class="order_cart_title radi4 datamargin">Data buyer</div>
+                <table class="fl100 order_information radi4">
+                    <tr class="order_tr">
+                        <td class="order_td">Customer Name</td>
+                        <td class="order_td">{{=order.Name}}</td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">Index</td>
+                        <td class="order_td">>{{=order.Index}}</td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">Shipping Address</td>
+                        <td class="order_td">
+                            {{=order.Country}}
+                            {{=order.City}}
+                            {{=order.Region}}
+                            {{=order.Street}}
+                            {{=order.Home}}
+                            {{=order.Room}}
+                        </td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">Phone number</td>
+                        <td class="order_td">>{{=order.Phone}}</td>
+                    </tr>
+                    <tr class="order_tr">
+                        <td class="order_td">E-Mail</td>
+                        <td class="order_td">>{{=order.Email}}</td>
+                    </tr>
+                </table>
+                <div class="order_cart_title radi4 datamargin2">Processing dispatch of the order</div>
+                <div class="fl100 emc radi4">
+                    <form action="/order/{{=order.ID}}" method="post">
+                        <label class="emc_code" for="emc_code">EMC key:</label>
+                        <input type="text" id="emc_code" class="shadow_emc" name="ems"/>
+                        <input type="hidden" name="AddEMS" value="do" />
+                        <button type="submit" class="emc_button">SEND</button>
+                    </form>
+                </div>
+                <div class="fl100">
+                    <a href="/"><div class="back">Back to the list of orders</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

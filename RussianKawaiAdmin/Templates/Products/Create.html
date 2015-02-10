@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    {{set RussianKawaiShop.ProductCategoryService productCategoryService = new RussianKawaiShop.ProductCategoryServiceImpl()}}
+    <div class="main">
+        <div class="add_title"><p>Add new product</p></div>
+        <div class="speedbar">
+            <span class="speedspan"><a class="speeda" href="/">ADMIN</a></span>»<span class="speedspan">Add new product</span>
+        </div>
+        <div class="clear"></div>
+        <form action="/product/create/" method="post">
+            <ul>
+                <li>
+                    <p>Название:</p>
+                    <input type="text" name="name" required>
+                </li>
+                <li>
+                    <p>Категория:</p>
+                    <select name="category">
+                        {{foreach(RussianKawaiShop.ProductCategory productCategory in productCategoryService.GetAll())}}
+                        <option value="{{=productCategory.ID}}">{{=productCategory.Name}}</option>
+                        {{end}}
+                    </select>
+                </li>
+                <li>
+                    <p>Японское название:</p>
+                    <input type="text" name="jpname" required>
+                </li>
+                <li>
+                    <p>Объем:</p>
+                    <input type="text" name="volume" placeholder="Вместе со словом мл, кг, тонны и т.п.">
+                </li>
+                <li>
+                    <p>Цена:</p>
+                    <input type="text" class="price_field" name="price" required>
+                </li>
+                <li>
+                    <p>Описание:</p>
+                    <textarea name="desc" required></textarea>
+                </li>
+                <li>
+                    <p>Картинки:</p>
+                    <textarea name="images" required placeholder="Указывать через ;"></textarea>
+                </li>
+                <li>
+                    <p>Товары в наборе:</p>
+                    <input type="text" name="productsInCat" placeholder="Если это набор. Товары через запятую (ID)">
+                </li>
+                <li>
+                    <div>
+                        <input type="submit" value="ДОБАВИТЬ ТОВАР" name="AddProduct">
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="clear"></div>
+    </div>
+    {{include RussianKawaiAdmin Footer}}
+</body>
+</html>

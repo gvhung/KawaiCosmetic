@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2186FF30-CA58-4E49-9F12-A9454FFF57D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RussianKawaiAdmin</RootNamespace>
+    <AssemblyName>RussianKawaiAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\UpServer-master\bin\x64adv\Sites\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RussianKawaiShop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UpBase">
+      <HintPath>..\..\..\UpBase-master\bin\Release\UpBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UpServer">
+      <HintPath>..\..\..\UpServer-master\bin\x64adv\UpServer.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\IndexPage.cs" />
+    <Compile Include="Pages\OrderPage.cs" />
+    <Compile Include="Pages\ProductActions\CreateProductPage.cs" />
+    <Compile Include="Pages\ProductActions\EditProductPage.cs" />
+    <Compile Include="Pages\ProductActions\ProductsPage.cs" />
+    <Compile Include="Pages\Recources\Footer.cs" />
+    <Compile Include="Pages\Recources\Head.cs" />
+    <Compile Include="Pages\Recources\Header.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RussianKawaiAdmin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\i\add.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\all_icon.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\back.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\delivery.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\emc.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\header_gradient.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\header_gradient_2.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\logo.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\logo_background.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\logo_min.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\panel_icon.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\re.png" />
+    <EmbeddedResource Include="Content\Cache\i\admin\search.png" />
+    <EmbeddedResource Include="Content\Cache\i\anket.png" />
+    <EmbeddedResource Include="Content\Cache\i\attention.png" />
+    <EmbeddedResource Include="Content\Cache\i\background.png" />
+    <EmbeddedResource Include="Content\Cache\i\border.png" />
+    <EmbeddedResource Include="Content\Cache\i\bottom_textleft.png" />
+    <EmbeddedResource Include="Content\Cache\i\button_before.png" />
+    <EmbeddedResource Include="Content\Cache\i\button_bottom.png" />
+    <EmbeddedResource Include="Content\Cache\i\cart_to.png" />
+    <EmbeddedResource Include="Content\Cache\i\center_line.png" />
+    <EmbeddedResource Include="Content\Cache\i\delete.png" />
+    <EmbeddedResource Include="Content\Cache\i\delivery.png" />
+    <EmbeddedResource Include="Content\Cache\i\detos.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\1.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\2.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\3.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\4.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\5.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\cart.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\count.png" />
+    <EmbeddedResource Include="Content\Cache\i\email\status.png" />
+    <EmbeddedResource Include="Content\Cache\i\ems.jpg" />
+    <EmbeddedResource Include="Content\Cache\i\foot.png" />
+    <EmbeddedResource Include="Content\Cache\i\footer_gradient.png" />
+    <EmbeddedResource Include="Content\Cache\i\graph.png" />
+    <EmbeddedResource Include="Content\Cache\i\header_gradient.png" />
+    <EmbeddedResource Include="Content\Cache\i\header_main.jpg" />
+    <EmbeddedResource Include="Content\Cache\i\home.png" />
+    <EmbeddedResource Include="Content\Cache\i\ico1.png" />
+    <EmbeddedResource Include="Content\Cache\i\ico2.png" />
+    <EmbeddedResource Include="Content\Cache\i\ico3.png" />
+    <EmbeddedResource Include="Content\Cache\i\ico4.png" />
+    <EmbeddedResource Include="Content\Cache\i\info_1.png" />
+    <EmbeddedResource Include="Content\Cache\i\info_2.png" />
+    <EmbeddedResource Include="Content\Cache\i\info_3.png" />
+    <EmbeddedResource Include="Content\Cache\i\logo.png" />
+    <EmbeddedResource Include="Content\Cache\i\main.png" />
+    <EmbeddedResource Include="Content\Cache\i\message.png" />
+    <EmbeddedResource Include="Content\Cache\i\number_zakaz.png" />
+    <EmbeddedResource Include="Content\Cache\i\oform.png" />
+    <EmbeddedResource Include="Content\Cache\i\ok.png" />
+    <EmbeddedResource Include="Content\Cache\i\pay.png" />
+    <EmbeddedResource Include="Content\Cache\i\plus.png" />
+    <EmbeddedResource Include="Content\Cache\i\rubbish.png" />
+    <EmbeddedResource Include="Content\Cache\i\temp\shop_1.png" />
+    <EmbeddedResource Include="Content\Cache\i\temp\shop_2.png" />
+    <EmbeddedResource Include="Content\Cache\i\temp\shop_3.png" />
+    <EmbeddedResource Include="Content\Cache\i\temp\shop_4.jpg" />
+    <EmbeddedResource Include="Content\Cache\i\test_it.png" />
+    <EmbeddedResource Include="Content\Cache\i\title.png" />
+    <EmbeddedResource Include="Content\Cache\i\title_1.png" />
+    <EmbeddedResource Include="Content\Cache\i\to_support.png" />
+    <EmbeddedResource Include="Content\Cache\i\woman.png" />
+    <EmbeddedResource Include="Content\Cache\i\years.png" />
+    <EmbeddedResource Include="Content\Cache\i\yes.png" />
+    <EmbeddedResource Include="Content\Cache\styles\admin.css" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bold.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bolditalic.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabold.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabolditalic.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-italic.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-light.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.svg" />
+    <EmbeddedResource Include="Content\Cache\styles\index.css" />
+    <EmbeddedResource Include="Content\Cache\styles\jquery-ui.css" />
+    <EmbeddedResource Include="Templates\Order.html" />
+    <EmbeddedResource Include="Templates\Orders.html" />
+    <EmbeddedResource Include="Templates\Products\Create.html" />
+    <EmbeddedResource Include="Templates\Products\Edit.html" />
+    <EmbeddedResource Include="Templates\Products\List.html" />
+    <EmbeddedResource Include="Templates\Resources\Footer.html" />
+    <EmbeddedResource Include="Templates\Resources\Head.html" />
+    <EmbeddedResource Include="Templates\Resources\Header.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bold.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bold.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bold.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bolditalic.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bolditalic.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-bolditalic.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabold.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabold.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabold.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabolditalic.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabolditalic.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-extrabolditalic.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-italic.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-italic.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-italic.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-light.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-light.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-light.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.woff" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.eot" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.ttf" />
+    <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.woff" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
