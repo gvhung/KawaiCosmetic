@@ -197,9 +197,6 @@
     <EmbeddedResource Include="Templates\Cart.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Cache\styles\index.css" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Templates\Redirect.html" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +212,9 @@
     <EmbeddedResource Include="Content\Cache\i\temp\shop_6.png" />
     <EmbeddedResource Include="Content\Cache\i\temp\shop_7.png" />
     <EmbeddedResource Include="Content\Cache\i\temp\shop_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\styles\index.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -142,7 +142,6 @@
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-regular.svg" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibold.svg" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.svg" />
-    <EmbeddedResource Include="Content\Cache\styles\index.css" />
     <EmbeddedResource Include="Content\Cache\styles\jquery-ui.css" />
     <EmbeddedResource Include="Templates\Order.html" />
     <EmbeddedResource Include="Templates\Orders.html" />
@@ -181,6 +180,9 @@
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.eot" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.ttf" />
     <EmbeddedResource Include="Content\Cache\styles\fonts\opensans-semibolditalic.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\styles\index.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

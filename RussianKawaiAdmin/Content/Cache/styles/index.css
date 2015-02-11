@@ -1162,7 +1162,7 @@ section
                 }
                 .nabor_width
                 {
-                    float: left;
+                    float: right;
                     margin-top: 7px;
                     width: 184px;
                     line-height: 1.4;
@@ -1177,10 +1177,11 @@ section
                 }
                 .price_nabor
                 {
-                    float: left;
+                    float: right;
                     margin-top: 14px;
                     color: #737373;
                     font-size: 13px;
+					width:184px;
                 }
                     .price_nabor .green_text
                     {
@@ -1196,15 +1197,14 @@ section
             {
                 float: left;
                 width: 100%;
-                height: 84px;
                 background: url('../i/border.png') repeat-x left bottom;
                 color: #6f7772;
                 margin-bottom: 25px;
             }
                 .have
                 {
+					display:inline-block;
                     float: left;
-                    width: 100%;
                     font-size: 14px;
                 }
                     .green
@@ -1213,12 +1213,11 @@ section
                     }
                 .green_big
                 {
-                    float: left;
                     color: #00b147;
                     font-weight: 700;
                     font-size: 18px;
                     text-decoration: underline;
-                    margin-top: 22px;
+					padding:15px 0;
                 }
                 .green_big:hover
                 {
@@ -1229,7 +1228,7 @@ section
                     float: right;
                     font-size: 15px;
                     position: relative;
-                    margin-top: 3px;
+                    margin-top: -21px;
                 }
                     .orange_big
                     {
@@ -1256,7 +1255,7 @@ section
         float: left;
         width: 100%;
         height: 39px;
-        margin-bottom: 27px;
+        margin-bottom: 5px;
     }
         .cart_counts
         {
@@ -1525,7 +1524,7 @@ section
         {
             float: left;
             width: 362px;
-            height: 161px;
+			padding:0 0 15px;
             background: #fff;
             margin-bottom: 29px;
             -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.24);
@@ -2576,4 +2575,67 @@ footer
 	max-height:100%;
 	max-width:100%;
 	vertical-align:middle;
+}
+
+
+/*select*/
+
+.color_select {
+	float:left;
+	width:465px;
+	margin-bottom:27px;
+}
+.color_select p{
+	display:inline-block;
+	color: #6f7772;
+	font-size:14px;
+	width:80px;
+	text-align:right;
+	margin-right:13px;
+}
+#dropdown {
+	display:inline-block;
+	position:relative;
+}
+#dropdown span{
+	display:block;
+	width:26px;
+	height:26px;
+	position:absolute;
+	right:-29px;
+	top:0px;
+	background:url(../i/opcl.png);
+	cursor:pointer;
+}
+.color_input {
+	height:22px;
+	font-family:"Open Sans";
+	font-size:14px;
+	box-shadow:0 2px 3px #d5d5d5;
+	color:#5e5f5f;
+	width:80px;
+	text-align:center;
+}
+#dropdown ul{
+	display:none;
+	background:#fff;
+	position:absolute;
+	left:0;
+	top:26px;
+	width:80px;
+	box-shadow:0 0 3px #d5d5d5;
+}
+#dropdown ul li{
+	color:#5e5f5f;
+	height:28px;
+	font-size:14px;
+	line-height:28px;
+	text-align:center;
+	cursor:pointer;
+}
+#dropdown ul li:hover{
+	color:#fff;
+}
+#dropdown ul li span{
+	display:none;
 }

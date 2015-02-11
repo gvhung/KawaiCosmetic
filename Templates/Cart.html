@@ -25,7 +25,7 @@
                 {{foreach(Cart cart in cartService.GetByCookie(cartService.GetCookie(client)))}}
                 {{set Product product = productService.GetByID(cart.ProductID)}}
                 <tr>
-                    <td><a href="/"><div class="cart_photo"><img src="/cached_files/i/temp/shop_1.png" class="cart_photo_img" alt="Детос EX полный набор" /></div></a></td>
+                    <td><a href="/"><div class="cart_photo"><img src="{{=productService.GetImages(product)[0]}}" class="cart_photo_img" alt="{{=product.Name}}" /></div></a></td>
                     <td><a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}}</a></td>
                     <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
                     <td>

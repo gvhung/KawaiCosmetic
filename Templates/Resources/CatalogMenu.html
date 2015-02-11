@@ -3,7 +3,7 @@
     <div class="cat_block">
         <div class="fl100 center"><span class="block_title">Другие товары</span></div>
         {{foreach(ProductCategory pcat in productCategoryService.GetAll())}}
-        <a href="/"><div class="main_category">{{=pcat.Name}}</div></a>
+        <a><div class="main_category">{{=pcat.Name}}</div></a>
         <ul class="under_categories">
             {{foreach(Product pr in productCategoryService.GetProductsInCategory(pcat.ID))}}
             <li>
@@ -11,11 +11,5 @@
                 {{end}}
         </ul>
         {{end}}
-    </div>
-    <div class="detos_min">
-        <img src="/cached_files/i/detos.png" class="right_line_img detos_min_img" alt="Детос EX">
-        <div class="right_line_go detos_min_go">
-            <a href="/" class="right_line_go_a detos_min_a"><div class="right_line_go_span">Опробуйте наш</div>пробник Детос EX</a>
-        </div>
     </div>
 </div>
