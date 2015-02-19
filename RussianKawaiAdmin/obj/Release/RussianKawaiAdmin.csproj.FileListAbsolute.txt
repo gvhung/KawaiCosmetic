@@ -5,3 +5,8 @@ X:\UpCorp\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
 X:\UpCorp\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
 X:\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.dll
 X:\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.pdb
+C:\Users\Никита\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.dll
+C:\Users\Никита\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.pdb
+C:\Users\Никита\Development\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolveAssemblyReference.cache
+C:\Users\Никита\Development\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
+C:\Users\Никита\Development\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb

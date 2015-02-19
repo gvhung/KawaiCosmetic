@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\UpServer-master\bin\x64adv\Sites\</OutputPath>
+    <OutputPath>..\UpServer-master\bin\x64adv\Sites\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,11 +39,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UpBase">
-      <HintPath>..\..\UpBase-master\bin\Release\UpBase.dll</HintPath>
+      <HintPath>..\UpBase-master\bin\Release\UpBase.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UpServer">
-      <HintPath>..\..\UpServer-master\bin\x64adv\UpServer.exe</HintPath>
+      <HintPath>..\UpServer-master\bin\x64adv\UpServer.exe</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -53,6 +53,7 @@
     <Compile Include="Database\Models\Order.cs" />
     <Compile Include="Database\Models\Product.cs" />
     <Compile Include="Database\Models\ProductCategory.cs" />
+    <Compile Include="Database\Models\ProductColor.cs" />
     <Compile Include="Database\RussianKawaiDB.cs" />
     <Compile Include="Pages\CartPage.cs" />
     <Compile Include="Pages\CatalogPage.cs" />
@@ -69,7 +70,9 @@
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
     <Compile Include="Services\Implements\OrderServiceImpl.cs" />
+    <Compile Include="Services\Implements\ProductColorServiceImpl.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ProductColorService.cs" />
     <Compile Include="WebSocket.cs" />
     <Compile Include="RussianKawaiShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,7 +217,9 @@
     <EmbeddedResource Include="Content\Cache\i\temp\shop_8.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\i\raki.png" />
     <EmbeddedResource Include="Content\Cache\styles\index.css" />
+    <Content Include="Content\Cache\styles\jquery-ui.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

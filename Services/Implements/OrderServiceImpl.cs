@@ -72,8 +72,14 @@ namespace RussianKawaiShop
             foreach(string cart in order.Products.Split(';'))
             {
                 int productID = int.Parse(cart.Split(':')[0]);
-                products.Add(productService.GetByID(productID));
+                Product product = productService.GetByID(productID).Clone();                
+                if (cart.Split(':').Length > 1 && int.Parse(cart.Split(':')[2]) != 0)
+                {
+                    product.Color = int.Parse(cart.Split(':')[2]);
+                }
+                products.Add(product);
             }
+
             return products;
         }
 
@@ -82,7 +88,8 @@ namespace RussianKawaiShop
             foreach (string cart in order.Products.Split(';'))
             {
                 int productID = int.Parse(cart.Split(':')[0]);
-                if(productID == product.ID)
+                int productColor = int.Parse(cart.Split(':')[2]);
+                if (productID == product.ID && productColor == product.Color)
                 {
                     return int.Parse(cart.Split(':')[1]);
                 }
@@ -100,10 +107,8 @@ namespace RussianKawaiShop
                 order.UniqueCode = cartService.GetCookie(client) + "_ORDERED";
 
                 cartService.SetNewCookie(client);
-
                 return this.GetByID(DBConnector.manager.InsertQueryReturn(order));
             }
-
             return null;
         }
 
@@ -112,12 +117,13 @@ namespace RussianKawaiShop
             string result = "";
             foreach(Cart cart in carts)
             {
-                result += cart.ProductID + ":" + cart.ProductNum;
+                result += cart.ProductID + ":" + cart.ProductNum + ":" + cart.ProductColor;
                 if(!cart.Equals(carts[carts.Count - 1]))
                 {
                     result += ";";
                 }
             }
+            Logger.ConsoleLog("Result:" + result);
             return result;
         }
 

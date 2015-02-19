@@ -4,6 +4,7 @@
 <body>
     {{include RussianKawaiShop Header}}
     {{set ProductService productService = new ProductServiceImpl()}}
+    {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
     {{set Product product = PageData["Product"] as Product}}
     <section>
         <div class="w1000">
@@ -51,8 +52,23 @@
                             <input type="text" value="1" name="count" readonly="readonly" class="cart_input input_shadow" />
                             <div class="cart_plus input_shadow"><div class="cart_plus_icon"></div></div>
                         </div>
+                        <input type="hidden" id="productColor" value="{{=productService.GetProductColors(product)[0].ID}}" />
                         <button class="home_button cart_button" type="button" onclick="AddToCart({{=product.ID}});">Добавить в корзину</button>
                     </div>
+                    {{if(product.Colors != null)}}
+                    <div class="color_select">
+                        <p>Цвет:</p>
+                        <div id="dropdown">
+                            <span></span>
+                            <input type="text" name="color" class="color_input" />
+                            <ul id="dropdown_list">
+                                {{foreach(ProductColor productColor in productService.GetProductColors(product))}}
+                                <li><span>{{=productColor.RGB}}</span><color style="display:none;">{{=productColor.ID}}</color>{{=productColor.Name}}</li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+                    {{end}}
                     <div class="information_text">
                         {{=product.Description}}
                         <!--<p class="consistent"><b>Состав:</b> убихинон (коэнзим), гиалyрoновая кислота, растительный коллаген, растительные кepамиды, витамины BCEPQ.</p>-->
@@ -62,9 +78,7 @@
         </div>
     </section>
     {{include RussianKawaiShop Footer}}
-
     <script>
-
         function changeImage(item) {
             $('#main').attr('src', $('#shop' + item).attr('src'));
         }
@@ -81,6 +95,40 @@
             if (value != 1) {
                 $(this).closest(".cart_buttons").find("input").val(value - 1);
             }
+        });
+        $('#dropdown input').val($('#dropdown li:first').clone().children().remove().end().text());
+
+        $('#dropdown li').click( function() {
+            $('#dropdown input').val($(this).clone().children().remove().end().text());
+            $('#dropdown ul').toggle();
+            $('input#productColor').val($(this).find('color').text());
+        });
+        $('#dropdown li').hover( function() {
+            var color = $(this).find('span').text();
+            $(this).css("background",color);
+        }, function () {
+            $(this).css("background","none");
+        });
+
+        $(function () {
+            $('#dropdown input, #dropdown span').click(function (e) {
+                var $message = $('#dropdown_list');
+ 
+                if ($message.css('display') != 'block') {
+                    $message.show();
+ 
+                    var yourClick = true;
+                    $(document).bind('click.myEvent', function (e) {
+                        if (!yourClick && $(e.target).closest('#dropdown_list').length == 0) {
+                            $message.hide();
+                            $(document).unbind('click.myEvent');
+                        }
+                        yourClick = false;
+                    });
+                }
+ 
+                e.preventDefault();
+            });
         });
     </script>
 </body>

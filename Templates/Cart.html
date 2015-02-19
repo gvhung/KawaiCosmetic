@@ -5,6 +5,7 @@
     {{include RussianKawaiShop Header}}
     {{set CartService cartService = new CartServiceImpl()}}
     {{set ProductService productService = new ProductServiceImpl()}}
+    {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
     <section>
         <div class="w1000">
             <div class="fl textcent h1_center h1_more"><h1><span class="h1">Корзина</span></h1></div>
@@ -24,9 +25,17 @@
                 </tr>
                 {{foreach(Cart cart in cartService.GetByCookie(cartService.GetCookie(client)))}}
                 {{set Product product = productService.GetByID(cart.ProductID)}}
+
                 <tr>
                     <td><a href="/"><div class="cart_photo"><img src="{{=productService.GetImages(product)[0]}}" class="cart_photo_img" alt="{{=product.Name}}" /></div></a></td>
-                    <td><a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}}</a></td>
+                    <td>
+                        <a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}} 
+                        {{if(cart.ProductColor != 0)}}
+                            {{set ProductColor productColor = productColorService.GetByID(cart.ProductColor)}}
+                            - <span style="color:{{=productColor.RGB}}">{{=productColor.Name}}</span>
+                        {{end}}
+                        </a>
+                    </td>
                     <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
                     <td>
                         <div class="cart_buttons cart_buttons_margin">

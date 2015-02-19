@@ -11,8 +11,9 @@ namespace RussianKawaiShop
     public class ProductServiceImpl : ProductService
     {
         private ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
+        private ProductColorService productColorService = new ProductColorServiceImpl();
 
-        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory)
+        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors)
         {
             Product product = new Product();
             product.Name = Name;
@@ -23,12 +24,13 @@ namespace RussianKawaiShop
             product.CategoryId = categoryID;
             product.Volume = volume;
             product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
+            product.Colors = colors;
             DBConnector.manager.InsertQuery(product);
 
             return product;
         }
 
-        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, int ID)
+        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors, int ID)
         {
             DBConnector.manager.FastUpdateReturn<Product>(data => {
                 Product product = data as Product;
@@ -42,6 +44,7 @@ namespace RussianKawaiShop
                     product.CategoryId = categoryID;
                     product.Volume = volume;
                     product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
+                    product.Colors = colors;
                     return product;
                 }
 
@@ -111,7 +114,7 @@ namespace RussianKawaiShop
             return this.GetProductsInCategory(product.ProductsInCategory);
         }
 
-        private  List<Product> GetProductsInCategory(string productIDs)
+        private List<Product> GetProductsInCategory(string productIDs)
         {
             List<Product> products = new List<Product>();
 
@@ -149,6 +152,16 @@ namespace RussianKawaiShop
             }
 
             return result;
+        }
+
+        public List<ProductColor> GetProductColors(Product product)
+        {
+            List<ProductColor> productColors = new List<ProductColor>();
+            foreach(string colorID in product.Colors.Split(','))
+            {
+                productColors.Add(productColorService.GetByID(int.Parse(colorID)));
+            }
+            return productColors;
         }
     }
 }

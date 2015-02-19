@@ -13,8 +13,8 @@ namespace RussianKawaiShop.Services
         string GetCookie(Client client);
         string SetNewCookie(Client client);
         List<Cart> GetByCookie(string cookie);
-        bool AddProduct(int productID, int productNum, string cookie);
-        Cart GetByCookieAndProductID(string cookie, int productId);
+        bool AddProduct(int productID, int productNum, string cookie, int productColorId = 0);
+        Cart GetByCookieAndProductID(string cookie, int productId, int productColorId = 0);
         int CountProductsNum(string cookie);
         double GetTotalCost(List<Cart> carts);
         double GetTotalCost(string cookie);

@@ -6,6 +6,7 @@
     {{set Order order = PageData["Order"] as Order}}
     {{set OrderService orderService = new OrderServiceImpl()}}
     {{set ProductService productService = new ProductServiceImpl()}}
+    {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
     {{set Robokassa robokassa = new Robokassa()}}
     <section>
         <div class="w1000">
@@ -26,7 +27,15 @@
                 {{foreach(Product product in orderService.GetProducts(order))}}
                 <tr>
                     <td><a href="/product/{{=product.ID}}"><div class="cart_photo"><img src="{{=productService.GetImages(product)[0]}}" class="cart_photo_img" alt="{{=product.Name}}" /></div></a></td>
-                    <td><a href="/product/{{=product.ID}}" class="cart_a">{{=product.Name}}</a></td>
+                    <td>
+                        <a href="/product/{{=product.ID}}" class="cart_a">
+                            {{=product.Name}}
+                            {{if(product.Color != 0)}}
+                                {{set ProductColor productColor = productColorService.GetByID(product.Color)}}
+                                - <span style="color:{{=productColor.RGB}}">{{=productColor.Name}}</span>
+                            {{end}}
+                        </a>
+                    </td>
                     <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
                     <td><div class="cart_input input_shadow without_input">{{=orderService.CountProductsNum(product, order)}}</div></td>
                     <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product) * orderService.CountProductsNum(product, order)}}</span>руб.</div></td>

@@ -12,6 +12,7 @@ namespace RussianKawaiShop.Services.Implements
     public class CartServiceImpl : CartService
     {
         private ProductService productService = new ProductServiceImpl();
+        private ProductColorService productColorService = new ProductColorServiceImpl();
 
         public string GetCookie(Client client)
         {
@@ -39,11 +40,19 @@ namespace RussianKawaiShop.Services.Implements
             return cart;
         }
 
-        public bool AddProduct(int productID, int productNum, string cookie)
+        public bool AddProduct(int productID, int productNum, string cookie, int productColorId = 0)
         {
             if(productService.GetByID(productID) != null)
             {
-                Cart cart = this.GetByCookieAndProductID(cookie, productID);
+                if(productColorId != 0)
+                {
+                    if(productColorService.GetByID(productColorId) == null)
+                    {
+                        productColorId = 0;
+                    }
+                }
+
+                Cart cart = this.GetByCookieAndProductID(cookie, productID, productColorId);
 
                 if(cart == null)
                 {
@@ -51,6 +60,7 @@ namespace RussianKawaiShop.Services.Implements
                     cart.UniqueCode = cookie;
                     cart.ProductID = productID;
                     cart.ProductNum = this.NumberForAddProduct(cart.ProductNum, productNum);
+                    cart.ProductColor = productColorId;
                     DBConnector.manager.InsertQuery(cart);
                 }
                 else
@@ -58,7 +68,7 @@ namespace RussianKawaiShop.Services.Implements
                     DBConnector.manager.FastUpdate<Cart>(data => {
                         Cart c = data as Cart;
 
-                        if(c.ProductID == productID && c.UniqueCode == cookie)
+                        if (c.ProductID == productID && c.UniqueCode == cookie && c.ProductColor == productColorId)
                         {
                             c.ProductNum = this.NumberForAddProduct(c.ProductNum, productNum);
                         }
@@ -82,11 +92,11 @@ namespace RussianKawaiShop.Services.Implements
             return before + add;
         }
 
-        public Cart GetByCookieAndProductID(string cookie, int productId)
+        public Cart GetByCookieAndProductID(string cookie, int productId, int productColorId = 0)
         {
             List<Cart> cart = DBConnector.manager.FastSelect<Cart>(data =>
             {
-                if ((data as Cart).UniqueCode == cookie && (data as Cart).ProductID == productId)
+                if ((data as Cart).UniqueCode == cookie && (data as Cart).ProductID == productId && (data as Cart).ProductColor == productColorId)
                 {
                     return true;
                 }

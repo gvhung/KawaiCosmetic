@@ -33,5 +33,15 @@ namespace RussianKawaiShop
 
         [UMaxLength(50)]
         public string ProductsInCategory;
+
+        public int Color = 0;
+
+        [UMaxLength(20)]
+        public string Colors;
+
+        public Product Clone()
+        {
+            return (Product) this.MemberwiseClone();
+        }
     }
 }

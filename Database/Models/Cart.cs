@@ -13,5 +13,6 @@ namespace RussianKawaiShop.Database.Models
         public string UniqueCode;
         public int ProductID;
         public int ProductNum;
+        public int ProductColor = 0;
     }
 }

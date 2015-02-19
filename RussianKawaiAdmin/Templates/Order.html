@@ -5,6 +5,7 @@
     {{include RussianKawaiAdmin Header}}
     {{set RussianKawaiShop.OrderService orderService = new RussianKawaiShop.OrderServiceImpl()}}
     {{set RussianKawaiShop.ProductService productService = new RussianKawaiShop.ProductServiceImpl()}}
+    {{set RussianKawaiShop.ProductColorService productColorService = new RussianKawaiShop.ProductColorServiceImpl()}}
     {{set RussianKawaiShop.Order order = PageData["Order"] as RussianKawaiShop.Order}}
     <div class="fl100 zindex">
         <div class="w1000">
@@ -39,7 +40,12 @@
                     <tr class="order_cart_tr">
                         <td class="order_cart_td">{{=product.ID}}</td>
                         <td class="order_cart_td">
-                            <img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.JPName}}" class="order_cart_img"> {{=product.JPName}}
+                            <img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.JPName}}" class="order_cart_img"> 
+                            {{=product.JPName}}
+                            {{if(product.Color != 0)}}
+                                {{set RussianKawaiShop.ProductColor productColor = productColorService.GetByID(product.Color)}}
+                                - <span style="color:{{=productColor.RGB}}">{{=productColor.Name}}</span>
+                            {{end}}
                         </td>
                         <td class="order_cart_td">{{=productService.GetPrice(product)}}</td>
                         <td class="order_cart_td">{{=orderService.CountProductsNum(product, order)}}</td>
@@ -57,7 +63,7 @@
                     </tr>
                     <tr class="order_tr">
                         <td class="order_td">Index</td>
-                        <td class="order_td">>{{=order.Index}}</td>
+                        <td class="order_td">{{=order.Index}}</td>
                     </tr>
                     <tr class="order_tr">
                         <td class="order_td">Shipping Address</td>
@@ -72,11 +78,11 @@
                     </tr>
                     <tr class="order_tr">
                         <td class="order_td">Phone number</td>
-                        <td class="order_td">>{{=order.Phone}}</td>
+                        <td class="order_td">{{=order.Phone}}</td>
                     </tr>
                     <tr class="order_tr">
                         <td class="order_td">E-Mail</td>
-                        <td class="order_td">>{{=order.Email}}</td>
+                        <td class="order_td">{{=order.Email}}</td>
                     </tr>
                 </table>
                 <div class="order_cart_title radi4 datamargin2">Processing dispatch of the order</div>

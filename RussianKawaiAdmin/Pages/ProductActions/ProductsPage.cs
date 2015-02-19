@@ -7,7 +7,7 @@ using UpServer;
 
 namespace RussianKawaiAdmin.Pages
 {
-    class MainPage : RussianKawaiAdmin
+    class ProductsPage : RussianKawaiAdmin
     {
         public override PageType PageType
         {

@@ -1162,7 +1162,7 @@ section
                 }
                 .nabor_width
                 {
-                    float: right;
+                    float: left;
                     margin-top: 7px;
                     width: 184px;
                     line-height: 1.4;
@@ -1177,11 +1177,10 @@ section
                 }
                 .price_nabor
                 {
-                    float: right;
+                    float: left;
                     margin-top: 14px;
                     color: #737373;
                     font-size: 13px;
-					width:184px;
                 }
                     .price_nabor .green_text
                     {
@@ -1524,7 +1523,7 @@ section
         {
             float: left;
             width: 362px;
-			padding:0 0 15px;
+            height: 161px;
             background: #fff;
             margin-bottom: 29px;
             -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.24);
@@ -2604,7 +2603,7 @@ footer
 	position:absolute;
 	right:-29px;
 	top:0px;
-	background:url(../i/opcl.png);
+	background:url(../i/raki.png);
 	cursor:pointer;
 }
 .color_input {

@@ -26,7 +26,7 @@ namespace RussianKawaiShop
         }
 
         private CartService cartService = new CartServiceImpl();
-
+        private ProductColorService productColorService = new ProductColorServiceImpl();
         public override bool Init(Client client)
         {
             if(client.WSData != null)
@@ -36,12 +36,11 @@ namespace RussianKawaiShop
 
                 if (Action == "AddProductToCartAction")
                 {
-                    int productId;
-                    int num;
+                    int productId, num, productColorId;
 
-                    if(int.TryParse(WSData[1], out productId) && int.TryParse(WSData[2], out num))
+                    if (int.TryParse(WSData[1], out productId) && int.TryParse(WSData[2], out num) && int.TryParse(WSData[1], out productId) && int.TryParse(WSData[3], out productColorId))
                     {
-                        cartService.AddProduct(productId, num, cartService.GetCookie(client));
+                        cartService.AddProduct(productId, num, cartService.GetCookie(client), productColorId);
                         client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
                     }
                 }

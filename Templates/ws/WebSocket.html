@@ -3,7 +3,8 @@
 
     function AddToCart(id) {
         var num = $(".cart_input").val();
-        ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num);
+        var productColor = $("input#productColor").val();
+        ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num + "{{=BaseFuncs.WSplit}}" + productColor);
         alert("Успешно добавлено в корзину!");
     }
 

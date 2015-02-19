@@ -34,6 +34,7 @@ namespace RussianKawaiShop.Pages
             {
                 cartService.SetNewCookie(client);
                 client.Redirect("/cart/");
+                return false;
             }
             else if (client.PostParam("CreateOrder") != null)
             {
@@ -49,13 +50,15 @@ namespace RussianKawaiShop.Pages
                 order.Room = client.PostParam("room");
                 order.Index = client.PostParam("index");
 
-                client.Redirect("/order/" + orderService.CreateOrder(order, client).UniqueCode);
+                Order orderResult = orderService.CreateOrder(order, client);
+                if (orderResult != null)
+                {
+                    client.Redirect("/order/" + orderResult.UniqueCode);
+                    return false;
+                }
+                
             }
-            else
-            {
-                client.HttpSend(TemplateActivator.Activate(this, client));
-            }
-
+            client.HttpSend(TemplateActivator.Activate(this, client));
             return true;
         }
     }

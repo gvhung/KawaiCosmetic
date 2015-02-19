@@ -8,3 +8,10 @@ X:\UpCorp\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.pdb
 X:\UpCorp\RussianKawaiShop\obj\Release\RussianKawaiShop.dll
 X:\UpCorp\RussianKawaiShop\obj\Release\RussianKawaiShop.pdb
 X:\UpCorp\RussianKawaiShop\obj\Release\RussianKawaiShop.csprojResolveAssemblyReference.cache
+C:\Users\Никита\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.dll
+C:\Users\Никита\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.pdb
+C:\Users\Никита\Development\RussianKawaiShop\obj\Release\RussianKawaiShop.dll
+C:\Users\Никита\Development\RussianKawaiShop\obj\Release\RussianKawaiShop.pdb
+C:\Users\Никита\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.dll
+C:\Users\Никита\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiShop.pdb
+C:\Users\Никита\Development\RussianKawaiShop\obj\Release\RussianKawaiShop.csprojResolveAssemblyReference.cache
