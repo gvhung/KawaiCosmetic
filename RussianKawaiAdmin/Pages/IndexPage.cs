@@ -28,7 +28,11 @@ namespace RussianKawaiAdmin.Pages
         {
             Hashtable data = new Hashtable();
             List<RussianKawaiShop.Order> orders = orderService.GetByStatus(1).OrderBy(olist => olist.ID * -1).ToList();
+            List<RussianKawaiShop.Order> SentOrders = orderService.GetByStatus(2).OrderBy(olist => olist.ID * -1).ToList();
+
+
             data.Add("Orders", orders);
+            data.Add("SentOrders", SentOrders);
             client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }

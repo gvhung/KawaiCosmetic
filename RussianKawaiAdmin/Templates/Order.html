@@ -24,7 +24,16 @@
                     </tr>
                     <tr class="order_tr">
                         <td class="order_td">Order status </td>
-                        <td class="order_td"><span class="order_green">PAID</span></td>
+                        <td class="order_td">
+                            <span class="order_green">
+                            {{if(order.Status == 1)}}
+                            PAID
+                            {{end}}
+                            {{else if(order.Status == 2)}}
+                            SENT (EMS: {{=order.EMS}})
+                            {{end}}
+                            </span>
+                        </td>
                     </tr>
                 </table>
                 <div class="order_cart_title radi4">Orders</div>
@@ -85,6 +94,7 @@
                         <td class="order_td">{{=order.Email}}</td>
                     </tr>
                 </table>
+                {{if(order.Status == 1)}}
                 <div class="order_cart_title radi4 datamargin2">Processing dispatch of the order</div>
                 <div class="fl100 emc radi4">
                     <form action="/order/{{=order.ID}}" method="post">
@@ -94,6 +104,7 @@
                         <button type="submit" class="emc_button">SEND</button>
                     </form>
                 </div>
+                {{end}}
                 <div class="fl100">
                     <a href="/"><div class="back">Back to the list of orders</div></a>
                 </div>

@@ -30,13 +30,12 @@ namespace RussianKawaiAdmin.Pages
             if(int.TryParse(BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0], out orderID))
             {
                 RussianKawaiShop.Order order = orderService.GetByID(orderID);
-                if(order != null && order.Status == 1)
+                if(order != null && order.Status == 1 || order.Status == 2)
                 {
                     if (client.PostParam("AddEMS") != null && client.PostParam("ems") != null)
                     {
                         this.ChangeStatus(client.PostParam("ems"), order);
                         client.Redirect("/");
-
                         return false;
                     }
                     else
@@ -44,15 +43,13 @@ namespace RussianKawaiAdmin.Pages
                         Hashtable data = new Hashtable();
                         data.Add("Order", order);
                         client.HttpSend(TemplateActivator.Activate(this, client, data));
+                        return true;
                     }
                 }
             }
-            else
-            {
-                BaseFuncs.Show404(client);
-            }
-            
-            return true;
+
+            BaseFuncs.Show404(client);
+            return false;
         }
 
         private void ChangeStatus(string ems, RussianKawaiShop.Order order)
