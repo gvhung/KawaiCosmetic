@@ -52,10 +52,10 @@
                             <input type="text" value="1" name="count" readonly="readonly" class="cart_input input_shadow" />
                             <div class="cart_plus input_shadow"><div class="cart_plus_icon"></div></div>
                         </div>
-                        <input type="hidden" id="productColor" value="{{=productService.GetProductColors(product)[0].ID}}" />
                         <button class="home_button cart_button" type="button" onclick="AddToCart({{=product.ID}});">Добавить в корзину</button>
                     </div>
-                    {{if(product.Colors != null)}}
+                    {{if(product.Colors != "")}}
+                    <input type="hidden" id="productColor" value="{{=productService.GetProductColors(product)[0].ID}}" />
                     <div class="color_select">
                         <p>Цвет:</p>
                         <div id="dropdown">
