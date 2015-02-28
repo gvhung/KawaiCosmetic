@@ -24,7 +24,7 @@ namespace RussianKawaiShop
             product.CategoryId = categoryID;
             product.Volume = volume;
             product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
-            product.Colors = colors;
+            product.Colors = (colors == null) ? "" : colors;
             DBConnector.manager.InsertQuery(product);
 
             return product;
@@ -44,7 +44,7 @@ namespace RussianKawaiShop
                     product.CategoryId = categoryID;
                     product.Volume = volume;
                     product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
-                    product.Colors = colors;
+                    product.Colors = (colors == null) ? "" : colors;
                     return product;
                 }
 
@@ -157,7 +157,7 @@ namespace RussianKawaiShop
         public List<ProductColor> GetProductColors(Product product)
         {
             List<ProductColor> productColors = new List<ProductColor>();
-            foreach(string colorID in product.Colors.Split(','))
+            foreach (string colorID in product.Colors.Split(','))
             {
                 productColors.Add(productColorService.GetByID(int.Parse(colorID)));
             }

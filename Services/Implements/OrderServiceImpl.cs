@@ -123,7 +123,6 @@ namespace RussianKawaiShop
                     result += ";";
                 }
             }
-            Logger.ConsoleLog("Result:" + result);
             return result;
         }
 
