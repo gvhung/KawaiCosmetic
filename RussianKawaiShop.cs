@@ -61,7 +61,7 @@ namespace RussianKawaiShop
             DBConnector.manager = new UManager(new UBaseConnect(typeof(RussianKawaiDB), UBaseConnectType.Update));
             DBConnector.AutoCreate();
 
-            EmailUtil.Send("unilogx@gmail.com", "Oleg", "Kakashka");
+            //EmailUtil.Send("unilogx@gmail.com", "Oleg", "Kakashka");
             Logger.ConsoleLog("Russian Kawai site loaded!");
         }
 

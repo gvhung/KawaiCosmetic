@@ -26,10 +26,15 @@ namespace RussianKawaiAdmin.Pages
 
         public override bool Init(Client client)
         {
+            int orderID, orderStatus;
+            if (client.GetParam("order_id") != null && int.TryParse(client.GetParam("order_id"), out orderID) && client.GetParam("order_status") != null && int.TryParse(client.GetParam("order_status"), out orderStatus))
+            {
+                orderService.ChangeStatus(orderStatus, orderService.GetByID(orderID));
+            }
+
             Hashtable data = new Hashtable();
             List<RussianKawaiShop.Order> orders = orderService.GetByStatus(1).OrderBy(olist => olist.ID * -1).ToList();
             List<RussianKawaiShop.Order> SentOrders = orderService.GetByStatus(2).OrderBy(olist => olist.ID * -1).ToList();
-
 
             data.Add("Orders", orders);
             data.Add("SentOrders", SentOrders);

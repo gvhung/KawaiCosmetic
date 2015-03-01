@@ -27,9 +27,6 @@ namespace RussianKawaiShop.Database
                 }
                 
             }
-
-            OrderService orderService = new OrderServiceImpl();
-            orderService.ChangeStatus(1, orderService.GetByID(1));
         }
     }
 }
