@@ -1,6 +1,7 @@
 ﻿using RussianKawaiShop.Services;
 using RussianKawaiShop.Services.Implements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace RussianKawaiShop
         {
             get { return "ws.WebSocket.html"; }
         }
+        public static int WSPeople = 0;
+        public static int JSPeople = 0;
 
         private CartService cartService = new CartServiceImpl();
         private ProductColorService productColorService = new ProductColorServiceImpl();
@@ -36,6 +39,7 @@ namespace RussianKawaiShop
 
                 if (Action == "AddProductToCartAction")
                 {
+                    WSPeople++;
                     if (this.AddToCart(WSData[1], WSData[2], WSData[3], client))
                     {
                         client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
@@ -47,6 +51,7 @@ namespace RussianKawaiShop
                 string Action = client.PostParam("action");
                 if(Action == "AddProductToCartAction")
                 {
+                    JSPeople++;
                     if (this.AddToCart(client.PostParam("id"), client.PostParam("num"), client.PostParam("productColor"), client))
                     {
                         client.HttpSend(cartService.CountProductsNum(cartService.GetCookie(client)).ToString());
@@ -55,7 +60,7 @@ namespace RussianKawaiShop
                 }
             }
 
-            client.HttpSend(TemplateActivator.Activate(this, client));
+            client.HttpSend("<div class='display:none;'>WEBSOCKET:" + WSPeople + " // JAVASCRIPT: " + JSPeople + "</div>");
             return false;
         }
 
