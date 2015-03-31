@@ -27,6 +27,7 @@ namespace RussianKawaiShop
         }
         public static int WSPeople = 0;
         public static int JSPeople = 0;
+        public static int AD_WOMAN_RU = 0;
 
         private CartService cartService = new CartServiceImpl();
         private ProductColorService productColorService = new ProductColorServiceImpl();
@@ -60,7 +61,7 @@ namespace RussianKawaiShop
                 }
             }
 
-            client.HttpSend("<div class='display:none;'>WEBSOCKET:" + WSPeople + " // JAVASCRIPT: " + JSPeople + "</div>");
+            client.HttpSend("WEBSOCKET:" + WSPeople + " // JAVASCRIPT: " + JSPeople + " // WOMAN_RU: " + AD_WOMAN_RU);
             return false;
         }
 

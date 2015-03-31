@@ -33,6 +33,10 @@ namespace RussianKawaiShop
         {
             get { return false; }
         }
+        public override bool EnableHooking
+        {
+            get { return false; }
+        }
         public override string TemplateAddr
         {
             get { return ""; }
@@ -43,7 +47,7 @@ namespace RussianKawaiShop
         }
         public override string Host
         {
-            get { return "kawai-cosmetics.local;kawai-cosmetics.ru;www.kawai-cosmetics.ru"; }
+            get { return "kawai-cosmetic.local;kawai-cosmetics.ru;www.kawai-cosmetics.ru"; }
         }
         public override uint CacheTime
         {

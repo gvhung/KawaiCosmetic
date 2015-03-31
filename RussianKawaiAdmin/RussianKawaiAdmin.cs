@@ -29,6 +29,10 @@ namespace RussianKawaiAdmin
         {
             get { return false; }
         }
+        public override bool EnableHooking
+        {
+            get { return false; }
+        }
         public override string TemplateAddr
         {
             get { return ""; }

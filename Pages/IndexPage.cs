@@ -24,6 +24,12 @@ namespace RussianKawaiShop.Pages
 
         public override bool Init(Client client)
         {
+            if(client.GetParam("ad") == "woman_ru")
+            {
+                WebSocket.AD_WOMAN_RU++;
+                client.Redirect("/");
+            }
+
             client.HttpSend(TemplateActivator.Activate(this, client));
             return true;
         }
