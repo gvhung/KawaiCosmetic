@@ -68,6 +68,7 @@
     <Compile Include="Pages\Resources\Footer.cs" />
     <Compile Include="Pages\Resources\Head.cs" />
     <Compile Include="Pages\Resources\Header.cs" />
+    <Compile Include="Pages\sys\AddProductToCart.cs" />
     <Compile Include="Robokassa.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
@@ -219,6 +220,7 @@
     <EmbeddedResource Include="Content\Cache\i\temp\shop_8.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Templates\sys\AddProductToCart.html" />
     <EmbeddedResource Include="Templates\Delivery.html" />
     <EmbeddedResource Include="Content\Cache\i\raki.png" />
     <EmbeddedResource Include="Content\Cache\styles\index.css" />

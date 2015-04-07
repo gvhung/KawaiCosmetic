@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UpServer;
 
@@ -30,6 +31,36 @@ namespace RussianKawaiShop.Pages
 
         public override bool Init(Client client)
         {
+            if (client.WSData != null)
+            {
+                string[] WSData = Regex.Split(client.WSData, BaseFuncs.WSplit);
+                string Action = WSData[0];
+
+                if (Action == "AddProductToCartAction")
+                {
+                    WebSocket.WSPeople++;
+                    if (this.AddToCart(WSData[1], WSData[2], WSData[3], client))
+                    {
+                        client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
+                    }
+                }
+
+                return false;
+            }
+            else if (client.PostParam("action") != null)
+            {
+                string Action = client.PostParam("action");
+                if (Action == "AddProductToCartAction")
+                {
+                    WebSocket.JSPeople++;
+                    if (this.AddToCart(client.PostParam("id"), client.PostParam("num"), client.PostParam("productColor"), client))
+                    {
+                        client.HttpSend(cartService.CountProductsNum(cartService.GetCookie(client)).ToString());
+                        return false;
+                    }
+                }
+            }
+
             if (client.PostParam("ClearCart") != null)
             {
                 cartService.SetNewCookie(client);
@@ -56,10 +87,22 @@ namespace RussianKawaiShop.Pages
                     client.Redirect("/order/" + orderResult.UniqueCode);
                     return false;
                 }
-                
             }
+
             client.HttpSend(TemplateActivator.Activate(this, client));
             return true;
+        }
+
+        private bool AddToCart(string productID, string num, string productColorId, Client client)
+        {
+            int _productId, _num, _productColorId;
+
+            if (int.TryParse(productID, out _productId) && int.TryParse(num, out _num) && int.TryParse(productColorId, out _productColorId))
+            {
+                cartService.AddProduct(_productId, _num, cartService.GetCookie(client), _productColorId);
+                return true;
+            }
+            return false;
         }
     }
 }

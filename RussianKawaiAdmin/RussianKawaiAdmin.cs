@@ -43,7 +43,7 @@ namespace RussianKawaiAdmin
         }
         public override string Host
         {
-            get { return "admin.kawai-cosmetics.local;admin.kawai-cosmetics.ru;www.admin.kawai-cosmetics.ru"; }
+            get { return "admin.kawai-cosmetic.local;admin.kawai-cosmetics.ru;www.admin.kawai-cosmetics.ru"; }
         }
         public override uint CacheTime
         {

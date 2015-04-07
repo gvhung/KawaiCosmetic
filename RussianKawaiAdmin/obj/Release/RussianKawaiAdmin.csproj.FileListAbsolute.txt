@@ -13,3 +13,6 @@ X:\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolv
 X:\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
 X:\RussianKawaiShop\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
 X:\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.dll
+X:\RussianKawai\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolveAssemblyReference.cache
+X:\RussianKawai\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
+X:\RussianKawai\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
