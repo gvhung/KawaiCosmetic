@@ -1,0 +1,44 @@
+﻿<script>
+    var ws = new WebSocket("ws://{{=client.Host}}/ws/");
+    var WSConnected = false;
+    ws.onopen = function (evt) {
+        WSConnected = true;
+    };
+
+    function AddToCart(id) {
+        var num = $(".cart_input").val();
+        var productColor = 0;
+        if ($("input#productColor").val() != null)
+        {
+            productColor = $("input#productColor").val();
+        }
+
+        if (WSConnected)
+        {
+            ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num + "{{=BaseFuncs.WSplit}}" + productColor);
+            alert("Успешно добавлено в корзину!");
+        }
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "/ws/",
+                data: { action: "AddProductToCartAction", id: id, num: num, productColor: productColor},
+                success: function (data) {
+                    $("div.cart_count").text(data);
+                    alert("Успешно добавлено в корзину!");
+                },
+                error: function () {
+                    alert("ERROR. Please try later or contact us.");
+                }
+            });
+        }
+    }
+
+    ws.onmessage = function (evt) {
+        var data = evt.data.split("{{=BaseFuncs.WSplit}}");
+        if (data[0] == "CountItemsInCartAction") {
+            $("div.cart_count").text(data[1]);
+        }
+    };
+</script>

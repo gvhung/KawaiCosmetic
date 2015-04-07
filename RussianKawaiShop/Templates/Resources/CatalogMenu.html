@@ -1,0 +1,15 @@
+﻿{{set ProductCategoryService productCategoryService = new ProductCategoryServiceImpl()}}
+<div class="categories">
+    <div class="cat_block">
+        <div class="fl100 center"><span class="block_title">Другие товары</span></div>
+        {{foreach(ProductCategory pcat in productCategoryService.GetAll())}}
+        <a><div class="main_category">{{=pcat.Name}}</div></a>
+        <ul class="under_categories">
+            {{foreach(Product pr in productCategoryService.GetProductsInCategory(pcat.ID))}}
+            <li>
+                <a href="/product/{{=pr.ID}}" class="under_cat">{{=pr.Name}}</a>
+                {{end}}
+        </ul>
+        {{end}}
+    </div>
+</div>
