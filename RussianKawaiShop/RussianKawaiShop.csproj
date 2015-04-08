@@ -51,6 +51,7 @@
     <Compile Include="Database\DBConnector.cs" />
     <Compile Include="Database\Models\Cart.cs" />
     <Compile Include="Database\Models\Order.cs" />
+    <Compile Include="Database\Models\Partner.cs" />
     <Compile Include="Database\Models\Product.cs" />
     <Compile Include="Database\Models\ProductCategory.cs" />
     <Compile Include="Database\Models\ProductColor.cs" />
@@ -62,8 +63,10 @@
     <Compile Include="Pages\DeliveryPage.cs" />
     <Compile Include="Pages\IndexPage.cs" />
     <Compile Include="Pages\OrderPage.cs" />
+    <Compile Include="Pages\PartnerInvitePage.cs" />
     <Compile Include="Pages\ProductPage.cs" />
     <Compile Include="Pages\RedirectPage.cs" />
+    <Compile Include="Pages\ReferralPage.cs" />
     <Compile Include="Pages\Resources\CatalogMenu.cs" />
     <Compile Include="Pages\Resources\Footer.cs" />
     <Compile Include="Pages\Resources\Head.cs" />
@@ -73,8 +76,10 @@
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
     <Compile Include="Services\Implements\OrderServiceImpl.cs" />
+    <Compile Include="Services\Implements\PartnerServiceImpl.cs" />
     <Compile Include="Services\Implements\ProductColorServiceImpl.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PartnerService.cs" />
     <Compile Include="Services\ProductColorService.cs" />
     <Compile Include="WebSocket.cs" />
     <Compile Include="RussianKawaiShop.cs" />
@@ -220,6 +225,7 @@
     <EmbeddedResource Include="Content\Cache\i\temp\shop_8.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Templates\PartnerInvite.html" />
     <EmbeddedResource Include="Templates\sys\AddProductToCart.html" />
     <EmbeddedResource Include="Templates\Delivery.html" />
     <EmbeddedResource Include="Content\Cache\i\raki.png" />

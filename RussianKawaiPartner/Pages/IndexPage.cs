@@ -1,13 +1,15 @@
-﻿using System;
+﻿using RussianKawaiShop;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UpServer;
 
-namespace RussianKawaiShop.Pages
+namespace RussianKawaiPartner
 {
-    class IndexPage : RussianKawaiShop
+    class IndexPage : RussianKawaiPartner
     {
         public override PageType PageType
         {
@@ -21,15 +23,18 @@ namespace RussianKawaiShop.Pages
         {
             get { return "Index.html"; }
         }
+        public override ushort AccessLevel
+        {
+            get { return 1; }
+        }
+
+        private PartnerService partnerService = new PartnerServiceImpl();
 
         public override bool Init(Client client)
         {
-            if(client.GetParam("ad") == "woman_ru")
-            {
-                WebSocket.AD_WOMAN_RU++;
-                client.Redirect("/");
-            }
-            client.HttpSend(TemplateActivator.Activate(this, client));
+            Hashtable data = new Hashtable();
+            data.Add("Partner", partnerService.GetCurrentPartner(client));
+            client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }
     }

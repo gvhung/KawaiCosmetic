@@ -1,0 +1,11 @@
+﻿<html>
+<head>
+    <title>Partner</title>
+</head>
+<body>
+    {{set RussianKawaiShop.Partner partner = PageData["Partner"] as RussianKawaiShop.Partner }}
+    Your sale code: {{=partner.Login.ToUpper()}}<br />
+    Your sale URL: <a href="http://{{=client.Host.Split('.')[1]}}.{{=client.Host.Split('.')[2]}}/ref/{{=partner.Login.ToUpper()}}/">
+    http://{{=client.Host.Split('.')[1]}}.{{=client.Host.Split('.')[2]}}/ref/{{=partner.Login.ToUpper()}}/</a>
+</body>
+</html>

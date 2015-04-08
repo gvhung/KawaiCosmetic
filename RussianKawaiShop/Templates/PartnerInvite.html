@@ -1,0 +1,32 @@
+﻿<html>
+{{include RussianKawaiShop Head}}
+<body>
+    {{include RussianKawaiShop Header}}
+
+        <section>
+        <div class="w1000">
+            <div class="fl textcent h1_center h1_more"><h1><span class="h1">Каталог товаров</span></h1></div>
+            <div class="fl100">
+                <div class="speedbar">
+                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan">Каталог товаров</span>
+                </div>
+            </div>
+            <div class="fl100 catalog">
+                <hr />
+                Здесь будет располагаться информация по сотрудничеству! Вы будете получать 15% с заказа, а ваш клиент будет получать 5% скидки<br />
+                Если вы решили работать с нами, пожалуйста зарегистрируйтесь: <br /><hr />
+                <form action="/partner/" method="post">
+                    <input type="text" placeholder="LOGIN" name="login" required/> <br />
+                    <input type="password" placeholder="PASSWORD" name="password" required/><br />
+                    <input type="password" placeholder="REPEAT PASSWORD" required/><br />
+                    <input type="text" placeholder="YOUR NAME" name="name" required/><br />
+                    <input type="email" placeholder="YOUR EMAIL" name="email" required/><br />
+                    <input type="hidden" name="action" value="reg" required/>
+                    <input type="submit" value="REGISTRATION"/>
+                </form>
+            </div>
+        </div>
+    </section>
+    {{include RussianKawaiShop Footer}}
+</body>
+</html>
