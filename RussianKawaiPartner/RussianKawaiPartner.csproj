@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Pages\IndexPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\LogoutPage.cs" />
     <Compile Include="RussianKawaiPartner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
