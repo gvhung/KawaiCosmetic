@@ -6,6 +6,7 @@
     {{set CartService cartService = new CartServiceImpl()}}
     {{set ProductService productService = new ProductServiceImpl()}}
     {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
+    {{set PartnerService partnerService = new PartnerServiceImpl()}}
     <section>
         <div class="w1000">
             <div class="fl textcent h1_center h1_more"><h1><span class="h1">Корзина</span></h1></div>
@@ -113,6 +114,11 @@
                         <div class="little_inform">Пример: +380933075166</div>
                         <a onclick="showError('tele_error')"><div class="input_error">?</div></a>
                         <div id="tele_error" class="error_field"><div class="error_left">Ошибка при вводе номера телефона</div></div>
+                    </div>
+                     <div class="little_input cart_inputt">
+                        <label for="tele" class="little_label phone">Код скидки:</label>
+                        <input type="text" id="tele" class="little_inp input_shadow" name="saleCode" value="{{=partnerService.GetCurstomersRef(client)}}"/>
+                        <div class="little_inform">Если имеется</div>
                     </div>
                 </div>
                 <div class="little_three">
