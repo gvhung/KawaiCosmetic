@@ -34,7 +34,7 @@ namespace RussianKawaiPartner
         {
             Hashtable data = new Hashtable();
             data.Add("Partner", partnerService.GetCurrentPartner(client));
-            data.Add("PartnerOrders", orderService.GetByPartner(partnerService.GetCurrentPartner(client).ID, 1));
+            data.Add("PartnerOrders", orderService.GetPartnerOrders(partnerService.GetCurrentPartner(client).ID));
             client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }

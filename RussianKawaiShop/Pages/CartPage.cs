@@ -84,7 +84,7 @@ namespace RussianKawaiShop.Pages
 
                 if(client.PostParam("saleCode") != null)
                 {
-                    Partner pr = partnerService.GetByLogin(partnerService.GetCurstomersRef(client));
+                    Partner pr = partnerService.GetByLogin(client.PostParam("saleCode"));
                     if(pr != null)
                     {
                         order.PartnerID = pr.ID;
