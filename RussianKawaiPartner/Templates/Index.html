@@ -4,11 +4,22 @@
 </head>
 <body>
     {{set RussianKawaiShop.Partner partner = PageData["Partner"] as RussianKawaiShop.Partner }}
+    {{set List<RussianKawaiShop.Order> orders = PageData["PartnerOrders"] as List<RussianKawaiShop.Order>}}
+    {{set RussianKawaiShop.OrderService orderService = new RussianKawaiShop.OrderServiceImpl()}}
     Your sale code: {{=partner.Login.ToUpper()}}<br />
     Your sale URL: <a href="http://{{=client.Host.Split('.')[1]}}.{{=client.Host.Split('.')[2]}}/ref/{{=partner.Login.ToUpper()}}/">
     http://{{=client.Host.Split('.')[1]}}.{{=client.Host.Split('.')[2]}}/ref/{{=partner.Login.ToUpper()}}/</a><br/>
     In yout wallet: {{=partner.Wallet}} RUB <br />
-
+    <hr />
+    <h3>Orders of customers invited by you:</h3>
+    <hr />
+    {{foreach(RussianKawaiShop.Order order in orders)}}
+    ID: {{=order.ID}}<br />
+    Customer: {{=order.Name}}<br/>
+    Your income: {{=orderService.CalculatePartnersIncome(order)}} RUB. <br />
+    Total order price: {{=orderService.CalculateTotalPriceWithoutSale(order)}} RUB. <br />
+    <hr/>
+    {{end}}
     <hr/>
     <a href="/logout/">LOGOUT</a>
 </body>

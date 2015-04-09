@@ -31,16 +31,18 @@ namespace RussianKawaiAdmin.Pages
             if (client.GetParam("order_id") != null && int.TryParse(client.GetParam("order_id"), out orderID) && client.GetParam("order_status") != null && int.TryParse(client.GetParam("order_status"), out orderStatus))
             {
                 Order order = orderService.GetByID(orderID);
-
-                if (client.GetParam("withPartner") != null && order.Status <= 0 && orderStatus > 0)
+                if (order != null)
                 {
-                    if (order.PartnerID > 0)
+                    if (client.GetParam("withPartner") != null && order.Status <= 0 && orderStatus > 0)
                     {
-                        Partner partner = partnerService.GetByID(order.PartnerID);
-                        partnerService.ChangeWalletValue(partner.Wallet + orderService.CalculatePartnersIncome(order), order.PartnerID);
+                        if (order.PartnerID > 0)
+                        {
+                            Partner partner = partnerService.GetByID(order.PartnerID);
+                            partnerService.ChangeWalletValue(partner.Wallet + orderService.CalculatePartnersIncome(order), order.PartnerID);
+                        }
                     }
+                    orderService.ChangeStatus(orderStatus, order);
                 }
-                orderService.ChangeStatus(orderStatus, order);
             }
 
             Hashtable data = new Hashtable();

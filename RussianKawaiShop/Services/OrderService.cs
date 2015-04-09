@@ -9,6 +9,7 @@ namespace RussianKawaiShop
         Order GetByID(int id);
         List<Order> GetAll();
         List<Order> GetByStatus(int status);
+        List<Order> GetByPartner(int partnerID, int status=-1);
         Order GetByUniqueCode(string unicode);
         List<Product> GetProducts(Order order);
         int CountProductsNum(Product product, Order order);

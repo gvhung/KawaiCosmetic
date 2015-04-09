@@ -66,6 +66,28 @@ namespace RussianKawaiShop
             return null;
         }
 
+        public List<Order> GetByPartner(int partnerID, int status = -1)
+        {
+            return DBConnector.manager.FastSelect<Order>(data => {
+                Order order = data as Order;
+                if(status < 0)
+                {
+                    if (order.PartnerID == partnerID)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (order.PartnerID == partnerID && order.Status == status)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }
+
         public List<Product> GetProducts(Order order)
         {
             List<Product> products = new List<Product>();

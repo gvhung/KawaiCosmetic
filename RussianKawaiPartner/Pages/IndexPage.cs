@@ -29,11 +29,12 @@ namespace RussianKawaiPartner
         }
 
         private PartnerService partnerService = new PartnerServiceImpl();
-
+        private OrderService orderService = new OrderServiceImpl();
         public override bool Init(Client client)
         {
             Hashtable data = new Hashtable();
             data.Add("Partner", partnerService.GetCurrentPartner(client));
+            data.Add("PartnerOrders", orderService.GetByPartner(partnerService.GetCurrentPartner(client).ID, 1));
             client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }
