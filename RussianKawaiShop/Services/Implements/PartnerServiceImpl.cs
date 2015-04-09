@@ -82,6 +82,11 @@ namespace RussianKawaiShop
             }
         }
 
+        public string GetCurstomersRef(Client client)
+        {
+            return client.GetCookie("ref");
+        }
+
         private void UpdateUserSession(string Session, int partnerID)
         {
             DBConnector.manager.FastUpdate<Partner>(data =>

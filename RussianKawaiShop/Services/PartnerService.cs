@@ -17,5 +17,6 @@ namespace RussianKawaiShop
         string GetClientSession(Client client);
         Partner GetCurrentPartner(Client client);
         void SavePartnerToCustomer(Partner partner, Client client);
+        string GetCurstomersRef(Client client);
     }
 }

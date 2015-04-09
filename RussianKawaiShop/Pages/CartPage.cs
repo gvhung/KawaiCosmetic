@@ -28,6 +28,7 @@ namespace RussianKawaiShop.Pages
 
         private CartService cartService = new CartServiceImpl();
         private OrderService orderService = new OrderServiceImpl();
+        private PartnerService partnerService = new PartnerServiceImpl();
 
         public override bool Init(Client client)
         {
@@ -80,6 +81,15 @@ namespace RussianKawaiShop.Pages
                 order.Home = client.PostParam("home");
                 order.Room = client.PostParam("room");
                 order.Index = client.PostParam("index");
+
+                if(client.PostParam("saleCode") != null)
+                {
+                    Partner pr = partnerService.GetByLogin(partnerService.GetCurstomersRef(client));
+                    if(pr != null)
+                    {
+                        order.PartnerID = pr.ID;
+                    }
+                }
 
                 Order orderResult = orderService.CreateOrder(order, client);
                 if (orderResult != null)

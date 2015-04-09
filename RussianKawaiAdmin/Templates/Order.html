@@ -7,6 +7,7 @@
     {{set RussianKawaiShop.ProductService productService = new RussianKawaiShop.ProductServiceImpl()}}
     {{set RussianKawaiShop.ProductColorService productColorService = new RussianKawaiShop.ProductColorServiceImpl()}}
     {{set RussianKawaiShop.Order order = PageData["Order"] as RussianKawaiShop.Order}}
+    {{set RussianKawaiShop.PartnerService partnerService = new RussianKawaiShop.PartnerServiceImpl()}}
     <div class="fl100 zindex">
         <div class="w1000">
             <div class="fl100">
@@ -35,6 +36,12 @@
                             </span>
                         </td>
                     </tr>
+                    {{if(order.PartnerID > 0)}}
+                    <tr class="order_tr">
+                        <td class="order_td">Invited by</td>
+                        <td class="order_td">{{=partnerService.GetByID(order.PartnerID).Login.ToUpper()}}</td>
+                    </tr>
+                    {{end}}
                 </table>
                 <div class="order_cart_title radi4">Orders</div>
                 <table class="fl100 order_cart_table">
@@ -63,7 +70,14 @@
                     {{end}}
                 </table>
                 <div class="order_cart_right"><span class="b_cart">Delivery price:</span>0 RUB.</div>
-                <div class="order_cart_right"><span class="b_cart">Total value:</span>{{=order.TotalCost}} RUB</div>
+                <div class="order_cart_right"><span class="b_cart">Total value without sales:</span>{{=orderService.CalculateTotalPriceWithoutSale(order)}} RUB</div>
+                {{if(order.PartnersPercentage > 0)}}
+                <div class="order_cart_right"><span class="b_cart">Partner Income:</span>{{=orderService.CalculatePartnersIncome(order)}} RUB ({{=order.PartnersPercentage}}%)</div>
+                {{end}}
+                {{if(order.SalePercentage > 0)}}
+                <div class="order_cart_right"><span class="b_cart">Sale:</span>-{{=order.SalePercentage}}%</div>
+                {{end}}
+                <div class="order_cart_right"><span class="b_cart">Total value:</span><u>{{=order.TotalCost}}</u> RUB</div>
                 <div class="order_cart_title radi4 datamargin">Data buyer</div>
                 <table class="fl100 order_information radi4">
                     <tr class="order_tr">

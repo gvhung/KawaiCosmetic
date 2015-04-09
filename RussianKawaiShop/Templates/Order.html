@@ -7,6 +7,7 @@
     {{set OrderService orderService = new OrderServiceImpl()}}
     {{set ProductService productService = new ProductServiceImpl()}}
     {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
+    {{set PartnerService partnerService = new PartnerServiceImpl()}}
     {{set Robokassa robokassa = new Robokassa()}}
     <section>
         <div class="w1000">
@@ -43,7 +44,12 @@
                 {{end}}
             </table>
             <div class="fl100">
-                <div class="all_price_r"><span class="all_price_left">Итого:</span><span class="cart_price_orange">{{=order.TotalCost}}</span>руб.</div>
+                <div class="all_price_r"><span class="all_price_left">Итого:</span>
+                    <span class="cart_price_orange">{{=order.TotalCost}}</span>руб. 
+                    {{if(order.SalePercentage > 0)}}
+                    <b>со скидкой <span class="cart_price_orange">-{{=order.SalePercentage}}%</span></b>
+                    {{end}}
+                </div>
             </div>
             <div class="fl100">
                 <div class="number_zakaz">Номер Вашего заказа: <span class="number_zakaz_main">{{=order.ID}}</span></div>

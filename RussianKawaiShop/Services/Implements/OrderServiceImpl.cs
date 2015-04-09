@@ -12,7 +12,7 @@ namespace RussianKawaiShop
     {
         private ProductService productService = new ProductServiceImpl();
         private CartService cartService = new CartServiceImpl();
-
+        private PartnerService partnerService = new PartnerServiceImpl();
         public Order GetByID(int id)
         {
             List<Order> orders = DBConnector.manager.FastSelect<Order>(data =>
@@ -103,8 +103,25 @@ namespace RussianKawaiShop
                 && order.Home != null && order.Room != null)
             {
                 order.Products = this.CreateProducts(cartService.GetByCookie(cartService.GetCookie(client)));
-                order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client));
                 order.UniqueCode = cartService.GetCookie(client) + "_ORDERED";
+
+                if(order.PartnerID > 0)
+                {
+                    Partner partner = partnerService.GetByID(order.PartnerID);
+                    if(partner != null)
+                    {
+                        order.PartnersPercentage = partner.IncomePercentage;
+                        order.SalePercentage = partner.SalePercentage;
+                        order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client)) - (cartService.GetTotalCost(cartService.GetCookie(client)) / 100 * partner.SalePercentage);
+                    } 
+                }
+                else
+                {
+                    order.PartnerID = 0;
+                    order.PartnersPercentage = 0;
+                    order.SalePercentage = 0;
+                    order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client));
+                }
 
                 cartService.SetNewCookie(client);
                 return this.GetByID(DBConnector.manager.InsertQueryReturn(order));
@@ -149,6 +166,16 @@ namespace RussianKawaiShop
                 }
                 return null;
             });
+        }
+
+        public double CalculatePartnersIncome(Order order)
+        {
+            return this.CalculateTotalPriceWithoutSale(order) / 100 * order.PartnersPercentage;
+        }
+
+        public double CalculateTotalPriceWithoutSale(Order order)
+        {
+            return order.TotalCost + (order.TotalCost / 100 * order.SalePercentage);
         }
     }
 }

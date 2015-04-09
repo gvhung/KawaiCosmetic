@@ -30,7 +30,7 @@ namespace RussianKawaiAdmin.Pages
             if(int.TryParse(BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0], out orderID))
             {
                 RussianKawaiShop.Order order = orderService.GetByID(orderID);
-                if(order != null && order.Status == 1 || order.Status == 2)
+                if(order != null && order.Status > 0)
                 {
                     if (client.PostParam("AddEMS") != null && client.PostParam("ems") != null)
                     {

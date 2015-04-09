@@ -38,5 +38,9 @@ namespace RussianKawaiShop
         public int Status = 0;
         [UMaxLength(20)]
         public string EMS;
+
+        public int PartnerID = 0;
+        public int SalePercentage = 0;
+        public int PartnersPercentage = 0;
     }
 }

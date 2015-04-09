@@ -16,5 +16,7 @@ namespace RussianKawaiShop
         string CreateProducts(List<Cart> carts);
         void ChangeStatus(int status, Order order);
         void ChangeEMS(string ems, Order order);
+        double CalculatePartnersIncome(Order order);
+        double CalculateTotalPriceWithoutSale(Order order);
     }
 }
