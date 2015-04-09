@@ -17,6 +17,10 @@ namespace RussianKawaiAdmin
         {
             get { return PageType.Once; }
         }
+        public override bool CanAccessDirectly
+        {
+            get { return true; }
+        }
         public override string URL
         {
             get { return null; }
