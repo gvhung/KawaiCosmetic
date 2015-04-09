@@ -18,6 +18,7 @@ namespace RussianKawaiShop
         }
 
         private OrderService orderService = new OrderServiceImpl();
+        private PartnerService partnerService = new PartnerServiceImpl();
         public override bool Init(Client client)
         {
             string Action = BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0];
@@ -35,6 +36,11 @@ namespace RussianKawaiShop
                 if (order != null && this.ResultCRC(client).Equals(client.GetParam("SignatureValue")))
                 {
                     orderService.ChangeStatus(1, order);
+                    if(order.PartnerID > 0)
+                    {
+                        Partner partner = partnerService.GetByID(order.PartnerID);
+                        partnerService.ChangeWalletValue(partner.Wallet + orderService.CalculatePartnersIncome(order), order.PartnerID);
+                    }
                     client.HttpSend("OK" + order.ID);
                 }
             }

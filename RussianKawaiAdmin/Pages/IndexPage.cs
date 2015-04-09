@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RussianKawaiShop;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,24 @@ namespace RussianKawaiAdmin.Pages
         {
             get { return "Orders.html"; }
         }
-        private RussianKawaiShop.OrderService orderService = new RussianKawaiShop.OrderServiceImpl();
-
+        private OrderService orderService = new OrderServiceImpl();
+        private PartnerService partnerService = new PartnerServiceImpl();
         public override bool Init(Client client)
         {
             int orderID, orderStatus;
             if (client.GetParam("order_id") != null && int.TryParse(client.GetParam("order_id"), out orderID) && client.GetParam("order_status") != null && int.TryParse(client.GetParam("order_status"), out orderStatus))
             {
-                orderService.ChangeStatus(orderStatus, orderService.GetByID(orderID));
+                Order order = orderService.GetByID(orderID);
+
+                if (client.GetParam("withPartner") != null && order.Status <= 0 && orderStatus > 0)
+                {
+                    if (order.PartnerID > 0)
+                    {
+                        Partner partner = partnerService.GetByID(order.PartnerID);
+                        partnerService.ChangeWalletValue(partner.Wallet + orderService.CalculatePartnersIncome(order), order.PartnerID);
+                    }
+                }
+                orderService.ChangeStatus(orderStatus, order);
             }
 
             Hashtable data = new Hashtable();

@@ -29,5 +29,7 @@ namespace RussianKawaiShop
 
         [UMaxLength(50)]
         public string UserSession;
+
+        public double Wallet = 0;
     }
 }

@@ -87,6 +87,19 @@ namespace RussianKawaiShop
             return client.GetCookie("ref");
         }
 
+        public void ChangeWalletValue(double value, int partnerID)
+        {
+            DBConnector.manager.FastUpdate<Partner>(data => {
+                Partner p = data as Partner;
+                if(p.ID == partnerID)
+                {
+                    p.Wallet = value;
+                    return p;
+                }
+                return null;
+            });
+        }
+
         private void UpdateUserSession(string Session, int partnerID)
         {
             DBConnector.manager.FastUpdate<Partner>(data =>

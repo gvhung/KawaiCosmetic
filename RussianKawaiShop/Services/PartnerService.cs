@@ -18,5 +18,6 @@ namespace RussianKawaiShop
         Partner GetCurrentPartner(Client client);
         void SavePartnerToCustomer(Partner partner, Client client);
         string GetCurstomersRef(Client client);
+        void ChangeWalletValue(double value, int partnerID);
     }
 }
