@@ -19,3 +19,6 @@ X:\RussianKawai\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
 X:\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolveAssemblyReference.cache
 X:\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
 X:\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
+C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolveAssemblyReference.cache
+C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
+C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb

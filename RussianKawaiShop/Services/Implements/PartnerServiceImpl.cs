@@ -44,7 +44,7 @@ namespace RussianKawaiShop
             if(partner != null && partner.Password == BaseFuncs.MD5(Pswd))
             {
                 partner.UserSession = this.GetRandomUserSession();
-                client.SetCookie["PartnerSession"] = partner.UserSession;
+                client.SetCookie("PartnerSession", new Cookie(partner.UserSession));
                 this.UpdateUserSession(partner.UserSession, partner.ID);
                 return true;
             }
@@ -78,7 +78,8 @@ namespace RussianKawaiShop
         {
             if(this.GetByLogin(partner.Login) != null)
             {
-                client.SetCookie["ref"] = partner.Login.ToUpper();
+                //client.SetCookie["ref"] = partner.Login.ToUpper();
+                client.SetCookie("ref", new Cookie(partner.Login.ToUpper()));
             }
         }
 

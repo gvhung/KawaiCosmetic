@@ -22,7 +22,8 @@ namespace RussianKawaiShop.Services.Implements
         public string SetNewCookie(Client client)
         {
             string cookie = BaseFuncs.MD5(new Random().Next() + "CRT" + Environment.TickCount);
-            client.SetCookie.Add("Cart", cookie);
+            //client.SetCookie.Add("Cart", cookie);
+            client.SetCookie("Cart", new Cookie(cookie));
             return cookie;
         }
 
