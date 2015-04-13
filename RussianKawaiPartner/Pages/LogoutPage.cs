@@ -23,7 +23,7 @@ namespace RussianKawaiPartner
         }
         public override bool Init(Client client)
         {
-            client.SetCookie["PartnerSession"] = null;
+            client.SetCookie("PartnerSession", new Cookie(""));
             client.Redirect("/");
             return false;
         }
