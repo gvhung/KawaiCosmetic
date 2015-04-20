@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\ExtraMenuPage.cs" />
     <Compile Include="Pages\IndexPage.cs" />
     <Compile Include="Pages\OrderPage.cs" />
     <Compile Include="Pages\ProductActions\CreateProductPage.cs" />
@@ -196,9 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\ProductColors\Edit.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Templates\ExtraMenu.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

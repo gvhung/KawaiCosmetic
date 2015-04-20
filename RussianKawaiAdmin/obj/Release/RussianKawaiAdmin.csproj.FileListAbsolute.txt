@@ -22,5 +22,3 @@ X:\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
 C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.csprojResolveAssemblyReference.cache
 C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.dll
 C:\Development\KawaiCosmetic\RussianKawaiAdmin\obj\Release\RussianKawaiAdmin.pdb
-C:\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.dll
-C:\Development\UpServer-master\bin\x64adv\Sites\RussianKawaiAdmin.pdb
