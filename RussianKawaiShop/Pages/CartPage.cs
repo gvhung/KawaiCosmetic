@@ -32,20 +32,22 @@ namespace RussianKawaiShop.Pages
 
         public override bool Init(Client client)
         {
-            if (client.WSData != null)
+            if (client.ConnType == ConnectionType.WebSocket)
             {
-                string[] WSData = Regex.Split(client.WSData, BaseFuncs.WSplit);
-                string Action = WSData[0];
-
-                if (Action == "AddProductToCartAction")
+                if (client.WSData != null)
                 {
-                    WebSocket.WSPeople++;
-                    if (this.AddToCart(WSData[1], WSData[2], WSData[3], client))
+                    string[] WSData = Regex.Split(client.WSData, BaseFuncs.WSplit);
+                    string Action = WSData[0];
+
+                    if (Action == "AddProductToCartAction")
                     {
-                        client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
+                        WebSocket.WSPeople++;
+                        if (this.AddToCart(WSData[1], WSData[2], WSData[3], client))
+                        {
+                            client.SendWebsocket("CountItemsInCartAction" + BaseFuncs.WSplit + cartService.CountProductsNum(cartService.GetCookie(client)));
+                        }
                     }
                 }
-
                 return false;
             }
             else if (client.PostParam("action") != null)
@@ -98,7 +100,6 @@ namespace RussianKawaiShop.Pages
                     return false;
                 }
             }
-
             client.HttpSend(TemplateActivator.Activate(this, client));
             return true;
         }

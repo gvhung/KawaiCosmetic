@@ -59,6 +59,7 @@
     <Compile Include="EmailUtil.cs" />
     <Compile Include="Pages\CartPage.cs" />
     <Compile Include="Pages\CatalogPage.cs" />
+    <Compile Include="Pages\AboutPage.cs" />
     <Compile Include="Pages\FAQPage.cs" />
     <Compile Include="Pages\Errors\Error404.cs" />
     <Compile Include="Pages\DeliveryPage.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Pages\ReferralPage.cs" />
     <Compile Include="Pages\Resources\CatalogMenu.cs" />
     <Compile Include="Pages\Resources\Footer.cs" />
+    <Compile Include="Pages\Resources\Modals.cs" />
     <Compile Include="Pages\Resources\Head.cs" />
     <Compile Include="Pages\Resources\Header.cs" />
     <Compile Include="Pages\sys\AddProductToCart.cs" />
@@ -137,7 +139,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Content\Cache\css\ie8.css" />
     <EmbeddedResource Include="Content\Cache\css\jquery_fancybox.css" />
-    <EmbeddedResource Include="Content\Cache\css\screen.css" />
     <EmbeddedResource Include="Content\Cache\img\1px.png" />
     <EmbeddedResource Include="Content\Cache\img\act-sel-img1.png" />
     <EmbeddedResource Include="Content\Cache\img\air1.png" />
@@ -285,12 +286,11 @@
     <EmbeddedResource Include="Content\Cache\img\wr1.png" />
     <EmbeddedResource Include="Content\Cache\img\wr2.png" />
     <EmbeddedResource Include="Content\Cache\img\wr3.png" />
-    <EmbeddedResource Include="Content\Cache\js\common.js" />
     <EmbeddedResource Include="Content\Cache\js\jquery.js" />
     <EmbeddedResource Include="Content\Cache\js\jquery_fancybox-media.js" />
     <EmbeddedResource Include="Content\Cache\js\jquery_fancybox_pack.js" />
     <EmbeddedResource Include="Content\Cache\js\jquery_flexslider.js" />
-    <EmbeddedResource Include="Content\Cache\js\jquery_formstyler_min228.js" />
+    <EmbeddedResource Include="Content\Cache\js\jquery_formstyler_min.js" />
     <EmbeddedResource Include="Content\Cache\js\jquery_placeholder.js" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +318,18 @@
     <EmbeddedResource Include="Content\Cache\fonts\notoserif-regular-webfont.eot" />
     <EmbeddedResource Include="Content\Cache\fonts\notoserif-regular-webfont.ttf" />
     <EmbeddedResource Include="Content\Cache\fonts\notoserif-regular-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Resources\Modals.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\js\common.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Cache\css\screen.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\About.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

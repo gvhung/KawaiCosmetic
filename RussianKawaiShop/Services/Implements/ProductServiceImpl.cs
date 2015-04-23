@@ -88,7 +88,7 @@ namespace RussianKawaiShop
 
         public double GetPrice(Product product)
         {
-            return product.Price * 0.7;
+            return product.Price * 0.47;
         }
 
         public double GetPrice(int productID)

@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 {{include RussianKawaiShop Head}}
-
+{{set ProductCategoryService productCategoryService = new ProductCategoryServiceImpl()}}
+{{set ProductService productService = new ProductServiceImpl()}}
 <body>
     <div class="poss-head">
         <div class="sld1">
@@ -86,499 +87,49 @@
             </div>
             <div class="rr1">
                 <div>
-                    <div class="pos-ct-item-s1 active">
+                    {{for(int i = 1; i <= 5; i++)}}
+                    {{set ProductCategory productCategory = productCategoryService.GetByID(i)}}
+                    <div class="pos-ct-item-s1 
+                         {{if(i == 1)}}
+                          active
+                         {{end}}
+                         ">
                         <div class="post1">
                             <div class="post1-img">
                                 <img src="/cached_files/img/t1.png" alt="">
                             </div>
                             <div class="ov-text1">
-                                <span>Detos EX</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
+                                <span>{{=productCategory.Name}}</span>
+                                <p>{{=productCategory.Description}}</p>
                             </div>
                         </div>
                         <div class="fl2">
                             <ul class="slides">
+                                {{foreach(Product product in productCategoryService.GetProductsInCategory(i))}}
                                 <li>
                                     <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
+                                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}" width="178" height="170"></div></div>
+                                        <a href="" class="tit1">{{=product.Name}}</a>
+                                        {{if(product.Volume != null)}}
+                                            <span>{{=product.Volume}}</span>
+                                        {{end}}
+                                        <div class="price1">{{=productService.GetPrice(product)}}</div>
+                                        <a href="/product/{{=product.ID}}" class="cart-add1">в корзину</a>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
+                                {{end}}
                             </ul>
                         </div>
                     </div>
-                    <div class="pos-ct-item-s1">
-                        <div class="post1">
-                            <div class="post1-img">
-                                <img src="/cached_files/img/t1.png" alt="">
-                            </div>
-                            <div class="ov-text1">
-                                <span>Kawai Basic</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
-                            </div>
-                        </div>
-                        <div class="fl2">
-                            <ul class="slides">
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pos-ct-item-s1">
-                        <div class="post1">
-                            <div class="post1-img">
-                                <img src="/cached_files/img/t1.png" alt="">
-                            </div>
-                            <div class="ov-text1">
-                                <span>Coenzyme Q10</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
-                            </div>
-                        </div>
-                        <div class="fl2">
-                            <ul class="slides">
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pos-ct-item-s1">
-                        <div class="post1">
-                            <div class="post1-img">
-                                <img src="/cached_files/img/t1.png" alt="">
-                            </div>
-                            <div class="ov-text1">
-                                <span>Special Care</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
-                            </div>
-                        </div>
-                        <div class="fl2">
-                            <ul class="slides">
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pos-ct-item-s1">
-                        <div class="post1">
-                            <div class="post1-img">
-                                <img src="/cached_files/img/t1.png" alt="">
-                            </div>
-                            <div class="ov-text1">
-                                <span>Body Care & Hair Care</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
-                            </div>
-                        </div>
-                        <div class="fl2">
-                            <ul class="slides">
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pos-ct-item-s1">
-                        <div class="post1">
-                            <div class="post1-img">
-                                <img src="/cached_files/img/t1.png" alt="">
-                            </div>
-                            <div class="ov-text1">
-                                <span>Make Up Series</span>
-                                <p>DETOS является "естественным" комплексом продуктов по уходу за красотой кожи, который основан на новой концепции, обеспечивающей кожу лишь необходимыми компонентами и создающей благоприятные условия для ее самоочищения.</p>
-                            </div>
-                        </div>
-                        <div class="fl2">
-                            <ul class="slides">
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prod1">
-                                        <div class="ct-img"><div><img src="/cached_files/img/t2.png" alt=""></div></div>
-                                        <a href="" class="tit1">Очищающий крем для лица</a>
-                                        <span>объем: 150г</span>
-                                        <div class="price1">5460</div>
-                                        <a href="" class="cart-add1">в корзину</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {{end}}
                 </div>
                 <div class="ban2">
                     <span>Мы являемся официальными<br>производителями японской косметики <b>«KAWAI»</b><br>и доставляем её к вам прямиком из японии</span>
-                    <a href="">Перейти в каталог</a>
+                    <a href="/catalog/">Перейти в каталог</a>
                 </div>
             </div>
         </div>
     </section>
-    <footer id="footer">
-        <div class="ft1"></div>
-        <div class="ct-foot">
-            <ul class="foot-menu">
-                <li><a href="">Главная</a></li>
-                <li><a href="">О НАс</a></li>
-                <li><a href="">Каталог</a></li>
-                <li><a href="">Доставка и оплпа</a></li>
-                <li><a href="">Заказы</a></li>
-                <li><a href="">Начать сотрудничать</a></li>
-                <li><a href="">FAQ</a></li>
-                <li><a href="">КОнтакты</a></li>
-                <li class="help"></li>
-            </ul>
-            <div class="pay1">
-                <div class="tf1">Способы оплаты:</div>
-                <div class="sp-pay1">
-                    <a href="" class="j1"></a>
-                    <a href="" class="j2"></a>
-                    <a href="" class="j3"></a>
-                    <a href="" class="j4"></a>
-                    <a href="" class="j5"></a>
-                </div>
-                <div class="pt-ov1">
-                    <span>И все остальные сопсобы<br>сервиса «робокасса»</span>
-                    <div></div>
-                </div>
-            </div>
-            <div class="ft-pd-foot1">
-                <div class="ll1">
-                    <div class="logo2"><a href=""></a></div>
-                    <p>© Copyright - KAWAI 1975-2015</p>
-                </div>
-                <div class="ll2">
-                    <p>Сознание понимает концептуальный стресс. Гендер отчуждает социометрический импульс. Контраст изменяем. Как отмечает Д.Майерс, у нас есть некоторое чувство конфликта, которое возникает с ситуации несоответствия желаемого и</p>
-                </div>
-                <div class="ll3">
-                    <div class="tit">Подпишитесь на рассылку<br>акций, скидок и предложений:</div>
-                    <form><input type="text" value="Введите ваш e-mail"><input type="submit" value="подписаться"></form>
-                </div>
-                <div class="copyr1">
-                    <div><span>Site design —</span><a href=""></a></div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="modal m1">
-        <div class="modal-tb">
-            <div class="bg-modal"></div>
-            <div class="modal-con">
-                <div class="close"></div>
-                <div class="ctr1"><div class="title-f j1">Заказать обратный<br>звонок</div></div>
-                <div class="clear"></div>
-                <div class="ip none"><input type="text" value="Введите имя"></div>
-                <div class="ip"><input type="text" value="Введите телефон"></div>
-                <div class="ip"><input type="text" value="В какое время вам первзонить?"></div>
-                <div class="hh1"></div>
-                <div class="sub-s">Перезвоните мне<input type="submit" value=""></div>
-            </div>
-        </div>
-    </div>
-    <div class="modal m2">
-        <div class="modal-tb">
-            <div class="bg-modal"></div>
-            <div class="modal-con">
-                <div class="close"></div>
-                <div class="ctr1"><div class="title-f title-f2">Спасибо,<br>мы вам скоро<br>перезвоним !</div></div>
-                <div class="clear"></div>
-                <div class="sub-s sub-s2">Ок</div>
-            </div>
-        </div>
-    </div>
+    {{include RussianKawaiShop Footer}}
 </body>
 </html>

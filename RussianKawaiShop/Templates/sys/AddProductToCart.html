@@ -8,13 +8,14 @@
     function AddToCart(id) {
         var num = $(".cart_input").val();
         var productColor = 0;
-        if ($("input#productColor").val() != null) {
-            productColor = $("input#productColor").val();
+        if ($("#ProductColorSelect option:selected").attr("id") != null) {
+            productColor = $("#ProductColorSelect option:selected").attr("id");
         }
 
         if (WSConnected) {
             ws.send("AddProductToCartAction{{=BaseFuncs.WSplit}}" + id + "{{=BaseFuncs.WSplit}}" + num + "{{=BaseFuncs.WSplit}}" + productColor);
-            alert("Успешно добавлено в корзину!");
+            $('.m3').fadeIn(400);
+            ress();
         }
         else {
             $.ajax({
@@ -22,8 +23,9 @@
                 url: "/cart/",
                 data: { action: "AddProductToCartAction", id: id, num: num, productColor: productColor },
                 success: function (data) {
-                    $("div.cart_count").text(data);
-                    alert("Успешно добавлено в корзину!");
+                    $("items").text(data);
+                    $('.m3').fadeIn(400);
+                    ress();
                 },
                 error: function () {
                     alert("ERROR. Please try later or contact us.");
@@ -35,7 +37,7 @@
     ws.onmessage = function (evt) {
         var data = evt.data.split("{{=BaseFuncs.WSplit}}");
         if (data[0] == "CountItemsInCartAction") {
-            $("div.cart_count").text(data[1]);
+            $("items").text(data[1]);
         }
     };
 </script>

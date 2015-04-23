@@ -5,6 +5,8 @@
     {{set ProductService productService = new ProductServiceImpl()}}
     {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
     {{set Product product = PageData["Product"] as Product}}
+    {{set ProductCategoryService productCategoryService = new ProductCategoryServiceImpl()}}
+    {{set ProductCategory productCategory = productCategoryService.GetByID(product.CategoryId)}}
     <section id="content" class="j1">
         {{include RussianKawaiShop Header}}
         <div class="hd1"></div>
@@ -13,11 +15,11 @@
                 <div class="ll-nv">
                     <ul>
                         <li><a href="/">Главная</a></li>
-                        <li><a href="/catalog/id/">DETOS EX</a></li>
+                        <li><a href="/catalog/id/{{=productCategory.ID}}">{{=productCategory.Name}}</a></li>
                         <li>{{=product.Name}}</li>
                     </ul>
                 </div>
-                <a href="/catalog/" class="back1">Назад в каталог</a>
+                <a href="/catalog/id/{{=productCategory.ID}}/" class="back1">Назад в каталог</a>
             </div>
         </div>
         <div class="sz2">
@@ -38,170 +40,59 @@
                     {{end}}
                 </div>
                 <div class="big-ert">
-                    <img src="{{=productService.GetImages(product)[0]}}" alt="">
+                    <img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}">
                     <div></div>
-                    <a data-fancybox-group="gl1" href="{{=productService.GetImages(product)[0]}}"></a>
+                    <a></a>
                 </div>
             </div>
             <div class="rr1">
-                <div class="tit1">Очищающий крем для лица</div>
-                <div class="ep1">Объем: <span>150 г</span></div>
+                <div class="tit1">{{=product.Name}}</div>
+                <div class="ep1">Объем: <span>{{=product.Volume}}</span></div>
+                {{if(product.Colors != "")}}
+                <div class="ep2">
+                    <div class="et-sl">Цвет:</div>
+                    <select id="ProductColorSelect">
+                        {{foreach(ProductColor productColor in productService.GetProductColors(product))}}
+                        <option id="{{=productColor.ID}}">{{=productColor.Name}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                {{end}}
                 <div class="clear"></div>
-                <p>Освежающий и очищающий крем для лица нежно удаляет макияж и загрязнения, делая кожу чистой и свежей. Устраняет излишки кожного сала и помогает очистить поры. Даже во время умывания пенка не перестает заботиться об уровне увлажненности кожи и поддерживает ее гидролипидный баланс. Дарит лицу чувство легкости, не раздражая, бережно очищает кожу, устраняя мелкие недостатки кожи. Не содержит химических добавок.</p>
+                <p>{{=product.Description}}</p>
                 <div class="price-s1">
                     <div class="e1">Цена:</div>
-                    <div class="e2"><span>5460</span></div>
+                    <div class="e2"><span>{{=productService.GetPrice(product)}} </span></div>
                     <div class="des-kk">
                         <div><span></span><span></span></div>
-                        <input type="text" value="1">
+                        <input type="text" value="1" class="cart_input">
                     </div>
                 </div>
-                <a href="" class="cart-add1 cart-add1-now1">Добавить в корзину</a>
+                <a href="" class="cart-add1 cart-add1-now1" onclick="return AddToCart({{=product.ID}});">Добавить в корзину</a>
             </div>
         </div>
+        {{if(productService.GetProductsInCategory(product).Count > 0)}}
         <div class="title2"><span>Другие товары  из серии Detos EX:</span></div>
         <div class="fl3">
             <ul class="slides">
+                {{foreach(Product pr in productService.GetProductsInCategory(product))}}
                 <li>
                     <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
+                        <div class="ct-img"><div><img src="{{=productService.GetImages(pr)[0]}}" alt="{{=pr.Name}}"></div></div>
+                        <a href="/product/{{=pr.ID}}/" class="tit1">{{=pr.Name}}</a>
+                        {{if(pr.Volume != "")}}
+                        <span>объем: {{=pr.Volume}}</span>
+                        {{end}}
+                        <div class="price1">{{=productService.GetPrice(pr)}}</div>
+                        <a href="/product/{{=pr.ID}}/" class="cart-add1">в корзину</a>
                     </div>
                 </li>
-                <li>
-                    <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="prod1">
-                        <div class="ct-img"><div><img src="/cached_files//cached_files/img/t2.png" alt=""></div></div>
-                        <a href="" class="tit1">Очищающий крем для лица</a>
-                        <span>объем: 150г</span>
-                        <div class="price1">5460</div>
-                        <a href="" class="cart-add1">в корзину</a>
-                    </div>
-                </li>
+                {{end}}
             </ul>
         </div>
+        {{end}}
     </section>
-    <footer id="footer">
-        <div class="ft1"></div>
-        <div class="ct-foot">
-            <ul class="foot-menu">
-                <li><a href="">Главная</a></li>
-                <li><a href="">О НАс</a></li>
-                <li><a href="">Каталог</a></li>
-                <li><a href="">Доставка и оплпа</a></li>
-                <li><a href="">Заказы</a></li>
-                <li><a href="">Начать сотрудничать</a></li>
-                <li><a href="">FAQ</a></li>
-                <li><a href="">КОнтакты</a></li>
-                <li class="help"></li>
-            </ul>
-            <div class="pay1">
-                <div class="tf1">Способы оплаты:</div>
-                <div class="sp-pay1">
-                    <a href="" class="j1"></a>
-                    <a href="" class="j2"></a>
-                    <a href="" class="j3"></a>
-                    <a href="" class="j4"></a>
-                    <a href="" class="j5"></a>
-                </div>
-                <div class="pt-ov1">
-                    <span>И все остальные сопсобы<br>сервиса «робокасса»</span>
-                    <div></div>
-                </div>
-            </div>
-            <div class="ft-pd-foot1">
-                <div class="ll1">
-                    <div class="logo2"><a href=""></a></div>
-                    <p>© Copyright - KAWAI 1975-2015</p>
-                </div>
-                <div class="ll2">
-                    <p>Сознание понимает концептуальный стресс. Гендер отчуждает социометрический импульс. Контраст изменяем. Как отмечает Д.Майерс, у нас есть некоторое чувство конфликта, которое возникает с ситуации несоответствия желаемого и</p>
-                </div>
-                <div class="ll3">
-                    <div class="tit">Подпишитесь на рассылку<br>акций, скидок и предложений:</div>
-                    <form><input type="text" value="Введите ваш e-mail"><input type="submit" value="подписаться"></form>
-                </div>
-                <div class="copyr1">
-                    <div><span>Site design —</span><a href=""></a></div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="modal m1">
-        <div class="modal-tb">
-            <div class="bg-modal"></div>
-            <div class="modal-con">
-                <div class="close"></div>
-                <div class="ctr1"><div class="title-f j1">Заказать обратный<br>звонок</div></div>
-                <div class="clear"></div>
-                <input type="text" value="Введите имя">
-                <input type="text" value="Введите телефон">
-                <input type="text" value="В какое время вам первзонить?">
-                <div class="hh1"></div>
-                <div class="sub-s">Перезвоните мне<input type="submit" value=""></div>
-            </div>
-        </div>
-    </div>
-    <div class="modal m2">
-        <div class="modal-tb">
-            <div class="bg-modal"></div>
-            <div class="modal-con">
-                <div class="close"></div>
-                <div class="ctr1"><div class="title-f title-f2">Спасибо,<br>мы вам скоро<br>перезвоним !</div></div>
-                <div class="clear"></div>
-                <div class="sub-s sub-s2">Ок</div>
-            </div>
-        </div>
-    </div>
-    <div class="modal m3">
-        <div class="modal-tb">
-            <div class="bg-modal"></div>
-            <div class="modal-con">
-                <div class="close"></div>
-                <div class="ctr1"><div class="title-f j2">Товар добавлен в корзину</div></div>
-                <div class="clear"></div>
-                <div class="pt-text">Желаете продолжить покупки или перейти к<br>оформлению заказа?</div>
-                <div class="btns-mr1"><a href="" class="bty1">Назад к покупкам</a><a href="" class="bty2">Оформить заказ</a></div>
-            </div>
-        </div>
-    </div>
+    {{include RussianKawaiShop Footer}}
+    {{include RussianKawaiShop AddProductToCart}}
 </body>
 </html>

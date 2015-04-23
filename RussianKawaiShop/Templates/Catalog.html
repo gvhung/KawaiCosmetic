@@ -52,11 +52,13 @@
                 <div class="over-more-prod-ct1">
                     {{foreach(Product product in productCategoryService.GetProductsInCategory(productCategory.ID))}}
                     <div class="prod1">
-                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}"></div></div>
+                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" width="187" height="170"  alt="{{=product.Name}}"></div></div>
                         <a href="/product/{{=product.ID}}/" class="tit1">{{=product.Name}}</a>
-                        <span>объем: 150г</span>
+                        {{if(product.Volume != null)}}
+                        <span>объем: {{=product.Volume}}</span>
+                        {{end}}
                         <div class="price1">{{=productService.GetPrice(product)}}</div>
-                        <a href="" class="cart-add1">в корзину</a>
+                        <a href="/product/{{=product.ID}}/" class="cart-add1">в корзину</a>
                     </div>
                     {{end}}
                 </div>

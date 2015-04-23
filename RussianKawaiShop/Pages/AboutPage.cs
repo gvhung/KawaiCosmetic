@@ -8,7 +8,7 @@ using UpServer;
 
 namespace RussianKawaiShop.Pages
 {
-    class DeliveryPage : RussianKawaiShop
+    class AboutPage : RussianKawaiShop
     {
         public override PageType PageType
         {
@@ -16,17 +16,17 @@ namespace RussianKawaiShop.Pages
         }
         public override string URL
         {
-            get { return "/delivery/"; }
+            get { return "/about/"; }
         }
         public override string TemplateAddr
         {
-            get { return "Delivery.html"; }
+            get { return "About.html"; }
         }
 
         public override bool Init(Client client)
         {
             Hashtable data = new Hashtable();
-            data.Add("menuActive", "delivery");
+            data.Add("menuActive", "about");
             client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }

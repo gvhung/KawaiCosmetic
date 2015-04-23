@@ -1705,6 +1705,11 @@ body {
   width: 43px;
   height: 43px;
 }
+.modal .modal-con .title-f.j2:before {
+  background: url('../img/icons-s5d8d0ad32b.png') 0 -1564px no-repeat;
+  width: 43px;
+  height: 43px;
+}
 .modal .modal-con .title-f.title-f2 {
   float: none;
   padding-left: 0;
@@ -2158,6 +2163,10 @@ body {
 }
 .sz2 .ll1 .big-ert:before, .sz2 .ll1 .big-ert:after {
   content: "";
+}
+.sz2 .ll1 .big-ert a {
+  display: block;
+  cursor: pointer;
 }
 .sz2 .ll1 .big-ert a:hover:before {
   position: absolute;

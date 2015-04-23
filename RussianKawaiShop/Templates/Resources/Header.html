@@ -7,7 +7,7 @@
     <div class="cart1">
         <div class="et2">
             <div class="et1">
-                <div>{{=cartService.CountProductsNum(cartService.GetCookie(client))}} товар на</div>
+                <div><items>{{=cartService.CountProductsNum(cartService.GetCookie(client))}}</items> товар на</div>
                 <span>{{=cartService.GetTotalCost(cartService.GetCookie(client))}}</span>
             </div>
         </div>
@@ -37,22 +37,10 @@
                     ><a href="/delivery/">Доставка и оплата</a>
                 </li>
                 <li 
-                    {{if(menuActive == "orders")}}
-                        class="active"
-                    {{end}}
-                    ><a href="/orders/">Мои заказы</a>
-                </li>
-                <li 
                     {{if(menuActive == "faq")}}
                         class="active"
                     {{end}}
                     ><a href="/faq/">FAQ</a>
-                </li>
-                <li 
-                    {{if(menuActive == "contact")}}
-                        class="active"
-                    {{end}}
-                    ><a href="/contact/">Контакты</a>
                 </li>
             </ul>
         </div>
