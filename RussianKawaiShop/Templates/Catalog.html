@@ -1,76 +1,64 @@
-﻿<!doctype html>
-<html lang="ru">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 {{include RussianKawaiShop Head}}
 <body>
-    {{include RussianKawaiShop Header}}
-    {{set ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();}}
-    <section>
-        <div class="w1000">
-            <div class="fl textcent h1_center h1_more"><h1><span class="h1">Каталог товаров</span></h1></div>
-            <div class="fl100">
-                <div class="speedbar">
-                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan">Каталог товаров</span>
+    {{set ProductCategoryService productCategoryService = new ProductCategoryServiceImpl()}}
+    {{set ProductService productService = new ProductServiceImpl()}}
+    {{set ProductCategory productCategory = PageData["productCategory"] as ProductCategory}}
+    <section id="content" class="j1">
+        {{include RussianKawaiShop Header}}
+        <div class="hd1"></div>
+        <div class="nav1 nav1-1">
+            <div class="ct">
+                <div class="ll-nv">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li>Каталог косметики</li>
+                    </ul>
                 </div>
             </div>
-            <div class="fl100 catalog">
-                {{include RussianKawaiShop CatalogMenu}}
-                <div class="catalog_items">
-                    <div class="catalog_block">
-                        <div class="catalog_item green_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_1.png" alt="Детос EX" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Детос EX</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(1))}}
-                                    <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
-                        <div class="catalog_item pink_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_5.png" alt="Детос EX пробник" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Coenzyme Q10</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(3))}}
-                                <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
-                        <div class="catalog_item brown_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_6.png" alt="Базовый N" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Special Care</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(4))}}
-                                <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
-                        <div class="catalog_item red_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_7.png" alt="KAWAI Красота" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Body Care & Hair Care</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(5))}}
-                                <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
-                        <div class="catalog_item brown_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_4.png" alt="Делюке" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Kawai Basic</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(2))}}
-                                <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
-                        <div class="catalog_item blue_item">
-                            <div class="item_img"><img src="/cached_files/i/temp/shop_8.png" alt="Базовый N №2" class="item_img_img" /></div>
-                            <div class="item_title"><span class="item_title_span">Make Up Series</span></div>
-                            <ul class="item_ul">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(6))}}
-                                <li class="item_li"><a href="/product/{{=product.ID}}" class="item_a">{{=product.Name}}</a></li>
-                                {{end}}
-                            </ul>
-                        </div>
+        </div>
+        <div class="tit-big j4 mb1">Каталог косметики</div>
+        <div class="sz1">
+            <div class="ll1 ll1-1">
+                <div class="left-menu1">
+                    <ul>
+                        {{foreach(ProductCategory pcat in productCategoryService.GetAll())}}
+                        <li
+                            {{if(pcat.ID == productCategory.ID)}}
+                                class="active"
+                            {{end}}
+                            ><a href="/catalog/id/{{=pcat.ID}}">{{=pcat.Name}}</a></li>
+                        {{end}}
+                    </ul>
+                </div>
+                <div class="ban1">
+                    <div class="t1"><span>Закажи<br>пробники</span><a href="">прямо сейчас</a></div>
+                    <a href="" class="more1">Подробне</a>
+                    <a href="" class="al"></a>
+                </div>
+            </div>
+            <div class="rr1 rr1-1">
+                <div class="post1 post2">
+                    <div class="post1-img">
+                        <img src="/cached_files/img/t1.png" alt="">
                     </div>
+                    <div class="ov-text1">
+                        <span>{{=productCategory.Name}}</span>
+                        <p>{{=productCategory.Description}}</p>
+                    </div>
+                </div>
+                <div class="hh-st1"></div>
+                <div class="over-more-prod-ct1">
+                    {{foreach(Product product in productCategoryService.GetProductsInCategory(productCategory.ID))}}
+                    <div class="prod1">
+                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}"></div></div>
+                        <a href="/product/{{=product.ID}}/" class="tit1">{{=product.Name}}</a>
+                        <span>объем: 150г</span>
+                        <div class="price1">{{=productService.GetPrice(product)}}</div>
+                        <a href="" class="cart-add1">в корзину</a>
+                    </div>
+                    {{end}}
                 </div>
             </div>
         </div>

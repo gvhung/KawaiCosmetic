@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,9 @@ namespace RussianKawaiShop.Pages
                 WebSocket.AD_WOMAN_RU++;
                 client.Redirect("/");
             }
-            client.HttpSend(TemplateActivator.Activate(this, client));
+            Hashtable data = new Hashtable();
+            data.Add("menuActive", "main");
+            client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }
     }

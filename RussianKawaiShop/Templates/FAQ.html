@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{{include RussianKawaiShop Head}}
+
+<body>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+    <section id="content" class="j1">
+        {{include RussianKawaiShop Header}}
+        <div class="hd1"></div>
+        <div class="nav1 nav1-1">
+            <div class="ct">
+                <div class="ll-nv">
+                    <ul>
+                        <li><a href="">Главная</a></li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tit-big j7 mb1">FAQ</div>
+        <div class="search-bx" id="faqsearch"><input type="text" value="Начните вводить свой вопрос..."></div>
+        <div class="qq-hd">
+            <div class="qq1" dt="0"><span>Стимул многопланово устанавливает бессознательный онтогенез. Лидерство параллельно реквизирует индоссамент, учитывая недостаточную теоретическую проработанность этой отрасли права.</span></div>
+            <div class="hide-qq"><span>Стимул многопланово устанавливает бессознательный онтогенез. Лидерство параллельно реквизирует индоссамент, учитывая недостаточную теоретическую проработанность этой отрасли права. Низменность неумеренно обязывает бамбуковый медведь панда. Правоспособность лица может быть поставлена под сомнение, если сновидение возмещает депрессивный</span></div>
+        </div>
+        <div class="tit-frm1"><span>Не нашли своего вопроса?</span>Тогда задайте его самостоятельно</div>
+        <div class="form-st2">
+            <div class="ip none"><input type="text" value="Введите e-mail для ответа"></div>
+            <div class="ip ip2"><textarea>Введите ваш вопрос</textarea></div>
+            <div class="sub-s-send1">Отправить<input type="submit" value=""></div>
+        </div>
+    </section>
+    {{include RussianKawaiShop Footer}}
+    <script>
+        $("document").ready(function () {
+            $("#faqsearch input").keyup(function () {
+                SearchFAQByQuestion();
+            });
+        });
+
+        function SearchFAQByQuestion() {
+            var keywords = $("#faqsearch input").val().toLowerCase().split(" ");
+            $("div.qq-hd").each(function () {
+                var question_ok = 0;
+                for (var i = 0; i <= keywords.length; i++) {
+                    if ($("div.qq1 span", this).text().toLowerCase().indexOf(keywords[i]) > -1) {
+                        question_ok++;
+                    }
+                }
+                if (keywords.length == question_ok) {
+                    $(this).removeClass("hide");
+                }
+                else {
+                    $(this).addClass("hide");
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+</html>

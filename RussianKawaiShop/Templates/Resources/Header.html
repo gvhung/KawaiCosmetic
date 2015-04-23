@@ -1,23 +1,60 @@
 ﻿{{set CartService cartService = new CartServiceImpl()}}
-<header>
-    <div class="w1000">
-        <a href="/"><div class="logo"></div></a>
-        <div class="cart">
-            <div class="cart_left">
-                <div class="cart_count">{{=cartService.CountProductsNum(cartService.GetCookie(client))}}</div>
-            </div>
-            <div class="cart_right">
-                <div class="cart_title">Корзина</div>
-                <a href="/cart/"><div class="cart_go">Оформить Ваш заказ</div></a>
+<header id="header">
+    <div class="logo"><a href=""></a></div>
+    <div class="t1">Натуральная<br>косметика из Японии</div>
+    <a href="mailto:support@kawai.ru" class="eml1">support@<span>kawai.ru</span></a>
+    <div class="t2"><a href="" class="mess-now">Заказать обратный звонок</a> 10<span>00</span> — 22<span>00</span> ПН-СБ</div>
+    <div class="cart1">
+        <div class="et2">
+            <div class="et1">
+                <div>{{=cartService.CountProductsNum(cartService.GetCookie(client))}} товар на</div>
+                <span>{{=cartService.GetTotalCost(cartService.GetCookie(client))}}</span>
             </div>
         </div>
-        <div class="menu">
-            <ul class="text_menu">
-                <li class="menu_li"><a href="/" class="menu_a"><div class="menu_text">О KAWAI</div></a></li>
-                <li class="menu_li"><a href="/catalog/" class="menu_a"><div class="menu_text">Каталог</div></a></li>
-                <li class="menu_li"><a href="/delivery/" class="menu_a"><div class="menu_text">Доставка</div></a></li>
+        <a href="/cart/"></a>
+    </div>
+    {{set string menuActive = PageData["menuActive"] as string}}
+    <div class="main-menu">
+        <div>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li 
+                    {{if(menuActive == "about")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/about/">О нас</a>
+                </li>
+                <li 
+                    {{if(menuActive == "catalog")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/catalog/">Каталог</a>
+                </li>
+                <li 
+                    {{if(menuActive == "delivery")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/delivery/">Доставка и оплата</a>
+                </li>
+                <li 
+                    {{if(menuActive == "orders")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/orders/">Мои заказы</a>
+                </li>
+                <li 
+                    {{if(menuActive == "faq")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/faq/">FAQ</a>
+                </li>
+                <li 
+                    {{if(menuActive == "contact")}}
+                        class="active"
+                    {{end}}
+                    ><a href="/contact/">Контакты</a>
+                </li>
             </ul>
-            <a href="/"><div class="home"></div></a>
         </div>
     </div>
 </header>
