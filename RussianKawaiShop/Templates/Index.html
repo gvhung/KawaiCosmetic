@@ -109,12 +109,12 @@
                                 <li>
                                     <div class="prod1">
                                         <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}" width="178" height="170"></div></div>
-                                        <a href="" class="tit1">{{=product.Name}}</a>
+                                        <a href="/product/{{=product.ID}}/" class="tit1">{{=product.Name}}</a>
                                         {{if(product.Volume != null)}}
                                             <span>{{=product.Volume}}</span>
                                         {{end}}
                                         <div class="price1">{{=productService.GetPrice(product)}}</div>
-                                        <a href="/product/{{=product.ID}}" class="cart-add1">в корзину</a>
+                                        <a href="/product/{{=product.ID}}/" class="cart-add1">в корзину</a>
                                     </div>
                                 </li>
                                 {{end}}

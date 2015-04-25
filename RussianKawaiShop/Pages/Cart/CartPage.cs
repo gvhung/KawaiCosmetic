@@ -2,6 +2,7 @@
 using RussianKawaiShop.Services;
 using RussianKawaiShop.Services.Implements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace RussianKawaiShop.Pages
         }
         public override string TemplateAddr
         {
-            get { return "Cart.html"; }
+            get { return "Cart.Cart.html"; }
         }
 
         private CartService cartService = new CartServiceImpl();
@@ -77,12 +78,14 @@ namespace RussianKawaiShop.Pages
                 order.Name = client.PostParam("name");
                 order.Country = client.PostParam("country");
                 order.City = client.PostParam("city");
-                order.Region = client.PostParam("region");
+               // order.Region = client.PostParam("region");
                 order.Street = client.PostParam("street");
                 order.Phone = client.PostParam("phone");
                 order.Home = client.PostParam("home");
                 order.Room = client.PostParam("room");
                 order.Index = client.PostParam("index");
+
+                order.Comment = client.PostParam("comment");
 
                 if(client.PostParam("saleCode") != null)
                 {
@@ -100,7 +103,10 @@ namespace RussianKawaiShop.Pages
                     return false;
                 }
             }
-            client.HttpSend(TemplateActivator.Activate(this, client));
+
+            Hashtable data = new Hashtable();
+            data.Add("menuActive", "cart");
+            client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }
 

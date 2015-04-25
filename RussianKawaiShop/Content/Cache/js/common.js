@@ -45,13 +45,25 @@ $(document).ready(function() {
 			animation: "slide",
 			slideshowSpeed: 5000
 		});
-		$('.fl2').flexslider({
-			animation: "slide",
-			animationLoop: false,
-			itemWidth: 178,
-			slideshow: false,
-			move:1
-		});
+		if($('.fl2').length>0) {
+			$('.fl2').each(function() {
+				$(this).flexslider({
+					animation: "slide",
+					animationLoop: false,
+					itemWidth: 178,
+					slideshow: false,
+					move:1
+				});
+				if($(this).find('.prod1').length>4) {
+					
+				}
+				else {
+					$(this).find('.flex-prev').remove();
+					$(this).find('.flex-next').remove();
+					$(this).addClass('not-elem');
+				}
+			});
+		}
 		$('.fl3').flexslider({
 			animation: "slide",
 			animationLoop: false,

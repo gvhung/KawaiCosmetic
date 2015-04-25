@@ -1,98 +1,133 @@
-﻿<!doctype html>
-<html lang="ru">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 {{include RussianKawaiShop Head}}
+
+{{set Order order = PageData["Order"] as Order}}
+{{set OrderService orderService = new OrderServiceImpl()}}
+{{set ProductService productService = new ProductServiceImpl()}}
+{{set ProductColorService productColorService = new ProductColorServiceImpl()}}
+{{set PartnerService partnerService = new PartnerServiceImpl()}}
+{{set Robokassa robokassa = new Robokassa()}}
 <body>
-    {{include RussianKawaiShop Header}}
-    {{set Order order = PageData["Order"] as Order}}
-    {{set OrderService orderService = new OrderServiceImpl()}}
-    {{set ProductService productService = new ProductServiceImpl()}}
-    {{set ProductColorService productColorService = new ProductColorServiceImpl()}}
-    {{set PartnerService partnerService = new PartnerServiceImpl()}}
-    {{set Robokassa robokassa = new Robokassa()}}
-    <section>
-        <div class="w1000">
-            <div class="fl textcent h1_center h1_more"><h1><span class="h1">Оформление заказа</span></h1></div>
-            <div class="fl100">
-                <div class="speedbar">
-                    <span class="speedspan"><a href="/" class="speeda">Главная</a></span>»<span class="speedspan">Оформление заказа</span>
-                </div>
-            </div>
-            <table class="order_table">
-                <tr>
-                    <td>Фото</td>
-                    <td>Название товара</td>
-                    <td>Цена</td>
-                    <td>Количество</td>
-                    <td>Конечная цена</td>
-                </tr>
-                {{foreach(Product product in orderService.GetProducts(order))}}
-                <tr>
-                    <td><a href="/product/{{=product.ID}}"><div class="cart_photo"><img src="{{=productService.GetImages(product)[0]}}" class="cart_photo_img" alt="{{=product.Name}}" /></div></a></td>
-                    <td>
-                        <a href="/product/{{=product.ID}}" class="cart_a">
-                            {{=product.Name}}
-                            {{if(product.Color != 0)}}
-                                {{set ProductColor productColor = productColorService.GetByID(product.Color)}}
-                                - <span style="color:{{=productColor.RGB}}">{{=productColor.Name}}</span>
-                            {{end}}
-                        </a>
-                    </td>
-                    <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product)}}</span>руб.</div></td>
-                    <td><div class="cart_input input_shadow without_input">{{=orderService.CountProductsNum(product, order)}}</div></td>
-                    <td><div class="cart_price"><span class="cart_price_orange">{{=productService.GetPrice(product) * orderService.CountProductsNum(product, order)}}</span>руб.</div></td>
-                </tr>
-                {{end}}
-            </table>
-            <div class="fl100">
-                <div class="all_price_r"><span class="all_price_left">Итого:</span>
-                    <span class="cart_price_orange">{{=order.TotalCost}}</span>руб. 
-                    {{if(order.SalePercentage > 0)}}
-                    <b>со скидкой <span class="cart_price_orange">-{{=order.SalePercentage}}%</span></b>
-                    {{end}}
-                </div>
-            </div>
-            <div class="fl100">
-                <div class="number_zakaz">Номер Вашего заказа: <span class="number_zakaz_main">{{=order.ID}}</span></div>
-            </div>
-            <div class="fl100">
-                <div class="zakaz_data_left">
-                    <div class="zakaz_data_li"><b>E-mail:</b>{{=order.Email}}</div>
-                    <div class="zakaz_data_li"><b>Ф.И.О:</b>{{=order.Name}}</div>
-                    <div class="zakaz_data_li"><b>Страна:</b>{{=order.Country}}</div>
-                    <div class="zakaz_data_li"><b>Город:</b>{{=order.City}}</div>
-                    <div class="zakaz_data_li"><b>Район:</b>{{=order.Region}}</div>
-                    <div class="zakaz_data_delivery free_delivery">Бесплатная доставка</div>
-                </div>
-                <div class="zakaz_data_right">
-                    <div class="zakaz_data_li"><b>Улица:</b>{{=order.Street}}</div>
-                    <div class="zakaz_data_li"><b>Дом:</b>{{=order.Home}}</div>
-                    <div class="zakaz_data_li"><b>Квартира:</b>{{=order.Room}}</div>
-                    <div class="zakaz_data_li"><b>Индекс:</b>{{=order.Index}}</div>
-                    <div class="zakaz_data_li"><b>Номер телефона:</b>{{=order.Phone}}</div>
-                    <div class="zakaz_data_status">
-                    Статус заказа: 
-                    {{if(order.Status == 0)}}
-                        <span class="zakaz_red">Не оплачено</span>
-                    {{end}}
-                    {{else if(order.Status == 1)}}
-                        <span class="zakaz_green">Оплачено</span>
-                    {{end}}
-                    {{else if(order.Status == 2)}}
-                        <span class="zakaz_green">Выслано: {{=order.EMS}}</span>
-                    {{end}}
-                    </div>
-                </div>
-            </div>
-            <div class="fl100">
-                <div class="order_buttons">
-                    <!--<div class="order_bok"><button class="order_pay">Оплатить</button></div>-->
-                    {{if(order.Status == 0)}}
-                    <div class="order_bok"><a href="{{=robokassa.GetPaymentURL(order)}}"><div class="order_pay order_pay_nb">Оплатить</div></a></div>
-                    {{end}}
-                    <a href="/support/"><div class="order_support">Обратиться за помощью</div></a>
+    <section id="content" class="j1">
+        {{include RussianKawaiShop Header}}
+        <div class="hd1"></div>
+        <div class="nav1 nav1-1">
+            <div class="ct">
+                <div class="ll-nv">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li>Мои заказы</li>
+                        <li>Заказ номер {{=order.ID}}</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="tit-big j2 mb1">Заказ номер {{=order.ID}}<div class="bt"></div></div>
+        <div class="table-ent1">
+            {{foreach(Product product in orderService.GetProducts(order))}}
+            <div class="line1">
+                <div class="lt-img1">
+                    <span><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}"></span>
+                    <div></div>
+                </div>
+                <div class="te-text-prod1 j1">
+                    <a href="/product/{{=product.ID}}/" target="_blank">{{=product.Name}}</a>
+                    {{if(product.Volume.Length > 0)}}
+                    <div>Объём: <b>{{=product.Volume}}</b></div>
+                    {{end}}
+                    {{if(product.Color != 0)}}
+                    <span>Цвет: <b>{{=productColorService.GetByID(product.Color).Name}}</b></span>
+                    {{end}}
+                </div>
+                <div class="dr3">
+                    <div class="tit-pt">Количество:</div>
+                    <div class="numb1">{{=orderService.CountProductsNum(product, order)}}</div>
+                </div>
+                <div class="dr4">
+                    <div class="tit-pt">Цена:</div>
+                    <div class="numb2">{{=productService.GetPrice(product) * orderService.CountProductsNum(product, order)}}</div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        <div class="tb1">
+            <div class="et-tb-over1">
+                <table>
+                    <tr>
+                        <td>
+                            <span>Индекс</span>
+                            <p>{{=order.Index}}</p>
+                        </td>
+                        <td>
+                            <span>Страна</span>
+                            <p>{{=order.Country}}</p>
+                        </td>
+                        <td>
+                            <span>Город</span>
+                            <p>{{=order.City}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Улица</span>
+                            <p>{{=order.Street}}</p>
+                        </td>
+                        <td>
+                            <span>Дом</span>
+                            <p>{{=order.Home}}</p>
+                        </td>
+                        <td>
+                            <span>Квартира</span>
+                            <p>{{=order.Room}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <span>Комментарий</span>
+                            <p>{{=order.Comment}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="pl-prc1">
+            <div class="ll1">Доставка: <span>Бесплатно</span></div>
+            <div class="rr1">Итого: <span>{{=order.TotalCost}}</span></div>
+        </div>
+        {{if(order.Status == 0)}}
+        <div class="pl-prc2">
+            <div class="ll1">Статус заказа: <span>Не оплачено</span></div>
+            <div class="rr1"><a href="{{=robokassa.GetPaymentURL(order)}}">Оплатить заказ</a></div>
+        </div>
+        {{end}}
+        {{else}}
+        <div class="pl-prc3">
+            {{if(order.Status == 1)}}
+            <div class="stetr st1">
+                <div class="lb-tit">Статус заказа:</div>
+                <div class="er1"><span>Оплачено</span></div>
+                <div class="er2"><span>Заказ формируется...</span>В среднем около 12 часов</div>
+            </div>
+            {{end}}
+            {{else if(order.Status == 2)}}
+            <div class="stetr st2">
+                <div class="lb-tit">Статус заказа:</div>
+                <div class="er1 none"><span>Оплачено</span></div>
+                <div class="er2 er2-1">
+                    <div class="ll1">
+                        <span>Заказ отправлен...</span>
+                        <a href="/delivery/" class="wt1">как отслеживать?</a>
+                    </div>
+                    <div class="rr1">
+                        <div>Номер для отслеживания:</div>
+                        <b>{{=order.EMS}}</b>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{end}}
     </section>
     {{include RussianKawaiShop Footer}}
 </body>

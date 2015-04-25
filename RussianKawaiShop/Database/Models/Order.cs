@@ -27,11 +27,15 @@ namespace RussianKawaiShop
         [UMaxLength(50)]
         public string Room;
 
+
         [UMaxLength(20)]
         public string Index;
 
         [UMaxLength(50)]
         public string Phone;
+
+        [UMaxLength(1500)]
+        public string Comment;
 
         public double TotalCost;
 

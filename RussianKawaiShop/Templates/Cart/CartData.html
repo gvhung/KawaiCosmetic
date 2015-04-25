@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{{include RussianKawaiShop Head}}
+{{set CartService cartService = new CartServiceImpl()}}
+<body>
+    <section id="content" class="j1">
+        {{include RusianKawaiShop Header}}
+        <div class="hd1"></div>
+        <div class="nav1 nav1-1">
+            <div class="ct">
+                <div class="ll-nv">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/cart/">Корзина</a></li>
+                        <li>Оформление Заказа</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tit-big j3 mb1">Оформление Заказа</div>
+        <div class="over-ct-ret1">
+            <div class="ct-re1">
+                <div class="ll1">
+                    <div class="lb2-e1">Ваш заказ на сумму:</div>
+                    <div class="lb2-e2">
+                        <div class="prp1">{{=cartService.GetTotalCost(cartService.GetCookie(client))}} <i></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title3">адрес доставки</div>
+        <div class="big-form-ct1">
+            <div class="over-form-s1">
+                <form action="/cart/" method="post">
+                    <div class="ip"><input type="text" name="email" placeholder="e-mail"></div>
+                    <div class="ip"><input type="text" name="name" placeholder="ФИО"></div>
+                    <div class="ip"><input type="text" name="phone" placeholder="Телефон"></div>
+                    <a href="" class="more-form-ip">Далее</a>
+                    <div class="hide-form-st1">
+                        <div class="ip"><input type="text" name="index" placeholder="Индекс"></div>
+                        <select name="country">
+                            <option value="Russia">Россия</option>
+                            <option value="Ukraine">Украина</option>
+                        </select>
+                        <div class="ip"><input type="text" placeholder="Город" name="city"></div>
+                        <div class="ip"><input type="text" placeholder="Улица" name="street"></div>
+                        <div class="ip"><input type="text" placeholder="Дом" name="home"></div>
+                        <div class="ip"><input type="text" placeholder="Квартира" name="room"></div>
+                        <div class="ip ip2"><textarea name="comment" placeholder="Комментарий"></textarea></div>
+                        <input type="hidden" name="CreateOrder" value="do" />
+                        <div class="send-sub1">Оформить заказ<input type="submit" value=""></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    {{include RussianKawaiShop Footer}}
+</body>
+</html>

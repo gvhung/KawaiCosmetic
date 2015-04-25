@@ -44,6 +44,28 @@
                     <div></div>
                     <a></a>
                 </div>
+                {{if(productService.GetProductsInCategory(product).Count > 0)}}
+                <div class="clear"></div>
+                <div class="tit-r1">В набор входит:</div>
+                <div class="clear"></div>
+                <div class="et-prod-item1">
+                    {{foreach(Product pr in productService.GetProductsInCategory(product))}}
+                    <div class="pst-prod1">
+                        <div class="lt-img">
+                            <span><img src="{{=productService.GetImages(pr)[0]}}" width="30" height="68" alt="{{=pr.Name}}"></span>
+                            <div></div>
+                        </div>
+                        <div class="text-ov-prod1"><div><a href="/product/{{=pr.ID}}">{{=pr.Name}}</a>
+                            {{if(pr.Volume.Length > 0)}}
+                            <span>объем: {{=pr.Volume}}</span>
+                            {{end}}
+                            </div>
+                        </div>
+                        <div class="price-smal-rr1"><div><span>{{=productService.GetPrice(pr)}}</span></div></div>
+                    </div>
+                    {{end}}
+                </div>
+                {{end}}
             </div>
             <div class="rr1">
                 <div class="tit1">{{=product.Name}}</div>
@@ -71,11 +93,11 @@
                 <a href="" class="cart-add1 cart-add1-now1" onclick="return AddToCart({{=product.ID}});">Добавить в корзину</a>
             </div>
         </div>
-        {{if(productService.GetProductsInCategory(product).Count > 0)}}
-        <div class="title2"><span>Другие товары  из серии Detos EX:</span></div>
+        {{if(productCategoryService.GetProductsInCategory(product.CategoryId).Count > 0)}}
+        <div class="title2"><span>Другие товары  из серии {{=productCategoryService.GetByID(product.CategoryId).Name}}:</span></div>
         <div class="fl3">
             <ul class="slides">
-                {{foreach(Product pr in productService.GetProductsInCategory(product))}}
+                {{foreach(Product pr in productCategoryService.GetProductsInCategory(product.CategoryId))}}
                 <li>
                     <div class="prod1">
                         <div class="ct-img"><div><img src="{{=productService.GetImages(pr)[0]}}" alt="{{=pr.Name}}"></div></div>

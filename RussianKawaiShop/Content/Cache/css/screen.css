@@ -908,6 +908,28 @@ body {
   width: 18px;
   height: 34px;
 }
+.fl2 .slides, .fl3 .slides {
+  *zoom: 1;
+}
+.fl2 .slides:after, .fl3 .slides:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.fl2 .slides li, .fl3 .slides li {
+  float: left;
+  width: 178px;
+}
+.fl2.not-elem .slides, .fl3.not-elem .slides {
+  width: auto !important;
+  *zoom: 1;
+  transform: translate3d(0px, 0px, 0px) !important;
+}
+.fl2.not-elem .slides:after, .fl3.not-elem .slides:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
 .fl2 .prod1, .fl3 .prod1 {
   text-align: center;
 }
@@ -2697,6 +2719,7 @@ body {
   bottom: auto;
   left: 0;
   right: 0;
+  width: auto !important;
   border: 1px solid #bfcac3;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -4393,6 +4416,7 @@ body {
   text-align: center;
   font-size: 14px;
   color: white;
+  overflow: hidden;
   line-height: 46px;
   -webkit-box-shadow: inset 0 1px 0 #ff6b5c;
   -moz-box-shadow: inset 0 1px 0 #ff6b5c;
@@ -4421,6 +4445,20 @@ body {
   background-image: -o-linear-gradient(#ff644a, #ff0013);
   background-image: linear-gradient(#ff644a, #ff0013);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff644a', endColorstr='#ff0013',GradientType=0);
+}
+.big-form-ct1 .over-form-s1 .hide-form-st1 .send-sub1 input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  height: 500px;
+  cursor: pointer;
 }
 .big-form-ct1 .over-form-s1 .hide-form-st1 .err-mess1 {
   text-align: center;

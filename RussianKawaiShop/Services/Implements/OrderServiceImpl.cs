@@ -124,7 +124,7 @@ namespace RussianKawaiShop
 
         public Order CreateOrder(Order order, Client client)
         {
-            if(order.Name != null && order.Email != null && order.Country != null && order.City != null && order.Region != null && order.Street != null
+            if(order.Name != null && order.Email != null && order.Country != null && order.City != null && order.Street != null
                 && order.Home != null && order.Room != null)
             {
                 order.Products = this.CreateProducts(cartService.GetByCookie(cartService.GetCookie(client)));

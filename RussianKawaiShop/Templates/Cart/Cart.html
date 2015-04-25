@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{{include RussianKawaiShop Head}}
+{{set CartService cartService = new CartServiceImpl()}}
+{{set ProductService productService = new ProductServiceImpl()}}
+{{set ProductColorService productColorService = new ProductColorServiceImpl()}}
+<body>
+    <section id="content" class="j1">
+        {{include RussianKawaiShop Header}}
+        <div class="hd1"></div>
+        <div class="nav1 nav1-1">
+            <div class="ct">
+                <div class="ll-nv">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li>Корзина:</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tit-big j1">Корзина 
+        {{if(cartService.GetByCookie(cartService.GetCookie(client)).Count <= 0)}}
+        пуста
+        {{end}}
+        </div>
+        <div class="table-ent1">
+            {{foreach(Cart cart in cartService.GetByCookie(cartService.GetCookie(client)))}}
+            {{set Product product = productService.GetByID(cart.ProductID)}}
+            <div class="line1">
+                <div class="lt-img1">
+                    <span><img src="{{=productService.GetImages(product)[0]}}" width="108" height="108"  alt="{{product.Name}}"></span>
+                    <div></div>
+                </div>
+                <div class="te-text-prod1">
+                    <a href="/product/{{=product.ID}}" target="_blank">{{=product.Name}}</a>
+                    {{if(cart.ProductColor != 0)}}
+                    <div>Цвет: <b>{{=productColorService.GetByID(cart.ProductColor).Name}}</b></div>
+                    {{end}}
+                    {{if(product.Volume.Length > 0)}}
+                    <div>Объём: <b>{{=product.Volume}}</b></div>
+                    {{end}}
+                </div>
+                <div class="dr1">
+                    <div class="des-kk">
+                        <div><span></span><span></span></div>
+                        <input type="text" value="{{=cart.ProductNum}}">
+                    </div>
+                </div>
+                <div class="dr2">
+                    <div class="pls2">{{=productService.GetPrice(product)}}</div>
+                </div>
+                <div class="del-et1"><a href=""></a></div>
+            </div>
+            {{end}}
+        </div>
+        {{if(cartService.GetByCookie(cartService.GetCookie(client)).Count > 0)}}
+        <div class="sz3">
+            <div class="rr1">
+                <div class="bg-prc1 price-text"><div>Итого: </div><span>{{=cartService.GetTotalCost(cartService.GetCookie(client))}}</span></div>
+                <a href="/cart.data/" class="ord-now2">Оформить заказ</a>
+            </div>
+        </div>
+        {{end}}
+    </section>
+    {{include RussianKawaiShop Footer}}
+</body>
+</html>

@@ -57,9 +57,10 @@
     <Compile Include="Database\Models\ProductColor.cs" />
     <Compile Include="Database\RussianKawaiDB.cs" />
     <Compile Include="EmailUtil.cs" />
-    <Compile Include="Pages\CartPage.cs" />
+    <Compile Include="Pages\Cart\CartPage.cs" />
     <Compile Include="Pages\CatalogPage.cs" />
     <Compile Include="Pages\AboutPage.cs" />
+    <Compile Include="Pages\Cart\CartDataPage.cs" />
     <Compile Include="Pages\FAQPage.cs" />
     <Compile Include="Pages\Errors\Error404.cs" />
     <Compile Include="Pages\DeliveryPage.cs" />
@@ -120,7 +121,7 @@
     <EmbeddedResource Include="Templates\ws\WebSocket.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\Cart.html" />
+    <EmbeddedResource Include="Templates\Cart\Cart.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\Redirect.html" />
@@ -323,13 +324,16 @@
     <EmbeddedResource Include="Templates\Resources\Modals.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Templates\About.html" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Content\Cache\js\common.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Cache\css\screen.css" />
+    <EmbeddedResource Include="Templates\Cart\CartData.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\About.html" />
+    <EmbeddedResource Include="Content\Cache\css\screen.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
