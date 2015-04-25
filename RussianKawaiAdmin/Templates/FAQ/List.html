@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    {{set RussianKawaiShop.FAQService faqService = new RussianKawaiShop.FAQServiceImpl()}}
+    <div class="fl100 zindex">
+        <div class="w1000">
+            <div class="fl100">
+                <div class="auth_title all_title">
+                    <div class="auth_title_text all_title_text">Products list</div>
+                </div>
+            </div>
+            <table class="fl100 search_result">
+                <tr class="search_tr">
+                    <td class="search_td">ID</td>
+                    <td class="search_td">Question</td>
+                </tr>
+                {{foreach(RussianKawaiShop.FAQ faq in faqService.GetAll())}}
+                <tr class="search_tr" id="pr_{{=faq.ID}}">
+                    <td class="search_td">{{=faq.ID}}</td>
+                    <td class="search_td"><a href="/faq/edit/{{=faq.ID}}">{{=faq.Question}}</a></td>
+                </tr>
+                {{end}}
+            </table>
+        </div>
+    </div>
+    {{include RussianKawaiAdmin Footer}}
+</body>
+</html>

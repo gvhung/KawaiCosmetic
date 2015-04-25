@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    {{set RussianKawaiShop.ProductCategory productCategory = PageData["ProductCategory"] as RussianKawaiShop.ProductCategory}}
+    <div class="main">
+        <div class="add_title"><p>Edit product category</p></div>
+        <div class="speedbar">
+            <span class="speedspan"><a class="speeda" href="/">ADMIN</a></span>»<span class="speedspan"><a class="speeda">Редактирование категории товара</a></span>»<span class="speedspan">{{=productCategory.Name}}</span>
+        </div>
+        <div class="clear"></div>
+        <form action="/product.category/edit/{{=productCategory.ID}}" method="post">
+            <ul>
+                <li>
+                    <p>Название:</p>
+                    <input type="text" name="name" required value="{{=productCategory.Name}}">
+                </li>
+                <li>
+                    <p>Описание:</p>
+                    <textarea name="desc">{{=productCategory.Description}}</textarea>
+                </li>
+                <li>
+                    <p>Картинка:</p>
+                    <input type="text" name="image" value="{{=productCategory.Image}}">
+                </li>
+                <li>
+                    <div>
+                        <input type="submit" value="РЕДАКТИРОВАТЬ КАТЕГОРИЮ ТОВАРА" name="EditProductCategory">
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="clear"></div>
+    </div>
+    {{include RussianKawaiAdmin Footer}}
+</body>
+</html>

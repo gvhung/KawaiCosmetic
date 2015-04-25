@@ -14,5 +14,6 @@ namespace RussianKawaiShop
         ProductCategory GetByName(string Name);
         ProductCategory GetByID(int id);
         List<Product> GetProductsInCategory(int CategoryID);
+        void EditCategory(ProductCategory productCategory);
     }
 }

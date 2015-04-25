@@ -79,5 +79,21 @@ namespace RussianKawaiShop
 
             return products;
         }
+
+        public void EditCategory(ProductCategory productCategory)
+        {
+            if(productCategory.Name != null)
+            {
+                DBConnector.manager.FastUpdate<ProductCategory>(data => 
+                {
+                    ProductCategory pcat = data as ProductCategory;
+                    if(pcat.ID == productCategory.ID)
+                    {
+                        return productCategory;
+                    }
+                    return null;
+                });
+            }
+        }
     }
 }

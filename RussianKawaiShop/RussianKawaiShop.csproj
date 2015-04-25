@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DBConnector.cs" />
+    <Compile Include="Database\Models\FAQ.cs" />
     <Compile Include="Database\Models\Cart.cs" />
     <Compile Include="Database\Models\Order.cs" />
     <Compile Include="Database\Models\Partner.cs" />
@@ -78,7 +79,9 @@
     <Compile Include="Pages\sys\AddProductToCart.cs" />
     <Compile Include="Robokassa.cs" />
     <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\FAQService.cs" />
     <Compile Include="Services\Implements\CartServiceImpl.cs" />
+    <Compile Include="Services\Implements\FAQServiceImpl.cs" />
     <Compile Include="Services\Implements\OrderServiceImpl.cs" />
     <Compile Include="Services\Implements\PartnerServiceImpl.cs" />
     <Compile Include="Services\Implements\ProductColorServiceImpl.cs" />

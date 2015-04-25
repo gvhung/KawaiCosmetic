@@ -14,5 +14,8 @@ namespace RussianKawaiShop
 
         [UMaxLength(2000)]
         public string Description;
+
+        [UMaxLength(200)]
+        public string Image;
     }
 }
