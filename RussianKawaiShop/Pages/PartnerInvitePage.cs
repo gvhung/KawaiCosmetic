@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,13 +30,14 @@ namespace RussianKawaiShop.Pages
             {
                 if(Registration(client.PostParam("login"), client.PostParam("password"), client.PostParam("name"), client.PostParam("email"), client))
                 {
-                    //client.HttpSend("Молодец, регнулся.");
+                    client.HttpSend("Молодец, регнулся.");
                     client.Redirect("http://partner." + client.Host);
                     return false;
                 }
             }
-
-            client.HttpSend(TemplateActivator.Activate(this, client));
+            Hashtable data = new Hashtable();
+            data.Add("menuActive", "partner");
+            client.HttpSend(TemplateActivator.Activate(this, client, data));
             return true;
         }
 

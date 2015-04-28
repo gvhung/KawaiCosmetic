@@ -13,7 +13,7 @@ namespace RussianKawaiShop
         private ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
         private ProductColorService productColorService = new ProductColorServiceImpl();
 
-        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors)
+        public Product CreateProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors, string Image30x68, string Image178x170, string Image60x135)
         {
             Product product = new Product();
             product.Name = Name;
@@ -25,12 +25,15 @@ namespace RussianKawaiShop
             product.Volume = volume;
             product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
             product.Colors = (colors == null) ? "" : colors;
+            product.Image30x68 = Image30x68;
+            product.Image178x170 = Image178x170;
+            product.Image60x135 = Image60x135;
             DBConnector.manager.InsertQuery(product);
 
             return product;
         }
 
-        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors, int ID)
+        public void EditProduct(String Name, String JPName, double price, string desc, string img, int categoryID, string volume, string productsInCategory, string colors, string Image30x68, string Image178x170, string Image60x135, int ID)
         {
             DBConnector.manager.FastUpdateReturn<Product>(data => {
                 Product product = data as Product;
@@ -45,6 +48,9 @@ namespace RussianKawaiShop
                     product.Volume = volume;
                     product.ProductsInCategory = this.CorrectProductIDsForCategory(productsInCategory);
                     product.Colors = (colors == null) ? "" : colors;
+                    product.Image60x135 = Image60x135;
+                    product.Image30x68 = Image30x68;
+                    product.Image178x170 = Image178x170;
                     return product;
                 }
 

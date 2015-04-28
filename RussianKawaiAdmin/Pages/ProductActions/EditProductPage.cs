@@ -41,7 +41,7 @@ namespace RussianKawaiAdmin.Pages.Products
                         int category;
                         if (double.TryParse(client.PostParam("price"), out price) && int.TryParse(client.PostParam("category"), out category))
                         {
-                            productService.EditProduct(client.PostParam("name"), client.PostParam("jpname"), price, client.PostParam("desc"), client.PostParam("images"), category, client.PostParam("volume"), client.PostParam("productsInCat"), client.PostParam("productColors"), productID);
+                            productService.EditProduct(client.PostParam("name"), client.PostParam("jpname"), price, client.PostParam("desc"), client.PostParam("images"), category, client.PostParam("volume"), client.PostParam("productsInCat"), client.PostParam("productColors"), client.PostParam("Image30x68"), client.PostParam("Image178x170"), client.PostParam("Image60x135"), productID);
                             client.Redirect("/products/#pr_" + product.ID);
                             Logger.ConsoleLog("Edited product: " + product.Name + " (ID: " + product.ID + ")", ConsoleColor.Yellow);
 

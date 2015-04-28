@@ -33,15 +33,15 @@
                     </ul>
                 </div>
                 <div class="ban1">
-                    <div class="t1"><span>Закажи<br>пробники</span><a href="">прямо сейчас</a></div>
-                    <a href="" class="more1">Подробне</a>
-                    <a href="" class="al"></a>
+                    <div class="t1"><span>Закажи<br>пробники</span><a href="/product/20/">прямо сейчас</a></div>
+                    <a href="/product/20" class="more1">Подробне</a>
+                    <a href="/product/20/" class="al"></a>
                 </div>
             </div>
             <div class="rr1 rr1-1">
                 <div class="post1 post2">
                     <div class="post1-img">
-                        <img src="/cached_files/img/t1.png" alt="">
+                        <img src="{{=productCategory.Image}}" alt="{{=productCategory.Name}}">
                     </div>
                     <div class="ov-text1">
                         <span>{{=productCategory.Name}}</span>
@@ -52,7 +52,7 @@
                 <div class="over-more-prod-ct1">
                     {{foreach(Product product in productCategoryService.GetProductsInCategory(productCategory.ID))}}
                     <div class="prod1">
-                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" width="187" height="170"  alt="{{=product.Name}}"></div></div>
+                        <div class="ct-img"><div><img src="{{=product.Image60x135}}" alt="{{=product.Name}}"></div></div>
                         <a href="/product/{{=product.ID}}/" class="tit1">{{=product.Name}}</a>
                         {{if(product.Volume != null)}}
                         <span>объем: {{=product.Volume}}</span>

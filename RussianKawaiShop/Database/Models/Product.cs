@@ -25,7 +25,7 @@ namespace RussianKawaiShop
 
         public int CategoryId;
 
-        [UMaxLength(200)]
+        [UMaxLength(1000)]
         public string Images;
 
         [UMaxLength(20)]
@@ -38,6 +38,15 @@ namespace RussianKawaiShop
 
         [UMaxLength(20)]
         public string Colors;
+
+        [UMaxLength(200)]
+        public string Image30x68;
+
+        [UMaxLength(200)]
+        public string Image178x170;
+
+        [UMaxLength(200)]
+        public string Image60x135;
 
         public Product Clone()
         {

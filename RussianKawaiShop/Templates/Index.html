@@ -108,7 +108,7 @@
                                 {{foreach(Product product in productCategoryService.GetProductsInCategory(i))}}
                                 <li>
                                     <div class="prod1">
-                                        <div class="ct-img"><div><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}" width="178" height="170"></div></div>
+                                        <div class="ct-img"><div><img src="{{=product.Image60x135}}" alt="{{=product.Name}}"></div></div>
                                         <a href="/product/{{=product.ID}}/" class="tit1">{{=product.Name}}</a>
                                         {{if(product.Volume != null)}}
                                             <span>{{=product.Volume}}</span>

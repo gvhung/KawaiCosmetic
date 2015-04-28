@@ -53,6 +53,7 @@
     <Compile Include="Database\Models\Cart.cs" />
     <Compile Include="Database\Models\Order.cs" />
     <Compile Include="Database\Models\Partner.cs" />
+    <Compile Include="Database\Models\PhoneCall.cs" />
     <Compile Include="Database\Models\Product.cs" />
     <Compile Include="Database\Models\ProductCategory.cs" />
     <Compile Include="Database\Models\ProductColor.cs" />
@@ -84,9 +85,11 @@
     <Compile Include="Services\Implements\FAQServiceImpl.cs" />
     <Compile Include="Services\Implements\OrderServiceImpl.cs" />
     <Compile Include="Services\Implements\PartnerServiceImpl.cs" />
+    <Compile Include="Services\Implements\PhoneCallServiceImpl.cs" />
     <Compile Include="Services\Implements\ProductColorServiceImpl.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PartnerService.cs" />
+    <Compile Include="Services\PhoneCallService.cs" />
     <Compile Include="Services\ProductColorService.cs" />
     <Compile Include="WebSocket.cs" />
     <Compile Include="RussianKawaiShop.cs" />
