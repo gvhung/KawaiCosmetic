@@ -113,12 +113,12 @@ $(document).ready(function() {
 	$('.cart-add1-now1').click(function(e) {
 		e.preventDefault();
 	});
-	$('.sub-s input').click(function(e) {
+/*	$('.sub-s input').click(function(e) {
 		e.preventDefault();
 		$('.m1').hide();
 		$('.m2').show();
 		ress();
-	});
+	});*/
 	$('.bg-modal,.close,.sub-s2,.bty1').click(function(e) {
 		e.preventDefault();
 		$('.modal').fadeOut(400);

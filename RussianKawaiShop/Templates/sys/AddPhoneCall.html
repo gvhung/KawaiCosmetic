@@ -1,0 +1,23 @@
+﻿<script>
+    var ws = new WebSocket("ws://{{=client.Host}}/sys/add.phone.call/");
+    var WSConnected = false;
+    ws.onopen = function (evt) {
+        WSConnected = true;
+    };
+
+    /* PHONE CALL */
+    $("document").ready(function () {
+        $('.sub-s input').click(function (e) {
+            var name = $("input#name").val();
+            var phone = $("input#phone").val();
+            var comment = $("input#comment").val();
+            if (name.length > 0 && phone.length > 0)
+            {
+                ws.send("AddPhoneCall{{=BaseFuncs.WSplit}}" + name + "{{=BaseFuncs.WSplit}}" + phone + "{{=BaseFuncs.WSplit}}" + comment);
+                $('.m1').hide();
+                $('.m2').show();
+                ress();
+            }
+        });
+    });
+</script>

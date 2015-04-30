@@ -23,7 +23,7 @@ namespace RussianKawaiShop
 
         public PhoneCall Add(PhoneCall phoneCall)
         {
-            if(phoneCall.Name != null && phoneCall.Phone != null)
+            if(phoneCall.Name.Length > 1 && phoneCall.Phone.Length > 1)
             {
                 return this.GetByID(DBConnector.manager.InsertQueryReturn(phoneCall));
             }
