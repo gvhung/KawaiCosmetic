@@ -28,7 +28,7 @@
             {{foreach(Product product in orderService.GetProducts(order))}}
             <div class="line1">
                 <div class="lt-img1">
-                    <span><img src="{{=productService.GetImages(product)[0]}}" alt="{{=product.Name}}"></span>
+                    <span><img src="{{=product.Image30x68}}" alt="{{=product.Name}}"></span>
                     <div></div>
                 </div>
                 <div class="te-text-prod1 j1">

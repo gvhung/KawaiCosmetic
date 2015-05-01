@@ -52,7 +52,7 @@
                     {{foreach(Product pr in productService.GetProductsInCategory(product))}}
                     <div class="pst-prod1">
                         <div class="lt-img">
-                            <span><img src="{{=productService.GetImages(pr)[0]}}" width="30" height="68" alt="{{=pr.Name}}"></span>
+                            <span><img src="{{=pr.Image60x135}}" alt="{{=pr.Name}}"></span>
                             <div></div>
                         </div>
                         <div class="text-ov-prod1"><div><a href="/product/{{=pr.ID}}">{{=pr.Name}}</a>
@@ -100,7 +100,7 @@
                 {{foreach(Product pr in productCategoryService.GetProductsInCategory(product.CategoryId))}}
                 <li>
                     <div class="prod1">
-                        <div class="ct-img"><div><img src="{{=productService.GetImages(pr)[0]}}" alt="{{=pr.Name}}"></div></div>
+                        <div class="ct-img"><div><img src="{{=pr.Image60x135}}" alt="{{=pr.Name}}"></div></div>
                         <a href="/product/{{=pr.ID}}/" class="tit1">{{=pr.Name}}</a>
                         {{if(pr.Volume != "")}}
                         <span>объем: {{=pr.Volume}}</span>
