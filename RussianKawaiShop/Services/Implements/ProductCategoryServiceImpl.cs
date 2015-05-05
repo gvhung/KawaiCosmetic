@@ -76,7 +76,7 @@ namespace RussianKawaiShop
                 }
                 return false;
             });
-
+            
             return products;
         }
 

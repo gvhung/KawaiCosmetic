@@ -87,10 +87,9 @@
             </div>
             <div class="rr1">
                 <div>
-                    {{for(int i = 1; i <= 5; i++)}}
-                    {{set ProductCategory productCategory = productCategoryService.GetByID(i)}}
+                    {{foreach(ProductCategory productCategory in productCategoryService.GetAll())}}
                     <div class="pos-ct-item-s1 
-                         {{if(i == 1)}}
+                         {{if(productCategoryService.GetAll()[0].ID == productCategory.ID)}}
                           active
                          {{end}}
                          ">
@@ -105,7 +104,7 @@
                         </div>
                         <div class="fl2">
                             <ul class="slides">
-                                {{foreach(Product product in productCategoryService.GetProductsInCategory(i))}}
+                                {{foreach(Product product in productCategoryService.GetProductsInCategory(productCategory.ID))}}
                                 <li>
                                     <div class="prod1">
                                         <div class="ct-img"><div><img src="{{=product.Image60x135}}" alt="{{=product.Name}}"></div></div>
