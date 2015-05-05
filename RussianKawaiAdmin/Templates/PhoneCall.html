@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    {{set RussianKawaiShop.PhoneCallService phoneCallService = new RussianKawaiShop.PhoneCallServiceImpl()}}
+    <div class="fl100 zindex">
+        <div class="w1000">
+            <div class="fl100">
+                <div class="auth_title all_title">
+                    <div class="auth_title_text all_title_text">Phone call lists</div>
+                </div>
+            </div>
+            <div class="fl100 searchmargin">
+                <a href="/phone.calls/"><div class="radi4 re">PHONE CALLS</div></a>
+            </div>
+            <table class="fl100 search_result">
+                <tr class="search_tr">
+                    <td class="search_td">ID</td>
+                    <td class="search_td">Name</td>
+                    <td class="search_td">Phone</td>
+                    <td class="search_td">Comment</td>
+                </tr>
+                {{foreach(RussianKawaiShop.PhoneCall phone in phoneCallService.GetAll())}}
+                <tr class="search_tr">
+                    <td class="search_td">{{=phone.ID}}</td>
+                    <td class="search_td">{{=phone.Name}}</td>
+                    <td class="search_td">{{=phone.Phone}}</td>
+                    <td class="search_td">{{=phone.Comment}}</td>
+                </tr>
+                {{end}}
+            </table>
+        </div>
+    </div>
+    {{include RussianKawaiAdmin Footer}}
+</body>
+</html>

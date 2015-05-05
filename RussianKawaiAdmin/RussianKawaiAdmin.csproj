@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\PhoneCallPage.cs" />
     <Compile Include="Pages\FAQ\CreateFAQPage.cs" />
     <Compile Include="Pages\FAQ\EditFAQPage.cs" />
     <Compile Include="Pages\FAQ\FAQsPage.cs" />
@@ -219,6 +220,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\FAQ\Edit.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\PhoneCall.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
