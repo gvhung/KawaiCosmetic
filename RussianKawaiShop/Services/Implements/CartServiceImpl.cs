@@ -43,7 +43,7 @@ namespace RussianKawaiShop.Services.Implements
 
         public bool AddProduct(int productID, int productNum, string cookie, int productColorId = 0)
         {
-            if(productService.GetByID(productID) != null)
+            if(productService.GetByID(productID) != null && productNum > 0)
             {
                 if(productColorId != 0)
                 {
