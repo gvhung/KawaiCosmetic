@@ -206,4 +206,8 @@ $(document).ready(function() {
 	$('.l-tabs li a').click(function(e) {
 		e.preventDefault();
 	});
+
+	if ($('#footer').innerHeight() + $('#content').innerHeight() < $(window).height()) {
+	    $('.hh-test1').height($(window).height() - ($('#footer').innerHeight() + $('#content').innerHeight()));
+	}
 });

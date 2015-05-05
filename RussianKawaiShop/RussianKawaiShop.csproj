@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DBConnector.cs" />
+    <Compile Include="Database\Models\Ad.cs" />
+    <Compile Include="Database\Models\AdClient.cs" />
     <Compile Include="Database\Models\FAQ.cs" />
     <Compile Include="Database\Models\Cart.cs" />
     <Compile Include="Database\Models\Order.cs" />
@@ -70,7 +72,6 @@
     <Compile Include="Pages\OrderPage.cs" />
     <Compile Include="Pages\PartnerInvitePage.cs" />
     <Compile Include="Pages\ProductPage.cs" />
-    <Compile Include="Pages\RedirectPage.cs" />
     <Compile Include="Pages\ReferralPage.cs" />
     <Compile Include="Pages\Resources\CatalogMenu.cs" />
     <Compile Include="Pages\Resources\Footer.cs" />
@@ -129,9 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\Cart\Cart.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Templates\Redirect.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\Order.html" />

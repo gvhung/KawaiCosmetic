@@ -17,21 +17,28 @@
                 </div>
             </div>
         </div>
-        <div class="tit-big j3 mb1">Оформление Заказа</div>
-        <div class="over-ct-ret1">
-            <div class="ct-re1">
-                <div class="ll1">
-                    <div class="lb2-e1">Ваш заказ на сумму:</div>
-                    <div class="lb2-e2">
-                        <div class="prp1">{{=cartService.GetTotalCost(cartService.GetCookie(client))}} <i></i></div>
+        <form action="/cart/" method="post">
+            <div class="tit-big j3 mb1">Оформление Заказа</div>
+            <div class="over-ct-ret1">
+                <div class="ct-re1">
+                    <div class="ll1">
+                        <div class="lb2-e1">Ваш заказ на сумму:</div>
+                        <div class="lb2-e2">
+                            <div class="prp1">{{=cartService.GetTotalCost(cartService.GetCookie(client))}} <i></i></div>
+                        </div>
+                    </div>
+                    <div class="rr1">
+                        <div class="line2"><span>Введите номер скидочного<br>купона, если он у вас имеется:</span><input type="text" name="saleCode" placeholder="скидочный ключ"></div>
+                       <!-- <div class="line3">
+                            <span>Ваша скидка:</span>
+                            <div><b>5%</b> — <i>1008</i></div>
+                        </div>-->
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="title3">адрес доставки</div>
-        <div class="big-form-ct1">
-            <div class="over-form-s1">
-                <form action="/cart/" method="post">
+            <div class="title3">адрес доставки</div>
+            <div class="big-form-ct1">
+                <div class="over-form-s1">
                     <div class="ip"><input type="text" name="email" placeholder="e-mail"></div>
                     <div class="ip"><input type="text" name="name" placeholder="ФИО"></div>
                     <div class="ip"><input type="text" name="phone" placeholder="Телефон"></div>
@@ -49,10 +56,11 @@
                         <div class="ip ip2"><textarea name="comment" placeholder="Комментарий"></textarea></div>
                         <input type="hidden" name="CreateOrder" value="do" />
                         <div class="send-sub1">Оформить заказ<input type="submit" value=""></div>
-                    </div>
-                </form>
+                    </div> 
+                </div>
             </div>
-        </div>
+        </form>
+    <div class="hh-test1"></div>
     </section>
     {{include RussianKawaiShop Footer}}
 </body>

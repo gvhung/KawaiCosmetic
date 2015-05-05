@@ -93,7 +93,12 @@
         </div>
         <div class="pl-prc1">
             <div class="ll1">Доставка: <span>Бесплатно</span></div>
-            <div class="rr1">Итого: <span>{{=order.TotalCost}}</span></div>
+            <div class="rr1">Итого: 
+            <span>{{=order.TotalCost}}</span>
+            {{if(order.SalePercentage > 0)}}
+                <br />(со скидкой {{=order.SalePercentage}} %)
+                {{end}}
+            </div>
         </div>
         {{if(order.Status == 0)}}
         <div class="pl-prc2">
@@ -128,6 +133,7 @@
             {{end}}
         </div>
         {{end}}
+    <div class="hh-test1"></div>
     </section>
     {{include RussianKawaiShop Footer}}
 </body>
