@@ -137,7 +137,7 @@ namespace RussianKawaiShop
                     {
                         order.PartnersPercentage = partner.IncomePercentage;
                         order.SalePercentage = partner.SalePercentage;
-                        order.TotalCost = cartService.GetTotalCost(cartService.GetCookie(client)) - (cartService.GetTotalCost(cartService.GetCookie(client)) / 100 * partner.SalePercentage);
+                        order.TotalCost = Math.Round(cartService.GetTotalCost(cartService.GetCookie(client)) - (cartService.GetTotalCost(cartService.GetCookie(client)) / 100 * partner.SalePercentage));
                     } 
                 }
                 else
