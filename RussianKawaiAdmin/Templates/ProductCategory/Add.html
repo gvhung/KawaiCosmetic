@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="ru">
+{{include RussianKawaiAdmin Head}}
+<body>
+    {{include RussianKawaiAdmin Header}}
+    <div class="main">
+        <div class="add_title"><p>Add new product category</p></div>
+        <div class="speedbar">
+            <span class="speedspan"><a class="speeda" href="/">ADMIN</a></span>»<span class="speedspan"><a class="speeda">Добавление категории товара</a></span><span class="speedspan"></span>
+        </div>
+        <div class="clear"></div>
+        <form action="/product.category/add/" method="post">
+            <ul>
+                <li>
+                    <p>Название:</p>
+                    <input type="text" name="name" required value="">
+                </li>
+                <li>
+                <li>
+                    <div>
+                        <input type="submit" value="ДОБАВИТЬ КАТЕГОРИЮ ТОВАРА" name="AddProductCategory">
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="clear"></div>
+    </div>
+    {{include RussianKawaiAdmin Footer}}
+</body>
+</html>

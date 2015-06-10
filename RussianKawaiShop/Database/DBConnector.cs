@@ -18,7 +18,7 @@ namespace RussianKawaiShop.Database
         {
             ProductCategoryService productCategoryService = new ProductCategoryServiceImpl();
 
-            string[] categories = { "DETOS EX", "Kawai Basic", "Coenzyme Q10", "Special Care", "Body Care & Hair Care", "Make Up Series" };
+            string[] categories = { "DETOS EX", "Kawai Basic", "Coenzyme Q10", "Special Care", "Body Care & Hair Care", "Make Up Series", "Зеленый сок" };
             foreach (string category in categories)
             {
                 if(productCategoryService.GetByName(category) == null)
