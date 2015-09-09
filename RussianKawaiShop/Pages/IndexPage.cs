@@ -25,6 +25,12 @@ namespace RussianKawaiShop.Pages
 
         public override bool Init(Client client)
         {
+            if (client.Referer != null && client.Referer.Contains("robokassa"))
+            {
+                client.Redirect("http://thegameslot.com");
+                return false;
+            }
+
             if(client.GetParam("ad") == "woman_ru")
             {
                 WebSocket.AD_WOMAN_RU++;

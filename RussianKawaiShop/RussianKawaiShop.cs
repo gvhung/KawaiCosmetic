@@ -45,10 +45,6 @@ namespace RussianKawaiShop
         {
             get { return ""; }
         }
-        public override string FaviconName
-        {
-            get { return "upserv.ico"; }
-        }
         public override string Host
         {
             get { return "kawai-cosmetic.local;kawai-cosmetics.ru;www.kawai-cosmetics.ru"; }
@@ -61,7 +57,10 @@ namespace RussianKawaiShop
         {
             get { return 0; }
         }
-
+        public override bool MaintenanceAffect
+        {
+            get { return true; }
+        }
         private CartService cartService = new CartServiceImpl();
 
         public static void OnLoad()
@@ -75,6 +74,7 @@ namespace RussianKawaiShop
 
         public override bool PreInit(Client client)
         {
+
             if (cartService.GetCookie(client) == null)
             {
                 cartService.SetNewCookie(client);

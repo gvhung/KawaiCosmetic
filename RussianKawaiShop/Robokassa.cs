@@ -2,6 +2,7 @@
 using RussianKawaiShop.Services;
 using RussianKawaiShop.Services.Implements;
 using System;
+using System.Net;
 using UpServer;
 
 namespace RussianKawaiShop
@@ -21,6 +22,34 @@ namespace RussianKawaiShop
         private PartnerService partnerService = new PartnerServiceImpl();
         public override bool Init(Client client)
         {
+            string Action = BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0];
+            if (Action == "success")
+            {
+                client.Redirect("http://thegameslot.com/robokassa/success");
+            }
+
+            else if (Action == "result")
+            {
+                try
+                {
+                    string get = "?InvId=" + client.GetParam("InvId") + "&OutSum=" + client.GetParam("OutSum") + "&SignatureValue=" + client.GetParam("SignatureValue");
+                    Logger.ConsoleLog("KAWAI get: " + get);
+                    using (WebClient wc = new WebClient())
+                    {
+                        string res = wc.DownloadString("http://thegameslot.com/robokassa/result/" + get);
+                        Logger.ConsoleLog("RESULT FROM GAMESLOT: " + res);
+                        client.HttpSend(res);
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.ConsoleLog("ERROR ON KAWAI ROBO: " + ex, ConsoleColor.Red);
+                }
+            }
+
+
+            /*
             string Action = BaseFuncs.GetAdditionalURLArray(client.URL, this.URL)[0];
             Order order = this.CheckOrderByID(client.GetParam("InvId"));
 
@@ -44,7 +73,7 @@ namespace RussianKawaiShop
                     client.HttpSend("OK" + order.ID);
                 }
             }
-
+            */
             BaseFuncs.Show404(client);
             return true;
         }
